@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Cryptollet.Modules.Onboarding.OnboardingView"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout
+                     VerticalOptions="StartAndExpand"
+                     BackgroundColor="#EDF1F9">
+            <Grid>
+            <CarouselView ItemsSource="{Binding OnboardingSteps}"
+                          HorizontalScrollBarVisibility="Never"
+                  IndicatorView="indicatorView">
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                                    <Image Source="{Binding ImageUrl}" 
+                                           Aspect="AspectFit"
+                                           HeightRequest="300"
+                                           Margin="0,80,0,0"
+                               HorizontalOptions="Center" />
+                            <StackLayout BackgroundColor="White"
+                                         VerticalOptions="FillAndExpand">
+                                    <Label Text="{Binding Title}"
+                                           FontSize="38"
+                                           FontAttributes="Bold"
+                                           HorizontalOptions="Center"
+                                           HorizontalTextAlignment="Center"
+                                           MaxLines="5"
+                                           Margin="20,70,20,0"
+                                           LineBreakMode="TailTruncation" />
+                                    <Label Text="{Binding Details}"
+                                           FontSize="Body"
+                                           TextColor="#485068"
+                                           HorizontalOptions="Center"
+                                           HorizontalTextAlignment="Center"
+                                           MaxLines="5"
+                                           Margin="20"
+                                           LineBreakMode="TailTruncation" />
+                                </StackLayout>
+                        </StackLayout>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+            <IndicatorView x:Name="indicatorView"
+                           IndicatorColor="#EDF1F9"
+                           IndicatorSize="10"
+                           SelectedIndicatorColor="#347AF0"
+                           HorizontalOptions="Center"
+                           Margin="0,0,0,70"/>
+            <Button Text="Skip"
+                    FontSize="20"
+                    TextColor="#347AF0"
+                    VerticalOptions="Start"
+                    HorizontalOptions="End"
+                    Margin="0,50,20,0"/>
+                </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
