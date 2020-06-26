@@ -1,5 +1,7 @@
 ﻿using Autofac;
 using Cryptollet.Common.Base;
+using Cryptollet.Modules.Login;
+using Cryptollet.Modules.Onboarding;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -10,6 +12,7 @@ namespace Cryptollet.Common.Navigation
     public interface INavigationService
     {
         Task PushAsync<TViewModel>(object parameter = null) where TViewModel : BaseViewModel;
+        Task PushAsync<TViewModel,TResult>(object parameter = null, EventHandler<TResult> onCompletion = null) where TViewModel : BaseViewModel, IViewModelCompletion<TResult>;
         Task PopAsync();
     }
 
@@ -20,7 +23,8 @@ namespace Cryptollet.Common.Navigation
         private readonly Dictionary<Type, Type> _pageMap = new Dictionary<Type, Type>
         {
             // TODO: URL mapping goes here
-            //  { typeof(HistoryViewModel), typeof(HistoryView) },
+            { typeof(OnboardingViewModel), typeof(OnboardingView) },
+            { typeof(LoginViewModel), typeof(LoginView) },
         };
 
         public NavigationService(Func<INavigation> navigation, IComponentContext container)
@@ -36,10 +40,23 @@ namespace Cryptollet.Common.Navigation
 
         public async Task PushAsync<TViewModel>(object parameter = null) where TViewModel : BaseViewModel
         {
+            Page page = await CreateAndPushPage<TViewModel>();
+            await (page.BindingContext as BaseViewModel).InitializeAsync(parameter);
+        }
+
+        private async Task<Page> CreateAndPushPage<TViewModel>() where TViewModel : BaseViewModel
+        {
             var pageType = _pageMap[typeof(TViewModel)];
             Page page = _container.Resolve(pageType) as Page;
             await _navigation().PushAsync(page);
-            await (page.BindingContext as BaseViewModel).InitializeAsync(parameter);
+            return page;
+        }
+
+        public async Task PushAsync<TViewModel, TResult>(object parameter = null, EventHandler<TResult> onCompletion = null) where TViewModel : BaseViewModel, IViewModelCompletion<TResult>
+        {
+            Page page = await CreateAndPushPage<TViewModel>();
+            await(page.BindingContext as BaseViewModel).InitializeAsync(parameter);
+            (page.BindingContext as IViewModelCompletion<TResult>).Completed += onCompletion;
         }
     }
 }

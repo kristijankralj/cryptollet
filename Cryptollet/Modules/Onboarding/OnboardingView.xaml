@@ -53,7 +53,9 @@
                     TextColor="#347AF0"
                     VerticalOptions="Start"
                     HorizontalOptions="End"
-                    Margin="0,50,20,0"/>
+                    Margin="0,50,20,0"
+                    Command="{Binding SkipCommand}"
+                    />
                 </Grid>
         </StackLayout>
     </ContentPage.Content>

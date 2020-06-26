@@ -5,6 +5,7 @@ using Cryptollet.Common.Navigation;
 using Cryptollet.Modules.Onboarding;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Cryptollet.Common.Extensions;
 
 namespace Cryptollet
 {
@@ -33,8 +34,10 @@ namespace Cryptollet
             //get container
             var container = builder.Build();
             //set first page
-            navigationPage = new NavigationPage(container.Resolve<OnboardingView>());
+            navigationPage = new NavigationPage();
             MainPage = navigationPage;
+            var coordinator = container.Resolve<InitialFlowCoordinator>();
+            coordinator.Start().SafeFireAndForget(false);
         }
     }
 }
