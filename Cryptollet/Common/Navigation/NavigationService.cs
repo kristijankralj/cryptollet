@@ -14,6 +14,7 @@ namespace Cryptollet.Common.Navigation
         Task PushAsync<TViewModel>(object parameter = null) where TViewModel : BaseViewModel;
         Task PushAsync<TViewModel,TResult>(object parameter = null, EventHandler<TResult> onCompletion = null) where TViewModel : BaseViewModel, IViewModelCompletion<TResult>;
         Task PopAsync();
+        Task InsertAsRoot<TViewModel>(object parameter = null) where TViewModel : BaseViewModel;
     }
 
     class NavigationService : INavigationService
@@ -40,23 +41,35 @@ namespace Cryptollet.Common.Navigation
 
         public async Task PushAsync<TViewModel>(object parameter = null) where TViewModel : BaseViewModel
         {
-            Page page = await CreateAndPushPage<TViewModel>();
-            await (page.BindingContext as BaseViewModel).InitializeAsync(parameter);
-        }
-
-        private async Task<Page> CreateAndPushPage<TViewModel>() where TViewModel : BaseViewModel
-        {
-            var pageType = _pageMap[typeof(TViewModel)];
-            Page page = _container.Resolve(pageType) as Page;
+            Page page = CreatePage<TViewModel>();
             await _navigation().PushAsync(page);
-            return page;
+            await (page.BindingContext as BaseViewModel).InitializeAsync(parameter);
         }
 
         public async Task PushAsync<TViewModel, TResult>(object parameter = null, EventHandler<TResult> onCompletion = null) where TViewModel : BaseViewModel, IViewModelCompletion<TResult>
         {
-            Page page = await CreateAndPushPage<TViewModel>();
-            await(page.BindingContext as BaseViewModel).InitializeAsync(parameter);
+            Page page = CreatePage<TViewModel>();
+            await _navigation().PushAsync(page);
+            await (page.BindingContext as BaseViewModel).InitializeAsync(parameter);
             (page.BindingContext as IViewModelCompletion<TResult>).Completed += onCompletion;
+        }
+
+        public async Task InsertAsRoot<TViewModel>(object parameter = null) where TViewModel : BaseViewModel
+        {
+            if (_navigation().NavigationStack.Count == 0)
+            {
+                return;
+            }
+            Page page = CreatePage<TViewModel>();
+            _navigation().InsertPageBefore(page, _navigation().NavigationStack[0]);
+            await _navigation().PopToRootAsync();
+        }
+
+        private Page CreatePage<TViewModel>() where TViewModel : BaseViewModel
+        {
+            var pageType = _pageMap[typeof(TViewModel)];
+            Page page = _container.Resolve(pageType) as Page;
+            return page;
         }
     }
 }

@@ -1,8 +1,48 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Cryptollet.Modules.Login.LoginView">
+             x:Class="Cryptollet.Modules.Login.LoginView"
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-        <Label Text="login" />
+        <StackLayout BackgroundColor="{StaticResource LightBlueBackground}"
+                     Padding="0,70,0,0">
+            <Label Text="Welcome Back!"
+                   TextColor="{StaticResource InputText}"
+                   FontSize="26"
+                   HorizontalTextAlignment="Center"/>
+            <Image Source="login.png"
+                   Margin="0,30,0,0"></Image>
+            <StackLayout BackgroundColor="White"
+                         VerticalOptions="FillAndExpand">
+                <Entry Placeholder="Email address"
+                       Margin="24,30,24,10"
+                       PlaceholderColor="{StaticResource InputText}"
+                       HeightRequest="40"/>
+                <Entry Placeholder="Password"
+                       Margin="24,0,24,20"
+                       PlaceholderColor="{StaticResource InputText}"
+                       HeightRequest="40"
+                       IsPassword="True"/>
+                <StackLayout HorizontalOptions="Center"
+                             VerticalOptions="EndAndExpand"
+                             Margin="0,0,0,80">
+                    <Button BackgroundColor="{StaticResource PrimaryBlue}"
+                        Text="Login"
+                        FontAttributes="Bold"
+                        FontSize="16"
+                        TextColor="White"
+                        CornerRadius="20"
+                        WidthRequest="200"
+                        HorizontalOptions="Center"
+                        VerticalOptions="EndAndExpand" />
+                    <Button Text="Don't have an account? Sign Up"
+                            TextColor="{StaticResource PrimaryBlue}"
+                            FontSize="14"
+                            Grid.Column="2"
+                            HorizontalOptions="Start"
+                            VerticalOptions="StartAndExpand"/>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

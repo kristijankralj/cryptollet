@@ -119,6 +119,8 @@
     <ImageAsset Include="Assets.xcassets\2_nice.png.imageset\2_nice.png" />
     <ImageAsset Include="Assets.xcassets\3_security.png.imageset\4_security.png" />
     <ImageAsset Include="Assets.xcassets\3_security.png.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\login.png.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\login.png.imageset\login.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -144,5 +146,6 @@
     <Folder Include="Assets.xcassets\2_nice.png.imageset\" />
     <Folder Include="Assets.xcassets\3_social.png.imageset\" />
     <Folder Include="Assets.xcassets\3_security.png.imageset\" />
+    <Folder Include="Assets.xcassets\login.png.imageset\" />
   </ItemGroup>
 </Project>

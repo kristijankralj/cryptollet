@@ -6,7 +6,7 @@
     <ContentPage.Content>
         <StackLayout
                      VerticalOptions="StartAndExpand"
-                     BackgroundColor="#EDF1F9">
+                     BackgroundColor="{StaticResource LightBlueBackground}">
             <Grid>
             <CarouselView ItemsSource="{Binding OnboardingSteps}"
                           HorizontalScrollBarVisibility="Never"
