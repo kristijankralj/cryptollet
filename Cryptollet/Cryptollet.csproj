@@ -26,5 +26,10 @@
     <Folder Include="Common\Models\" />
     <Folder Include="Modules\Login\" />
     <Folder Include="Common\Extensions\" />
+    <Folder Include="Modules\Register\" />
+    <Folder Include="Modules\Wallet\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Common\Navigation\RegisterView.xaml.cs" />
   </ItemGroup>
 </Project>

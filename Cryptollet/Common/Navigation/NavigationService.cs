@@ -21,12 +21,7 @@ namespace Cryptollet.Common.Navigation
     {
         private Func<INavigation> _navigation;
         private IComponentContext _container;
-        private readonly Dictionary<Type, Type> _pageMap = new Dictionary<Type, Type>
-        {
-            // TODO: URL mapping goes here
-            { typeof(OnboardingViewModel), typeof(OnboardingView) },
-            { typeof(LoginViewModel), typeof(LoginView) },
-        };
+        private readonly Dictionary<Type, Type> _pageMap = Router.GetRoutes();
 
         public NavigationService(Func<INavigation> navigation, IComponentContext container)
         {
