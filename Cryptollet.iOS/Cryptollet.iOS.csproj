@@ -113,16 +113,16 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon20.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\1_welcome.png.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\2_nice.png.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\1_welcome.png.imageset\1_welcome.png" />
-    <ImageAsset Include="Assets.xcassets\2_nice.png.imageset\2_nice.png" />
-    <ImageAsset Include="Assets.xcassets\3_security.png.imageset\4_security.png" />
-    <ImageAsset Include="Assets.xcassets\3_security.png.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\login.png.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\login.png.imageset\login.png" />
     <ImageAsset Include="Assets.xcassets\register.png.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\register.png.imageset\register.png" />
+    <ImageAsset Include="Assets.xcassets\welcome.png.imageset\1_welcome.png" />
+    <ImageAsset Include="Assets.xcassets\welcome.png.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\nice.png.imageset\2_nice.png" />
+    <ImageAsset Include="Assets.xcassets\nice.png.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\security.png.imageset\4_security.png" />
+    <ImageAsset Include="Assets.xcassets\security.png.imageset\Contents.json" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -144,13 +144,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Assets.xcassets\1_welcome.png.imageset\" />
-    <Folder Include="Assets.xcassets\2_nice.png.imageset\" />
     <Folder Include="Assets.xcassets\3_social.png.imageset\" />
-    <Folder Include="Assets.xcassets\3_security.png.imageset\" />
     <Folder Include="Assets.xcassets\login.png.imageset\" />
     <Folder Include="Assets.xcassets\register.png.imageset\" />
     <Folder Include="Assets.xcassets\loginLoading.gif.imageset\" />
+    <Folder Include="Assets.xcassets\welcome.png.imageset\" />
+    <Folder Include="Assets.xcassets\nice.png.imageset\" />
+    <Folder Include="Assets.xcassets\security.png.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\loading.gif" />

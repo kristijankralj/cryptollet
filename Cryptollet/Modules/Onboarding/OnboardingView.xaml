@@ -16,7 +16,7 @@
                         <StackLayout>
                                     <Image Source="{Binding ImageUrl}" 
                                            Aspect="AspectFit"
-                                           HeightRequest="300"
+                                           HeightRequest="270"
                                            Margin="0,80,0,0"
                                HorizontalOptions="Center" />
                             <StackLayout BackgroundColor="White"
@@ -53,6 +53,7 @@
                     TextColor="#347AF0"
                     VerticalOptions="Start"
                     HorizontalOptions="End"
+                    BackgroundColor="Transparent"
                     Margin="0,50,20,0"
                     Command="{Binding SkipCommand}"
                     />

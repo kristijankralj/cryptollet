@@ -4,6 +4,7 @@ using System.Windows.Input;
 using Cryptollet.Common.Base;
 using Cryptollet.Common.Navigation;
 using Cryptollet.Modules.Register;
+using Cryptollet.Modules.Wallet;
 using Xamarin.Forms;
 
 namespace Cryptollet.Modules.Login
@@ -18,6 +19,13 @@ namespace Cryptollet.Modules.Login
         }
 
         public ICommand RegisterCommand { get => new Command(async () => await GoToRegister()); }
+        public ICommand LoginCommand { get => new Command(async () => await LoginUser(), () => IsNotBusy); }
+
+        private async Task LoginUser()
+        {
+            IsBusy = true;
+            await _navigationService.InsertAsRoot<WalletViewModel>();
+        }
 
         private async Task GoToRegister()
         {

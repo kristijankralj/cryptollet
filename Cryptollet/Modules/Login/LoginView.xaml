@@ -9,7 +9,8 @@
             <Label Style="{StaticResource TitleLabel}"
                    Text="Welcome Back!"/>
             <Image Source="login.png"
-                   Margin="0,30,0,0"></Image>
+                   Margin="0,30,0,0"
+                   HeightRequest="270"></Image>
             <StackLayout BackgroundColor="White"
                          VerticalOptions="FillAndExpand">
                 <Entry Style="{StaticResource Input}"
@@ -19,6 +20,7 @@
                        Placeholder="Password"
                        Margin="24,0,24,30"
                        IsPassword="True"/>
+                <StackLayout IsVisible="{Binding IsBusy}">
                 <Image Source="loading.gif"
                        IsAnimationPlaying="True"
                        WidthRequest="80"
@@ -26,12 +28,14 @@
                 <Label Text="Loading..."
                        HorizontalTextAlignment="Center"
                        TextColor="{StaticResource InputText}"/>
+                </StackLayout>
                 <StackLayout HorizontalOptions="Center"
                              VerticalOptions="EndAndExpand"
                              Margin="0,0,0,80">
                     <Button Style="{StaticResource BlueButton}"
                             Text="Login"
-                            VerticalOptions="EndAndExpand" />
+                            VerticalOptions="EndAndExpand"
+                            Command="{Binding LoginCommand}"/>
                     <Button Style="{StaticResource NoBackgroundSmallButton}"
                             Text="Don't have an account? Sign up"
                             Command="{Binding RegisterCommand}"/>
