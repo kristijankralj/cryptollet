@@ -121,6 +121,8 @@
     <ImageAsset Include="Assets.xcassets\3_security.png.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\login.png.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\login.png.imageset\login.png" />
+    <ImageAsset Include="Assets.xcassets\register.png.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\register.png.imageset\register.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -147,5 +149,10 @@
     <Folder Include="Assets.xcassets\3_social.png.imageset\" />
     <Folder Include="Assets.xcassets\3_security.png.imageset\" />
     <Folder Include="Assets.xcassets\login.png.imageset\" />
+    <Folder Include="Assets.xcassets\register.png.imageset\" />
+    <Folder Include="Assets.xcassets\loginLoading.gif.imageset\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\loading.gif" />
   </ItemGroup>
 </Project>

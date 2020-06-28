@@ -17,8 +17,15 @@
                        Margin="24,30,24,10" />
                 <Entry Style="{StaticResource Input}"
                        Placeholder="Password"
-                       Margin="24,0,24,0"
+                       Margin="24,0,24,30"
                        IsPassword="True"/>
+                <Image Source="loading.gif"
+                       IsAnimationPlaying="True"
+                       WidthRequest="80"
+                       HeightRequest="80"/>
+                <Label Text="Loading..."
+                       HorizontalTextAlignment="Center"
+                       TextColor="{StaticResource InputText}"/>
                 <StackLayout HorizontalOptions="Center"
                              VerticalOptions="EndAndExpand"
                              Margin="0,0,0,80">
@@ -26,7 +33,8 @@
                             Text="Login"
                             VerticalOptions="EndAndExpand" />
                     <Button Style="{StaticResource NoBackgroundSmallButton}"
-                            Text="Don't have an account? Sign up"/>
+                            Text="Don't have an account? Sign up"
+                            Command="{Binding RegisterCommand}"/>
                 </StackLayout>
             </StackLayout>
         </StackLayout>

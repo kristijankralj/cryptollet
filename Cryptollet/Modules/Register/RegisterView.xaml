@@ -2,8 +2,38 @@
 <ContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="Cryptollet.Modules.Register.RegisterView">
+    x:Class="Cryptollet.Modules.Register.RegisterView"
+    NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-        <Label Text="register" />
+        <StackLayout BackgroundColor="{StaticResource LightBlueBackground}"
+                     Padding="0,70,0,0">
+            <Label Style="{StaticResource TitleLabel}"
+                   Text="Create Account"/>
+            <Image Source="register.png"
+                   Margin="0,30,0,0"></Image>
+            <StackLayout BackgroundColor="White"
+                         VerticalOptions="FillAndExpand">
+                <Entry Style="{StaticResource Input}"
+                       Placeholder="First Name"
+                       Margin="24,30,24,10" />
+                <Entry Style="{StaticResource Input}"
+                       Placeholder="Email address"
+                       Margin="24,0,24,10" />
+                <Entry Style="{StaticResource Input}"
+                       Placeholder="Password"
+                       Margin="24,0,24,0"
+                       IsPassword="True"/>
+                <StackLayout HorizontalOptions="Center"
+                             VerticalOptions="EndAndExpand"
+                             Margin="0,0,0,80">
+                    <Button Style="{StaticResource BlueButton}"
+                            Text="Let's Get Started"
+                            VerticalOptions="EndAndExpand" />
+                    <Button Style="{StaticResource NoBackgroundSmallButton}"
+                            Text="Already have an account? Login"
+                            Command="{Binding LoginCommand}"/>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
