@@ -2,7 +2,13 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Cryptollet.Modules.Login.LoginView"
+             xmlns:converters="clr-namespace:Cryptollet.Common.Converters"
              NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:FirstValidationErrorConverter x:Key="firstValidationErrorConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout BackgroundColor="{StaticResource LightBlueBackground}"
                      Padding="0,70,0,0">
@@ -15,11 +21,19 @@
                          VerticalOptions="FillAndExpand">
                 <Entry Style="{StaticResource Input}"
                        Placeholder="Email address"
-                       Margin="24,30,24,10" />
+                       Text="{Binding Email.Value, Mode=TwoWay}"
+                       Margin="24,30,24,0" />
+                <Label Text="{Binding Email.Errors, Converter={StaticResource firstValidationErrorConverter}}"
+					   Style="{StaticResource ValidationErrorLabel}"
+                       Margin="24,0,24,10"/>
                 <Entry Style="{StaticResource Input}"
                        Placeholder="Password"
-                       Margin="24,0,24,30"
+                       Text="{Binding Password.Value, Mode=TwoWay}"
+                       Margin="24,0,24,0"
                        IsPassword="True"/>
+                <Label Text="{Binding Password.Errors, Converter={StaticResource firstValidationErrorConverter}}"
+					   Style="{StaticResource ValidationErrorLabel}"
+                       Margin="24,0,24,10"/>
                 <StackLayout IsVisible="{Binding IsBusy}">
                 <Image Source="loading.gif"
                        IsAnimationPlaying="True"

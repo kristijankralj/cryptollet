@@ -6,7 +6,25 @@ using Xamarin.Forms;
 
 namespace Cryptollet.Common.Base
 {
-    public abstract class BaseViewModel : BindableObject
+    public abstract class ExtendedBindableObject : BindableObject
+    {
+        protected bool SetProperty<T>(ref T backingStore, T value,
+                  [CallerMemberName] string propertyName = "",
+                  Action onChanged = null)
+        {
+            if (EqualityComparer<T>.Default.Equals(backingStore, value))
+            {
+                return false;
+            }
+            backingStore = value;
+            onChanged?.Invoke();
+
+            OnPropertyChanged(propertyName);
+            return true;
+        }
+    }
+
+    public abstract class BaseViewModel : ExtendedBindableObject
     {
         public virtual Task InitializeAsync(object parameter)
         {
@@ -37,21 +55,6 @@ namespace Cryptollet.Common.Base
                     IsBusy = !_isNotBusy;
                 }
             }
-        }
-
-        protected bool SetProperty<T>(ref T backingStore, T value,
-                          [CallerMemberName] string propertyName = "",
-                          Action onChanged = null)
-        {
-            if (EqualityComparer<T>.Default.Equals(backingStore, value))
-            {
-                return false;
-            }
-            backingStore = value;
-            onChanged?.Invoke();
-
-            OnPropertyChanged(propertyName);
-            return true;
         }
     }
 }
