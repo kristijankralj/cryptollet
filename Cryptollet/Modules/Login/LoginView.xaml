@@ -25,7 +25,7 @@
                        Margin="24,30,24,0" />
                 <Label Text="{Binding Email.Errors, Converter={StaticResource firstValidationErrorConverter}}"
 					   Style="{StaticResource ValidationErrorLabel}"
-                       Margin="24,0,24,10"/>
+                       Margin="26,0,24,10"/>
                 <Entry Style="{StaticResource Input}"
                        Placeholder="Password"
                        Text="{Binding Password.Value, Mode=TwoWay}"
@@ -33,7 +33,7 @@
                        IsPassword="True"/>
                 <Label Text="{Binding Password.Errors, Converter={StaticResource firstValidationErrorConverter}}"
 					   Style="{StaticResource ValidationErrorLabel}"
-                       Margin="24,0,24,10"/>
+                       Margin="26,0,24,10"/>
                 <StackLayout IsVisible="{Binding IsBusy}">
                 <Image Source="loading.gif"
                        IsAnimationPlaying="True"
