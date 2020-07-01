@@ -7,7 +7,7 @@
     NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <ScrollView BackgroundColor="White">
-            <StackLayout Padding="0,70,0,0"
+            <StackLayout Padding="0,20,0,0"
                          BackgroundColor="{StaticResource PrimaryBlue}">
                 <Label Style="{StaticResource TitleLabel}"
                    TextColor="White"
@@ -24,8 +24,9 @@
                        Margin="20,20,0,0"/>
                     <CollectionView ItemsSource="{Binding Assets}"
                                 SelectionMode="Single"
-                                HeightRequest="280"
-                                ItemTemplate="{StaticResource AssetCell}">
+                                HeightRequest="260"
+                                ItemTemplate="{StaticResource AssetCell}"
+                                VerticalScrollBarVisibility="Never">
                     </CollectionView>
                     <Button Text="See All Assets"
                         Style="{StaticResource NoBackgroundSmallButton}"
@@ -36,7 +37,19 @@
                     <Label Text="Latest Transactions"
                        FontAttributes="Bold"
                        TextColor="{StaticResource InputText}"
-                       Margin="20,10,0,0"/>
+                       Margin="20,15,0,0"/>
+                    <CollectionView ItemsSource="{Binding LatestTransactions}"
+                                    SelectionMode="Single"
+                                    HeightRequest="430"
+                                    VerticalScrollBarVisibility="Never"
+                                    ItemTemplate="{StaticResource TransactionCell}">
+                    </CollectionView>
+                    <Button Text="See All Transactions"
+                        Style="{StaticResource NoBackgroundSmallButton}"
+                        HorizontalOptions="Center"
+                        FontSize="17"
+                        FontAttributes="Bold"
+                            Margin="0,5,0,0"/>
                 </StackLayout>
             </StackLayout>
         </ScrollView>

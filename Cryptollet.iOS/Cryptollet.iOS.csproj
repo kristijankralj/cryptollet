@@ -129,6 +129,10 @@
     <ImageAsset Include="Assets.xcassets\ETH.png.imageset\ETH-1.pdf" />
     <ImageAsset Include="Assets.xcassets\LTC.png.imageset\LTC-1.pdf" />
     <ImageAsset Include="Assets.xcassets\BTC.png.imageset\BTC-1.pdf" />
+    <ImageAsset Include="Assets.xcassets\withdrawn.png.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\withdrawn.png.imageset\withdrawn.pdf" />
+    <ImageAsset Include="Assets.xcassets\deposited.png.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\deposited.png.imageset\deposited.pdf" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -166,6 +170,8 @@
     <Folder Include="Assets.xcassets\ETH.png.imageset\" />
     <Folder Include="Assets.xcassets\LTC.png.imageset\" />
     <Folder Include="Assets.xcassets\BTC.png.imageset\" />
+    <Folder Include="Assets.xcassets\withdrawn.png.imageset\" />
+    <Folder Include="Assets.xcassets\deposited.png.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\loading.gif" />
