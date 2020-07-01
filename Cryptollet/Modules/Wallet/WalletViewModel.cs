@@ -5,5 +5,6 @@ namespace Cryptollet.Modules.Wallet
 {
     public class WalletViewModel: BaseViewModel
     {
+
     }
 }

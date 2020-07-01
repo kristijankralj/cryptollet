@@ -6,6 +6,8 @@ using Cryptollet.Modules.Onboarding;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Cryptollet.Common.Extensions;
+using Cryptollet.Common.Database;
+using Cryptollet.Common.Models;
 
 namespace Cryptollet
 {
@@ -21,6 +23,7 @@ namespace Cryptollet
             builder.RegisterAssemblyTypes(dataAccess)
                    .AsImplementedInterfaces()
                    .AsSelf();
+            builder.RegisterType<Repository<User>>().As<IRepository<User>>();
 
             //register navigation service
             NavigationPage navigationPage = null;

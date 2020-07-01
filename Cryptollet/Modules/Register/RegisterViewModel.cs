@@ -2,7 +2,10 @@
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Cryptollet.Common.Base;
+using Cryptollet.Common.Database;
+using Cryptollet.Common.Models;
 using Cryptollet.Common.Navigation;
+using Cryptollet.Common.Security;
 using Cryptollet.Common.Validation;
 using Cryptollet.Modules.Wallet;
 using Xamarin.Forms;
@@ -12,10 +15,13 @@ namespace Cryptollet.Modules.Register
     public class RegisterViewModel: BaseViewModel
     {
         private INavigationService _navigationService;
+        private IRepository<User> _userRepository;
 
-        public RegisterViewModel(INavigationService navigationService)
+        public RegisterViewModel(INavigationService navigationService,
+            IRepository<User> repository)
         {
             _navigationService = navigationService;
+            _userRepository = repository;
             AddValidations();
         }
 
@@ -46,10 +52,20 @@ namespace Cryptollet.Modules.Register
         private async Task RegisterUser()
         {
             IsBusy = true;
-            if (AreEntriesCorrectlyPopulated())
+            if (!EntriesCorrectlyPopulated())
             {
-                await _navigationService.InsertAsRoot<WalletViewModel>();
+                IsBusy = false;
+                return;
             }
+            var user = new User()
+            {
+                Email = Email.Value,
+                FirstName = Name.Value,
+                HashedPassword = SecurePasswordHasher.Hash(Password.Value)
+            };
+            await _userRepository.SaveAsync(user);
+
+            await _navigationService.InsertAsRoot<WalletViewModel>();
             IsBusy = false;
         }
 
@@ -72,7 +88,7 @@ namespace Cryptollet.Modules.Register
             _name.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "Name is empty." });
         }
 
-        private bool AreEntriesCorrectlyPopulated()
+        private bool EntriesCorrectlyPopulated()
         {
             _email.Validate();
             _password.Validate();

@@ -1,8 +1,13 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Cryptollet.Common.Base;
+using Cryptollet.Common.Database;
+using Cryptollet.Common.Dialog;
+using Cryptollet.Common.Models;
 using Cryptollet.Common.Navigation;
+using Cryptollet.Common.Security;
 using Cryptollet.Common.Validation;
 using Cryptollet.Modules.Register;
 using Cryptollet.Modules.Wallet;
@@ -13,10 +18,16 @@ namespace Cryptollet.Modules.Login
     public class LoginViewModel: BaseViewModel
     {
         private INavigationService _navigationService;
+        private IRepository<User> _userRepository;
+        private IDialogMessage _dialogMessage;
 
-        public LoginViewModel(INavigationService navigationService)
+        public LoginViewModel(INavigationService navigationService,
+            IRepository<User> repository,
+            IDialogMessage message)
         {
             _navigationService = navigationService;
+            _userRepository = repository;
+            _dialogMessage = message;
             AddValidations();
         }
 
@@ -40,11 +51,33 @@ namespace Cryptollet.Modules.Login
         private async Task LoginUser()
         {
             IsBusy = true;
-            if(AreEntriesCorrectlyPopulated())
+            if (!EntriesCorrectlyPopulated())
             {
-                await _navigationService.InsertAsRoot<WalletViewModel>();
+                IsBusy = false;
+                return;
             }
-            IsBusy = false;
+            var user = (await _userRepository.GetAllAsync())
+                .FirstOrDefault(x => x.Email == Email.Value);
+            if (user == null)
+            {
+                await DisplayCredentialsError();
+                IsBusy = false;
+                return;
+            }
+            if (!SecurePasswordHasher.Verify(Password.Value, user.HashedPassword))
+            {
+                await DisplayCredentialsError();
+                IsBusy = false;
+                return;
+            }
+
+            await _navigationService.InsertAsRoot<WalletViewModel>();
+        }
+
+        private async Task DisplayCredentialsError()
+        {
+            await _dialogMessage.DisplayAlert("Error", "Credentials are wrong.", "Ok");
+            Password.Value = "";
         }
 
         private async Task GoToRegister()
@@ -63,7 +96,7 @@ namespace Cryptollet.Modules.Login
             _password.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "Password is empty." });
         }
 
-        private bool AreEntriesCorrectlyPopulated()
+        private bool EntriesCorrectlyPopulated()
         {
             _email.Validate();
             _password.Validate();
