@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Windows.Input;
 using Cryptollet.Common.Base;
 using Cryptollet.Common.Database;
@@ -8,6 +7,7 @@ using Cryptollet.Common.Navigation;
 using Cryptollet.Common.Security;
 using Cryptollet.Common.Validation;
 using Cryptollet.Modules.Wallet;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace Cryptollet.Modules.Register
@@ -65,6 +65,7 @@ namespace Cryptollet.Modules.Register
             };
             await _userRepository.SaveAsync(user);
 
+            Preferences.Set(Constants.IS_USER_LOGGED_IN, true);
             await _navigationService.InsertAsRoot<WalletViewModel>();
             IsBusy = false;
         }

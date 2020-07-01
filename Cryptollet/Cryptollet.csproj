@@ -35,6 +35,7 @@
     <Folder Include="Common\Converters\" />
     <Folder Include="Common\Security\" />
     <Folder Include="Common\Dialog\" />
+    <Folder Include="Common\Styles\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Common\Navigation\RegisterView.xaml.cs" />

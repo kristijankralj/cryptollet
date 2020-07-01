@@ -123,6 +123,12 @@
     <ImageAsset Include="Assets.xcassets\nice.png.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\security.png.imageset\4_security.png" />
     <ImageAsset Include="Assets.xcassets\security.png.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ETH.png.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\LTC.png.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\BTC.png.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ETH.png.imageset\ETH-1.pdf" />
+    <ImageAsset Include="Assets.xcassets\LTC.png.imageset\LTC-1.pdf" />
+    <ImageAsset Include="Assets.xcassets\BTC.png.imageset\BTC-1.pdf" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -157,6 +163,9 @@
     <Folder Include="Assets.xcassets\welcome.png.imageset\" />
     <Folder Include="Assets.xcassets\nice.png.imageset\" />
     <Folder Include="Assets.xcassets\security.png.imageset\" />
+    <Folder Include="Assets.xcassets\ETH.png.imageset\" />
+    <Folder Include="Assets.xcassets\LTC.png.imageset\" />
+    <Folder Include="Assets.xcassets\BTC.png.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\loading.gif" />

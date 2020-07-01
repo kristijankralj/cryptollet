@@ -27,8 +27,9 @@
                                            HorizontalOptions="Center"
                                            HorizontalTextAlignment="Center"
                                            MaxLines="5"
-                                           Margin="20,70,20,0"
-                                           LineBreakMode="TailTruncation" />
+                                           Margin="20,50,20,0"
+                                           LineBreakMode="TailTruncation"
+                                           TextColor="Black"/>
                                     <Label Text="{Binding Details}"
                                            FontSize="Body"
                                            TextColor="#485068"
@@ -42,12 +43,6 @@
                     </DataTemplate>
                 </CarouselView.ItemTemplate>
             </CarouselView>
-            <IndicatorView x:Name="indicatorView"
-                           IndicatorColor="#EDF1F9"
-                           IndicatorSize="10"
-                           SelectedIndicatorColor="#347AF0"
-                           HorizontalOptions="Center"
-                           Margin="0,0,0,70"/>
             <Button Text="Skip"
                     FontSize="20"
                     TextColor="#347AF0"
@@ -57,7 +52,14 @@
                     Margin="0,50,20,0"
                     Command="{Binding SkipCommand}"
                     />
-                </Grid>
+            <IndicatorView x:Name="indicatorView"
+                IndicatorColor="#EDF1F9"
+                IndicatorSize="10"
+                SelectedIndicatorColor="#347AF0"
+                HorizontalOptions="Center"
+                VerticalOptions="End"
+                Margin="0,0,0,50"/>
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

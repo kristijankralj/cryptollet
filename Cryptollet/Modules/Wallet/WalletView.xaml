@@ -6,12 +6,39 @@
     x:Class="Cryptollet.Modules.Wallet.WalletView"
     NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-        <StackLayout Padding="0,70,0,0"
-                     BackgroundColor="{StaticResource PrimaryBlue}">
-            <microcharts:ChartView x:Name="chartView"
-                                   HeightRequest="300"
-                                   WidthRequest="828"
-                                   BackgroundColor="{StaticResource PrimaryBlue}"/>
-        </StackLayout>
+        <ScrollView BackgroundColor="White">
+            <StackLayout Padding="0,70,0,0"
+                         BackgroundColor="{StaticResource PrimaryBlue}">
+                <Label Style="{StaticResource TitleLabel}"
+                   TextColor="White"
+                   Text="Portfolio" />
+                <microcharts:ChartView x:Name="chartView"
+                                   HeightRequest="200"
+                                   BackgroundColor="{StaticResource PrimaryBlue}"
+                                   Margin="0,20,0,0"/>
+                <StackLayout BackgroundColor="White"
+                         VerticalOptions="FillAndExpand">
+                    <Label Text="Top Assets"
+                       FontAttributes="Bold"
+                       TextColor="{StaticResource InputText}"
+                       Margin="20,20,0,0"/>
+                    <CollectionView ItemsSource="{Binding Assets}"
+                                SelectionMode="Single"
+                                HeightRequest="280"
+                                ItemTemplate="{StaticResource AssetCell}">
+                    </CollectionView>
+                    <Button Text="See All Assets"
+                        Style="{StaticResource NoBackgroundSmallButton}"
+                        HorizontalOptions="Center"
+                        FontSize="17"
+                        FontAttributes="Bold"
+                            Margin="0,5,0,0"/>
+                    <Label Text="Latest Transactions"
+                       FontAttributes="Bold"
+                       TextColor="{StaticResource InputText}"
+                       Margin="20,10,0,0"/>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
