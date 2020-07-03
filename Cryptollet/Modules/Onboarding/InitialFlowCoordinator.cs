@@ -37,7 +37,7 @@ namespace Cryptollet.Modules.Onboarding
 
         private async void FinishedOnboarding(object sender, object parameter)
         {
-            await _navigationService.InsertAsRoot<LoginViewModel>();
+            await _navigationService.PushAsync<LoginViewModel>();
         }
     }
 }

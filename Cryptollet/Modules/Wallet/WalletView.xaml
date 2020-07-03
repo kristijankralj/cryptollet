@@ -4,14 +4,19 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
     x:Class="Cryptollet.Modules.Wallet.WalletView"
-    NavigationPage.HasNavigationBar="False">
+    Title="Portfolio"
+    NavigationPage.HasNavigationBar="True">
+        <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Sign Out"
+                 Order="Primary"
+                 Priority="0"
+                 Command="{Binding SignOutCommand}" />
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
+        <RefreshView IsRefreshing="{Binding IsBusy}">
         <ScrollView BackgroundColor="White">
             <StackLayout Padding="0,20,0,0"
                          BackgroundColor="{StaticResource PrimaryBlue}">
-                <Label Style="{StaticResource TitleLabel}"
-                   TextColor="White"
-                   Text="Portfolio" />
                 <microcharts:ChartView x:Name="chartView"
                                    HeightRequest="200"
                                    BackgroundColor="{StaticResource PrimaryBlue}"
@@ -26,10 +31,10 @@
                                 SelectionMode="Single"
                                 HeightRequest="260"
                                 ItemTemplate="{StaticResource AssetCell}"
-                                VerticalScrollBarVisibility="Never">
-                    </CollectionView>
+                                VerticalScrollBarVisibility="Never" />
                     <Button Text="See All Assets"
                         Style="{StaticResource NoBackgroundSmallButton}"
+                        Command="{Binding GoToAssetsCommand}"
                         HorizontalOptions="Center"
                         FontSize="17"
                         FontAttributes="Bold"
@@ -42,10 +47,11 @@
                                     SelectionMode="Single"
                                     HeightRequest="430"
                                     VerticalScrollBarVisibility="Never"
-                                    ItemTemplate="{StaticResource TransactionCell}">
-                    </CollectionView>
+                                    ItemTemplate="{StaticResource TransactionCell}" />
+
                     <Button Text="See All Transactions"
                         Style="{StaticResource NoBackgroundSmallButton}"
+                        Command="{Binding GoToTransactionsCommand}"
                         HorizontalOptions="Center"
                         FontSize="17"
                         FontAttributes="Bold"
@@ -53,5 +59,6 @@
                 </StackLayout>
             </StackLayout>
         </ScrollView>
+        </RefreshView>
     </ContentPage.Content>
 </ContentPage>

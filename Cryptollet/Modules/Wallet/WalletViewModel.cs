@@ -1,15 +1,29 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
+using System.Windows.Input;
 using Cryptollet.Common.Base;
 using Cryptollet.Common.Models;
+using Cryptollet.Common.Navigation;
+using Cryptollet.Common.Network;
+using Cryptollet.Modules.Assets;
+using Cryptollet.Modules.Login;
+using Cryptollet.Modules.Transactions;
+using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace Cryptollet.Modules.Wallet
 {
     public class WalletViewModel: BaseViewModel
     {
+        private INavigationService _navigationService;
+        private ICrypoService _crypoService;
 
-        public WalletViewModel()
+        public WalletViewModel(INavigationService navigationService,
+                               ICrypoService crypoService)
         {
+            _navigationService = navigationService;
+            _crypoService = crypoService;
             Assets = new ObservableCollection<Coin>
             {
                 new Coin { Name = "Bitcoin", Amount= 0.8934M, Symbol = "BTC", DollarValue = 8452.98M, Change= 5.24M },
@@ -22,6 +36,7 @@ namespace Cryptollet.Modules.Wallet
                 new Transaction
                 {
                     Status = Constants.TRANSACTION_WITHDRAWN,
+                    StatusImageSource = Constants.TRANSACTION_WITHDRAWN_IMAGE,
                     TransactionDate = new DateTime(2019, 8, 19),
                     Amount = 0.021M,
                     DollarValue = 204,
@@ -30,6 +45,7 @@ namespace Cryptollet.Modules.Wallet
                 new Transaction
                 {
                     Status = Constants.TRANSACTION_DEPOSITED,
+                    StatusImageSource = Constants.TRANSACTION_DEPOSITED_IMAGE,
                     TransactionDate = new DateTime(2019, 8, 16),
                     Amount = 3.21M,
                     DollarValue = 695.03M,
@@ -38,6 +54,7 @@ namespace Cryptollet.Modules.Wallet
                 new Transaction
                 {
                     Status = Constants.TRANSACTION_DEPOSITED,
+                    StatusImageSource = Constants.TRANSACTION_DEPOSITED_IMAGE,
                     TransactionDate = new DateTime(2019, 8, 10),
                     Amount = 37.81M,
                     DollarValue = 250M,
@@ -46,6 +63,7 @@ namespace Cryptollet.Modules.Wallet
                 new Transaction
                 {
                     Status = Constants.TRANSACTION_WITHDRAWN,
+                    StatusImageSource = Constants.TRANSACTION_WITHDRAWN_IMAGE,
                     TransactionDate = new DateTime(2019, 8, 5),
                     Amount = 0.021M,
                     DollarValue = 204,
@@ -54,12 +72,21 @@ namespace Cryptollet.Modules.Wallet
                 new Transaction
                 {
                     Status = Constants.TRANSACTION_DEPOSITED,
+                    StatusImageSource = Constants.TRANSACTION_DEPOSITED_IMAGE,
                     TransactionDate = new DateTime(2019, 8, 1),
                     Amount = 3.21M,
                     DollarValue = 695.03M,
                     Symbol = "ETH"
                 },
             };
+        }
+
+        public override async Task InitializeAsync(object parameter)
+        {
+            var result = await _crypoService.GetLatestPrices();
+            Assets[0].DollarValue = Assets[0].Amount * (decimal)result.Bitcoin.Usd;
+            Assets[1].DollarValue = Assets[1].Amount * (decimal)result.Ethereum.Usd;
+            OnPropertyChanged("Assets");
         }
 
         private ObservableCollection<Coin> _assets;
@@ -74,6 +101,26 @@ namespace Cryptollet.Modules.Wallet
         {
             get => _latestTransactions;
             set { SetProperty(ref _latestTransactions, value); }
+        }
+
+        public ICommand GoToAssetsCommand { get => new Command(async () => await GoToAssets()); }
+        public ICommand GoToTransactionsCommand { get => new Command(async () => await GoToTransactions()); }
+        public ICommand SignOutCommand { get => new Command(async () => await SignOut()); }
+
+        private async Task SignOut()
+        {
+            Preferences.Remove(Constants.IS_USER_LOGGED_IN);
+            await _navigationService.InsertAsRoot<LoginViewModel>();
+        }
+
+        private async Task GoToTransactions()
+        {
+            await _navigationService.PushAsync<TransactionsViewModel>();
+        }
+
+        private async Task GoToAssets()
+        {
+            await _navigationService.PushAsync<AssetsViewModel>();
         }
     }
 }
