@@ -1,6 +1,7 @@
 {
   "images": [
     {
+      "filename": "nice.pdf",
       "idiom": "universal"
     },
     {
@@ -23,7 +24,6 @@
       "idiom": "iphone"
     },
     {
-      "filename": "2_nice.png",
       "scale": "2x",
       "idiom": "iphone"
     },

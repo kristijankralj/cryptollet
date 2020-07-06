@@ -1,6 +1,7 @@
 {
   "images": [
     {
+      "filename": "register.pdf",
       "idiom": "universal"
     },
     {
@@ -23,7 +24,6 @@
       "idiom": "iphone"
     },
     {
-      "filename": "register.png",
       "scale": "2x",
       "idiom": "iphone"
     },

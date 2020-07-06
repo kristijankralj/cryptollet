@@ -5,7 +5,7 @@ using System.Windows.Input;
 using Cryptollet.Common.Base;
 using Cryptollet.Common.Models;
 using Cryptollet.Common.Navigation;
-using Cryptollet.Modules.Trade;
+using Cryptollet.Modules.AddAsset;
 using Xamarin.Forms;
 
 namespace Cryptollet.Modules.Transactions
@@ -78,7 +78,7 @@ namespace Cryptollet.Modules.Transactions
 
         private async Task Trade()
         {
-            await _navigationService.PushAsync<TradeViewModel>();
+            await _navigationService.PushAsync<AddAssetViewModel>();
         }
     }
 }

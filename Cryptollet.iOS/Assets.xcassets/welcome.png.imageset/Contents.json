@@ -1,6 +1,7 @@
 {
   "images": [
     {
+      "filename": "welcome.pdf",
       "idiom": "universal"
     },
     {
@@ -23,7 +24,6 @@
       "idiom": "iphone"
     },
     {
-      "filename": "1_welcome.png",
       "scale": "2x",
       "idiom": "iphone"
     },

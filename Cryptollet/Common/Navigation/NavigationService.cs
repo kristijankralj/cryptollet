@@ -57,6 +57,7 @@ namespace Cryptollet.Common.Navigation
             }
             Page page = CreatePage<TViewModel>();
             _navigation().InsertPageBefore(page, _navigation().NavigationStack[0]);
+            await (page.BindingContext as BaseViewModel).InitializeAsync(parameter);
             await _navigation().PopToRootAsync();
         }
 

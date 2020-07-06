@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using Cryptollet.Modules.AddAsset;
 using Cryptollet.Modules.Assets;
 using Cryptollet.Modules.Login;
 using Cryptollet.Modules.Onboarding;
 using Cryptollet.Modules.Register;
-using Cryptollet.Modules.Trade;
 using Cryptollet.Modules.Transactions;
 using Cryptollet.Modules.Wallet;
 
@@ -23,7 +23,7 @@ namespace Cryptollet.Common.Navigation
                     { typeof(WalletViewModel), typeof(WalletView) },
                     { typeof(AssetsViewModel), typeof(AssetsView) },
                     { typeof(TransactionsViewModel), typeof(TransactionsView) },
-                    { typeof(TradeViewModel), typeof(TradeView) },
+                    { typeof(AddAssetViewModel), typeof(AddAssetView) },
                 };
         }
     }

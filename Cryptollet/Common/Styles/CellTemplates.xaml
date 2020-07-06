@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ResourceDictionary
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <!-- Asset Cell -->
+    <DataTemplate x:Key="AssetCell">
+        <StackLayout>
+            <Frame Margin="10,5,10,5"
+                    Padding="13"
+                    HasShadow="False"
+                    CornerRadius="32"
+                    BorderColor="LightGray"
+                    BackgroundColor="{StaticResource CellBackground}">
+                <Grid ColumnDefinitions="Auto,Auto,Auto" Margin="0">
+                    <Image Grid.Column="1"
+                            Source="{Binding Symbol, StringFormat='{0}.png'}"
+                            HorizontalOptions="Center"
+                            WidthRequest="34"
+                            HeightRequest="34"/>
+                    <Label Grid.Column="2"
+                            TextColor="{StaticResource InputText}"
+                            FontAttributes="Bold"
+                            Margin="7,0,0,0">
+                        <Label.Text>
+                            <MultiBinding StringFormat="{}{0} ({1})">
+                                <Binding Path="Name" />
+                                <Binding Path="Symbol" />
+                            </MultiBinding>
+                        </Label.Text>
+                    </Label>
+                    <Label Grid.Column="2"
+                            TextColor="{StaticResource DarkGrayText}"
+                            Margin="7,25,0,0">
+                        <Label.Text>
+                            <MultiBinding StringFormat="{}{0} {1}">
+                                <Binding Path="Amount" />
+                                <Binding Path="Symbol" />
+                            </MultiBinding>
+                        </Label.Text>
+                    </Label>
+                    <Label Grid.Column="3"
+                            Text="{Binding DollarValue, StringFormat='$ {0:F2}'}"
+                            TextColor="{StaticResource InputText}"
+                            FontAttributes="Bold"
+                            HorizontalOptions="End"
+                            Padding="0,0,10,0"/>
+                </Grid>
+            </Frame>
+        </StackLayout>
+    </DataTemplate>
+
+    <!-- Transaction Cell -->
+        <DataTemplate x:Key="TransactionCell">
+        <StackLayout>
+            <Frame Margin="10,5,10,5"
+                    Padding="13"
+                    HasShadow="False"
+                    CornerRadius="32"
+                    BorderColor="LightGray"
+                    BackgroundColor="{StaticResource CellBackground}">
+                <Grid ColumnDefinitions="Auto,Auto,Auto" Margin="0">
+                    <Image Grid.Column="1"
+                            Source="{Binding StatusImageSource}"
+                            HorizontalOptions="Center"
+                            WidthRequest="34"
+                            HeightRequest="34"/>
+                    <Label Grid.Column="2"
+                           Text="{Binding DollarValue, StringFormat='$ {0}'}"
+                            TextColor="{StaticResource InputText}"
+                            FontAttributes="Bold"
+                            Margin="7,0,0,0" />
+
+                    <Label Grid.Column="2"
+                            TextColor="{StaticResource DarkGrayText}"
+                            Margin="7,25,0,0">
+                        <Label.Text>
+                            <MultiBinding StringFormat="{}{0} {1}">
+                                <Binding Path="Amount" />
+                                <Binding Path="Symbol" />
+                            </MultiBinding>
+                        </Label.Text>
+                    </Label>
+                    <Label Grid.Column="3"
+                            Text="{Binding Status}"
+                            TextColor="{StaticResource PositiveTrend}"
+                            FontAttributes="Bold"
+                            HorizontalOptions="End"
+                            Padding="0,0,10,0">
+                        <Label.Triggers>
+                            <Trigger TargetType="Label" Property="Text" Value="Withdrawn">
+                                <Setter Property="TextColor" Value="{StaticResource NegativeTrend}" />
+                            </Trigger>
+                        </Label.Triggers>
+                        </Label>
+                    <Label Grid.Column="3"
+                            Text="{Binding TransactionDate, StringFormat='{0:MMM dd, yyyy}'}"
+                            TextColor="{StaticResource DarkGrayText}"
+                            HorizontalOptions="End"
+                            Margin="0,25,0,0"
+                            Padding="0,0,10,0" />
+                </Grid>
+            </Frame>
+        </StackLayout>
+    </DataTemplate>
+</ResourceDictionary>

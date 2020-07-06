@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Cryptollet.Modules.AddAsset.AddAssetView">
+    <ContentPage.Resources>
+        <Style TargetType="RadioButton">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="TextColor"
+                                        Value="DarkGray" />
+                                <Setter Property="Opacity"
+                                        Value="0.8" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="IsChecked">
+                            <VisualState.Setters>
+                                <Setter Property="TextColor"
+                                        Value="{StaticResource PrimaryBlue}" />
+                                <Setter Property="Opacity"
+                                        Value="1" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Transaction Type"
+                   Padding="10,10,10,0"/>
+            <RadioButton Text="Deposit"
+                         IsChecked="True"
+                         Margin="16,0,0,0"/>
+            <RadioButton Text="Withdrawn"
+                         Margin="16,0,0,0"/>
+            <Label Text="Select Asset"
+                   Padding="10,10,10,0"/>
+            <CollectionView ItemsSource="{Binding AvailableAssets}"
+                            ItemsLayout="HorizontalList"
+                            SelectionMode="Single"
+                            HeightRequest="100">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout VerticalOptions="Center">
+                            <Frame Margin="10,5,10,5"
+                                   HasShadow="True"
+                                   CornerRadius="32"
+                                   BorderColor="LightGray"
+                                   VerticalOptions="Center"
+                                   HeightRequest="40">
+                                <Grid ColumnDefinitions="Auto,Auto">
+                                    <Image Grid.Column="0"
+                                           Aspect="AspectFit"
+                                           WidthRequest="36"
+                                           HeightRequest="36"
+                                           Source="{Binding ImageUrl}"/>
+                                    <Label Grid.Column="1"
+                                           WidthRequest="120"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Center"
+                                           HorizontalTextAlignment="Center"
+                                           Text="{Binding Coin}"
+                                           FontSize="18"
+                                           FontAttributes="Bold"
+                                           TextColor="{StaticResource InputText}"/>
+                                </Grid>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Label Text="Amount"
+                   Margin="16,10,16,0"/>
+            <Entry Style="{StaticResource Input}"
+                   Text="{Binding Amount.Value, Mode=TwoWay}"
+                   Keyboard="Numeric"
+                   Margin="16,0,16,0"/>
+            <Label Text="Transaction Date"
+                   Padding="16,10,16,0"/>
+            <DatePicker Margin="16,0,16,0" />
+            <Button Style="{StaticResource BlueButton}"
+                    Margin="20"
+                    WidthRequest="240"
+                    Text="Add"
+                    Command="{Binding AddAssetCommand}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

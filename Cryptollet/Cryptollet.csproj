@@ -39,7 +39,7 @@
     <Folder Include="Common\Styles\" />
     <Folder Include="Modules\Assets\" />
     <Folder Include="Modules\Transactions\" />
-    <Folder Include="Modules\Trade\" />
+    <Folder Include="Modules\AddAsset\" />
     <Folder Include="Common\Network\" />
   </ItemGroup>
   <ItemGroup>

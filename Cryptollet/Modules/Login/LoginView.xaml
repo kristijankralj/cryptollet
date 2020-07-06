@@ -21,6 +21,7 @@
                          VerticalOptions="FillAndExpand">
                 <Entry Style="{StaticResource Input}"
                        Placeholder="Email address"
+                       Keyboard="Email"
                        Text="{Binding Email.Value, Mode=TwoWay}"
                        Margin="24,30,24,0" />
                 <Label Text="{Binding Email.Errors, Converter={StaticResource firstValidationErrorConverter}}"

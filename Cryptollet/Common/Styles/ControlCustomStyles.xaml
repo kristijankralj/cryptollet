@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ResourceDictionary
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Style TargetType="Button" x:Key="BlueButton">
+        <Setter Property="BackgroundColor" Value="{StaticResource PrimaryBlue}" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="CornerRadius" Value="20" />
+        <Setter Property="WidthRequest" Value="200" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+    </Style>
+
+    <Style TargetType="Entry" x:Key="Input" >
+        <Setter Property="HeightRequest" Value="40" />
+        <Setter Property="PlaceholderColor" Value="{StaticResource InputText}" />
+        <Setter Property="BackgroundColor" Value="White" />
+    </Style>
+
+    <Style TargetType="Label" x:Key="TitleLabel" >
+        <Setter Property="TextColor" Value="{StaticResource InputText}" />
+        <Setter Property="FontSize" Value="26" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+    </Style>
+
+    <Style TargetType="Button" x:Key="NoBackgroundSmallButton">
+        <Setter Property="TextColor" Value="{StaticResource PrimaryBlue}" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="BackgroundColor" Value="Transparent" />
+    </Style>
+
+    <Style x:Key="ValidationErrorLabel" TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource ErrorColor}" />
+        <Setter Property="FontSize" Value="12" />
+    </Style>
+</ResourceDictionary>

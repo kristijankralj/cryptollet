@@ -74,52 +74,9 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon1024.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon180.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon167.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon152.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon120.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon87.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon80.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon76.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon60.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon58.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon40.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon29.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon20.png">
-      <Visible>false</Visible>
-    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\login.png.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\login.png.imageset\login.png" />
     <ImageAsset Include="Assets.xcassets\register.png.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\register.png.imageset\register.png" />
-    <ImageAsset Include="Assets.xcassets\welcome.png.imageset\1_welcome.png" />
     <ImageAsset Include="Assets.xcassets\welcome.png.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\nice.png.imageset\2_nice.png" />
     <ImageAsset Include="Assets.xcassets\nice.png.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\security.png.imageset\4_security.png" />
     <ImageAsset Include="Assets.xcassets\security.png.imageset\Contents.json" />
@@ -133,6 +90,42 @@
     <ImageAsset Include="Assets.xcassets\withdrawn.png.imageset\withdrawn.pdf" />
     <ImageAsset Include="Assets.xcassets\deposited.png.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\deposited.png.imageset\deposited.pdf" />
+    <ImageAsset Include="Assets.xcassets\BCH.png.imageset\BCH.pdf" />
+    <ImageAsset Include="Assets.xcassets\BCH.png.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\DASH.png.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\DASH.png.imageset\DASH.pdf" />
+    <ImageAsset Include="Assets.xcassets\EOS.png.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\EOS.png.imageset\EOS.pdf" />
+    <ImageAsset Include="Assets.xcassets\MONERO.png.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\MONERO.png.imageset\MONERO.pdf" />
+    <ImageAsset Include="Assets.xcassets\STELLAR.png.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\STELLAR.png.imageset\XLM.pdf" />
+    <ImageAsset Include="Assets.xcassets\RIPPLE.png.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\RIPPLE.png.imageset\XRP.pdf" />
+    <ImageAsset Include="Assets.xcassets\emptyview.png.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\emptyview.png.imageset\emptyview.pdf" />
+    <ImageAsset Include="Assets.xcassets\welcome.png.imageset\welcome.pdf" />
+    <ImageAsset Include="Assets.xcassets\nice.png.imageset\nice.pdf" />
+    <ImageAsset Include="Assets.xcassets\register.png.imageset\register.pdf" />
+    <ImageAsset Include="Assets.xcassets\login.png.imageset\login.pdf" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-20x20%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-20x20%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-29x29%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-29x29%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-40x40%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-40x40%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-60x60%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-60x60%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-20x20%401x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-20x20%402x-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-29x29%401x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-29x29%402x-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-40x40%401x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-40x40%402x-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-76x76%401x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-76x76%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-83.5x83.5%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ItunesArtwork%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -172,6 +165,13 @@
     <Folder Include="Assets.xcassets\BTC.png.imageset\" />
     <Folder Include="Assets.xcassets\withdrawn.png.imageset\" />
     <Folder Include="Assets.xcassets\deposited.png.imageset\" />
+    <Folder Include="Assets.xcassets\BCH.png.imageset\" />
+    <Folder Include="Assets.xcassets\DASH.png.imageset\" />
+    <Folder Include="Assets.xcassets\EOS.png.imageset\" />
+    <Folder Include="Assets.xcassets\MONERO.png.imageset\" />
+    <Folder Include="Assets.xcassets\STELLAR.png.imageset\" />
+    <Folder Include="Assets.xcassets\RIPPLE.png.imageset\" />
+    <Folder Include="Assets.xcassets\emptyview.png.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\loading.gif" />

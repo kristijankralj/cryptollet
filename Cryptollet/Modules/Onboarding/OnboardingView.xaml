@@ -53,9 +53,9 @@
                     Command="{Binding SkipCommand}"
                     />
             <IndicatorView x:Name="indicatorView"
-                IndicatorColor="#EDF1F9"
+                IndicatorColor="{StaticResource CellBackground}"
                 IndicatorSize="10"
-                SelectedIndicatorColor="#347AF0"
+                SelectedIndicatorColor="{StaticResource PrimaryBlue}"
                 HorizontalOptions="Center"
                 VerticalOptions="End"
                 Margin="0,0,0,50"/>

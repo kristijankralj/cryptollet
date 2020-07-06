@@ -24,12 +24,7 @@ namespace Cryptollet.Modules.Wallet
         {
             _navigationService = navigationService;
             _crypoService = crypoService;
-            Assets = new ObservableCollection<Coin>
-            {
-                new Coin { Name = "Bitcoin", Amount= 0.8934M, Symbol = "BTC", DollarValue = 8452.98M, Change= 5.24M },
-                new Coin { Name = "Ethereum", Amount= 8.0175M, Symbol = "ETH", DollarValue = 1825.72M, Change = 1.45M },
-                new Coin { Name = "Litecoin", Amount= 24.82M, Symbol = "LTC", DollarValue = 1378.45M, Change = -0.91M },
-            };
+            Assets = new ObservableCollection<Coin>();
 
             LatestTransactions = new ObservableCollection<Transaction>
             {
@@ -83,10 +78,47 @@ namespace Cryptollet.Modules.Wallet
 
         public override async Task InitializeAsync(object parameter)
         {
+            await LoadAssets();
+        }
+
+        private async Task LoadAssets()
+        {
+            if (IsBusy)
+            {
+                return;
+            }
+            IsBusy = true;
+            IsRefreshing = true;
             var result = await _crypoService.GetLatestPrices();
-            Assets[0].DollarValue = Assets[0].Amount * (decimal)result.Bitcoin.Usd;
-            Assets[1].DollarValue = Assets[1].Amount * (decimal)result.Ethereum.Usd;
-            OnPropertyChanged("Assets");
+            Assets = new ObservableCollection<Coin>()
+            {
+                new Coin
+                {
+                    Name = "Bitcoin",
+                    Amount = 0.8934M,
+                    Symbol = "BTC",
+                    DollarValue = 0.8934M * (decimal)result.Bitcoin.Usd,
+                    Change = 5.24M
+                },
+                new Coin
+                {
+                    Name = "Ethereum",
+                    Amount = 8.0175M,
+                    Symbol = "ETH",
+                    DollarValue = 8.0175M * (decimal)result.Ethereum.Usd,
+                    Change = 1.45M
+                },
+                new Coin
+                {
+                    Name = "Litecoin",
+                    Amount = 24.82M,
+                    Symbol = "LTC",
+                    DollarValue = 24.82M * (decimal)result.Litecoin.Usd,
+                    Change = -0.91M
+                },
+            };
+            IsRefreshing = false;
+            IsBusy = false;
         }
 
         private ObservableCollection<Coin> _assets;
@@ -94,6 +126,13 @@ namespace Cryptollet.Modules.Wallet
         {
             get => _assets;
             set { SetProperty(ref _assets, value); }
+        }
+
+        private bool _isRefreshing;
+        public bool IsRefreshing
+        {
+            get => _isRefreshing;
+            set { SetProperty(ref _isRefreshing, value); }
         }
 
         private ObservableCollection<Transaction> _latestTransactions;
@@ -106,6 +145,7 @@ namespace Cryptollet.Modules.Wallet
         public ICommand GoToAssetsCommand { get => new Command(async () => await GoToAssets()); }
         public ICommand GoToTransactionsCommand { get => new Command(async () => await GoToTransactions()); }
         public ICommand SignOutCommand { get => new Command(async () => await SignOut()); }
+        public ICommand RefreshAssetsCommand { get => new Command(async () => await LoadAssets()); }
 
         private async Task SignOut()
         {

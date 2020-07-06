@@ -1,6 +1,7 @@
 {
   "images": [
     {
+      "filename": "LTC-1.pdf",
       "idiom": "universal"
     },
     {
@@ -23,7 +24,6 @@
       "idiom": "iphone"
     },
     {
-      "filename": "4_security.png",
       "scale": "2x",
       "idiom": "iphone"
     },

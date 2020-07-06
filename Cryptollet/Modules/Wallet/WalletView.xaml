@@ -13,7 +13,8 @@
                  Command="{Binding SignOutCommand}" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <RefreshView IsRefreshing="{Binding IsBusy}">
+        <RefreshView IsRefreshing="{Binding IsRefreshing}"
+                     Command="{Binding RefreshAssetsCommand}">
         <ScrollView BackgroundColor="White">
             <StackLayout Padding="0,20,0,0"
                          BackgroundColor="{StaticResource PrimaryBlue}">
@@ -47,7 +48,11 @@
                                     SelectionMode="Single"
                                     HeightRequest="430"
                                     VerticalScrollBarVisibility="Never"
-                                    ItemTemplate="{StaticResource TransactionCell}" />
+                                    ItemTemplate="{StaticResource TransactionCell}" >
+                    <CollectionView.EmptyView>
+                        <Image Source="emptyview.png" />
+                    </CollectionView.EmptyView>
+                    </CollectionView>
 
                     <Button Text="See All Transactions"
                         Style="{StaticResource NoBackgroundSmallButton}"
