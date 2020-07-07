@@ -12,6 +12,12 @@ namespace Cryptollet.Common.Database
         int Id { get; set; }
     }
 
+    public abstract class BaseDatabaseItem: IDatabaseItem
+    {
+        [PrimaryKey, AutoIncrement]
+        public int Id { get; set; }
+    }
+
     public interface IRepository<T> where T : IDatabaseItem, new()
     {
         Task<T> GetById(int id);

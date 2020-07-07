@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Cryptollet.Common.Base;
 using Cryptollet.Common.Models;
 using Cryptollet.Common.Navigation;
 using Cryptollet.Common.Network;
+using Cryptollet.Modules.AddAsset;
 using Cryptollet.Modules.Assets;
 using Cryptollet.Modules.Login;
 using Cryptollet.Modules.Transactions;
@@ -74,6 +76,7 @@ namespace Cryptollet.Modules.Wallet
                     Symbol = "ETH"
                 },
             };
+            LatestTransactions = new ObservableCollection<Transaction>();
         }
 
         public override async Task InitializeAsync(object parameter)
@@ -95,26 +98,23 @@ namespace Cryptollet.Modules.Wallet
                 new Coin
                 {
                     Name = "Bitcoin",
-                    Amount = 0.8934M,
+                    Amount = 1M,
                     Symbol = "BTC",
-                    DollarValue = 0.8934M * (decimal)result.Bitcoin.Usd,
-                    Change = 5.24M
+                    DollarValue = 1M * (decimal)result["bitcoin"].First().Value.Value
                 },
                 new Coin
                 {
                     Name = "Ethereum",
                     Amount = 8.0175M,
                     Symbol = "ETH",
-                    DollarValue = 8.0175M * (decimal)result.Ethereum.Usd,
-                    Change = 1.45M
+                    DollarValue = 8.0175M * (decimal)result["ethereum"].First().Value.Value
                 },
                 new Coin
                 {
                     Name = "Litecoin",
                     Amount = 24.82M,
                     Symbol = "LTC",
-                    DollarValue = 24.82M * (decimal)result.Litecoin.Usd,
-                    Change = -0.91M
+                    DollarValue = 24.82M * (decimal)result["litecoin"].First().Value.Value
                 },
             };
             IsRefreshing = false;
@@ -139,13 +139,34 @@ namespace Cryptollet.Modules.Wallet
         public ObservableCollection<Transaction> LatestTransactions
         {
             get => _latestTransactions;
-            set { SetProperty(ref _latestTransactions, value); }
+            set
+            {
+                SetProperty(ref _latestTransactions, value);
+                if (_latestTransactions == null)
+                {
+                    return;
+                }
+                HasTransactions = _latestTransactions.Count > 0;
+            }
+        }
+
+        private bool _hasTransactions;
+        public bool HasTransactions
+        {
+            get => _hasTransactions;
+            set { SetProperty(ref _hasTransactions, value); }
         }
 
         public ICommand GoToAssetsCommand { get => new Command(async () => await GoToAssets()); }
         public ICommand GoToTransactionsCommand { get => new Command(async () => await GoToTransactions()); }
         public ICommand SignOutCommand { get => new Command(async () => await SignOut()); }
         public ICommand RefreshAssetsCommand { get => new Command(async () => await LoadAssets()); }
+        public ICommand AddNewTransactionCommand { get => new Command(async () => await  AddNewTransaction()); }
+
+        private async Task  AddNewTransaction()
+        {
+            await _navigationService.PushAsync<AddAssetViewModel>();
+        }
 
         private async Task SignOut()
         {

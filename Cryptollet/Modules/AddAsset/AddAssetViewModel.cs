@@ -9,11 +9,11 @@ namespace Cryptollet.Modules.AddAsset
     {
         public AddAssetViewModel()
         {
-            AvailableAssets = new ObservableCollection<AvailableAsset>(AvailableAsset.GetAvailableAssets());
+            AvailableAssets = new ObservableCollection<Coin>(Coin.GetAvailableAssets());
         }
 
-        private ObservableCollection<AvailableAsset> _availableAssets;
-        public ObservableCollection<AvailableAsset> AvailableAssets
+        private ObservableCollection<Coin> _availableAssets;
+        public ObservableCollection<Coin> AvailableAssets
         {
             get => _availableAssets;
             set { SetProperty(ref _availableAssets, value); }

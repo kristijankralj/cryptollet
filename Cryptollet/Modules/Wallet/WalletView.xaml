@@ -50,7 +50,21 @@
                                     VerticalScrollBarVisibility="Never"
                                     ItemTemplate="{StaticResource TransactionCell}" >
                     <CollectionView.EmptyView>
-                        <Image Source="emptyview.png" />
+                        <StackLayout>
+                        <Image Source="emptyview.png"
+                               HeightRequest="260"
+                               WidthRequest="260"
+                               Margin="20"
+                               Aspect="AspectFit"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center"/>
+                        <Button Text="No transactions... Create one now"
+                                Style="{StaticResource NoBackgroundSmallButton}"
+                                Command="{Binding AddNewTransactionCommand}"
+                                FontSize="17"
+                                FontAttributes="Bold"
+                                Margin="20"/>
+                        </StackLayout>
                     </CollectionView.EmptyView>
                     </CollectionView>
 
@@ -60,7 +74,8 @@
                         HorizontalOptions="Center"
                         FontSize="17"
                         FontAttributes="Bold"
-                            Margin="0,5,0,0"/>
+                        Margin="0,5,0,0"
+                        IsVisible="{Binding HasTransactions}" />
                 </StackLayout>
             </StackLayout>
         </ScrollView>

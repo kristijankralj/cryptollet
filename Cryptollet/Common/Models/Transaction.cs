@@ -1,7 +1,9 @@
 ﻿using System;
+using Cryptollet.Common.Database;
+
 namespace Cryptollet.Common.Models
 {
-    public class Transaction
+    public class Transaction: BaseDatabaseItem
     {
         public string Symbol { get; set; }
         public decimal Amount { get; set; }

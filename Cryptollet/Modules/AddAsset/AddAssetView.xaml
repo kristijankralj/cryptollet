@@ -32,7 +32,7 @@
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Transaction Type"
-                   Padding="10,10,10,0"/>
+                   Padding="10,16,10,0"/>
             <RadioButton Text="Deposit"
                          IsChecked="True"
                          Margin="16,0,0,0"/>
@@ -64,7 +64,7 @@
                                            VerticalOptions="Center"
                                            HorizontalOptions="Center"
                                            HorizontalTextAlignment="Center"
-                                           Text="{Binding Coin}"
+                                           Text="{Binding Name}"
                                            FontSize="18"
                                            FontAttributes="Bold"
                                            TextColor="{StaticResource InputText}"/>
