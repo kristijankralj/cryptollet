@@ -76,7 +76,7 @@ namespace Cryptollet.Modules.Wallet
                     Symbol = "ETH"
                 },
             };
-            LatestTransactions = new ObservableCollection<Transaction>();
+            //LatestTransactions = new ObservableCollection<Transaction>();
         }
 
         public override async Task InitializeAsync(object parameter)

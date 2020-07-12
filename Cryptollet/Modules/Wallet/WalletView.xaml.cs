@@ -18,29 +18,29 @@ namespace Cryptollet.Modules.Wallet
             var whiteColor = SKColor.Parse("#ffffff");
             var entries = new[]
             {
-                new Microcharts.Entry(200)
+                new Microcharts.Entry(1903.51f)
                 {
                     TextColor = whiteColor,
-                    ValueLabel = "200",
-                    Color = whiteColor,
+                    ValueLabel = "Ethereum",
+                    Color = SKColor.Parse("#ba68c8"),
                 },
-                new Microcharts.Entry(400)
+                new Microcharts.Entry(9180.19f)
                 {
                     TextColor = whiteColor,
-                    ValueLabel = "400",
-                    Color = whiteColor,
+                    ValueLabel = "Bicoin",
+                    Color = SKColor.Parse("#4fc3f7"),
                 },
-                new Microcharts.Entry(100)
+                new Microcharts.Entry(1092.08f)
                 {
                     TextColor = whiteColor,
-                    ValueLabel = "100",
-                    Color = whiteColor,
+                    ValueLabel = "Litecoin",
+                    Color = SKColor.Parse("#dce775"),
                 }
             };
 
-            var chart = new LineChart() { Entries = entries };
+            var chart = new DonutChart { Entries = entries };
             chart.LabelTextSize = 24;
-            chart.BackgroundColor = SKColor.Parse("#347AF0");
+            chart.BackgroundColor = whiteColor;
             chartView.Chart = chart;
         }
     }
