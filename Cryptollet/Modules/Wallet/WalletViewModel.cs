@@ -100,21 +100,21 @@ namespace Cryptollet.Modules.Wallet
                     Name = "Bitcoin",
                     Amount = 1M,
                     Symbol = "BTC",
-                    DollarValue = 1M * (decimal)result["bitcoin"].First().Value.Value
+                    DollarValue = 1M * (decimal)result.FirstOrDefault(x => x.Symbol == "BTC").Price
                 },
                 new Coin
                 {
                     Name = "Ethereum",
                     Amount = 8.0175M,
                     Symbol = "ETH",
-                    DollarValue = 8.0175M * (decimal)result["ethereum"].First().Value.Value
+                    DollarValue = 8.0175M * (decimal)result.FirstOrDefault(x => x.Symbol == "ETH").Price
                 },
                 new Coin
                 {
                     Name = "Litecoin",
                     Amount = 24.82M,
                     Symbol = "LTC",
-                    DollarValue = 24.82M * (decimal)result["litecoin"].First().Value.Value
+                    DollarValue = 24.82M * (decimal)result.FirstOrDefault(x => x.Symbol == "LTC").Price
                 },
             };
             IsRefreshing = false;

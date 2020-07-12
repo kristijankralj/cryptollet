@@ -11,6 +11,6 @@ namespace Cryptollet
         public const string TRANSACTION_DEPOSITED_IMAGE = "deposited.png";
         public const string TRANSACTION_WITHDRAWN_IMAGE = "withdrawn.png";
 
-        public const string COINGECKO_API = "https://api.coingecko.com/api/v3/";
+        public const string EXAMPLE_DATA_API = "https://example-data.draftbit.com/crypto";
     }
 }

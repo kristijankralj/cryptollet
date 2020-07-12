@@ -6,7 +6,7 @@ namespace Cryptollet.Common.Network
 {
     public interface ICrypoService
     {
-        Task<Dictionary<string, Dictionary<string, double?>>> GetLatestPrices();
+        Task<List<Coin>> GetLatestPrices();
     }
 
     public class CrypoService : ICrypoService
@@ -18,10 +18,10 @@ namespace Cryptollet.Common.Network
             _networkService = networkService;
         }
 
-        public async Task<Dictionary<string, Dictionary<string, double?>>> GetLatestPrices()
+        public async Task<List<Coin>> GetLatestPrices()
         {
-            var url = Constants.COINGECKO_API + "simple/price?ids=bitcoin%2Clitecoin%2Cethereum&vs_currencies=usd";
-            var result = await _networkService.GetAsync<Dictionary<string, Dictionary<string, double?>>>(url);
+            var url = Constants.EXAMPLE_DATA_API;
+            var result = await _networkService.GetAsync<List<Coin>>(url);
 
             return result;
         }

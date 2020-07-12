@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Cryptollet.Common.Models
 {
@@ -10,12 +11,17 @@ namespace Cryptollet.Common.Models
             Symbol = symbol;
             ImageUrl = imageUrl;
         }
-
+        
         public Coin(){}
 
+        [JsonProperty("id")]
+        public int CoinId { get; set; }
+        [JsonProperty("name")]
         public string Name { get; set; }
-
+        [JsonProperty("symbol")]
         public string Symbol { get; set; }
+        [JsonProperty("price")]
+        public double Price { get; set; }
         public decimal Amount { get; set; }
         public decimal DollarValue { get; set; }
         public string ImageUrl { get; set; }
@@ -30,7 +36,7 @@ namespace Cryptollet.Common.Models
                 new Coin("Eos", "EOS", "EOS.png"),
                 new Coin("Ethereum", "ETH", "ETH.png"),
                 new Coin("Litecoin", "LTC", "LTC.png"),
-                new Coin("Monero", "MON", "MONERO.png"),
+                new Coin("Monero", "XMR", "MONERO.png"),
                 new Coin("Ripple", "XRP", "RIPPLE.png"),
                 new Coin("Stellar", "XLM", "STELLAR.png")
             };
