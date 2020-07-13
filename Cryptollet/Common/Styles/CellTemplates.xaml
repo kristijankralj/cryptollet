@@ -39,7 +39,7 @@
                         </Label.Text>
                     </Label>
                     <Label Grid.Column="3"
-                            Text="{Binding DollarValue, StringFormat='$ {0:F2}'}"
+                            Text="{Binding DollarValue, StringFormat='$ {0:N2}'}"
                             TextColor="{StaticResource InputText}"
                             FontAttributes="Bold"
                             HorizontalOptions="End"
@@ -65,7 +65,7 @@
                             WidthRequest="34"
                             HeightRequest="34"/>
                     <Label Grid.Column="2"
-                           Text="{Binding DollarValue, StringFormat='$ {0}'}"
+                           Text="{Binding DollarValue, StringFormat='$ {0:N2}'}"
                             TextColor="{StaticResource InputText}"
                             FontAttributes="Bold"
                             Margin="7,0,0,0" />

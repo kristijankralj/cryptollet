@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Reflection;
 using Autofac;
+using Cryptollet.Common.Database;
+using Cryptollet.Common.Extensions;
+using Cryptollet.Common.Models;
 using Cryptollet.Common.Navigation;
 using Cryptollet.Modules.Onboarding;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using Cryptollet.Common.Extensions;
-using Cryptollet.Common.Database;
-using Cryptollet.Common.Models;
 
 namespace Cryptollet
 {
@@ -24,6 +23,7 @@ namespace Cryptollet
                    .AsImplementedInterfaces()
                    .AsSelf();
             builder.RegisterType<Repository<User>>().As<IRepository<User>>();
+            builder.RegisterType<Repository<Transaction>>().As<IRepository<Transaction>>();
 
             //register navigation service
             NavigationPage navigationPage = null;

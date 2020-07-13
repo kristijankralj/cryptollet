@@ -1,8 +1,6 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Cryptollet;
 using Cryptollet.Common.Base;
 using Cryptollet.Common.Database;
 using Cryptollet.Common.Dialog;
@@ -52,12 +50,11 @@ namespace Cryptollet.Modules.Login
 
         private async Task LoginUser()
         {
-            IsBusy = true;
             if (!EntriesCorrectlyPopulated())
             {
-                IsBusy = false;
                 return;
             }
+            IsBusy = true;
             var user = (await _userRepository.GetAllAsync())
                 .FirstOrDefault(x => x.Email == Email.Value);
             if (user == null)
@@ -75,6 +72,7 @@ namespace Cryptollet.Modules.Login
 
             Preferences.Set(Constants.IS_USER_LOGGED_IN, true);
             await _navigationService.InsertAsRoot<WalletViewModel>();
+            IsBusy = false;
         }
 
         private async Task DisplayCredentialsError()

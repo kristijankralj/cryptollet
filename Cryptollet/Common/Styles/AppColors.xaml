@@ -8,6 +8,7 @@
     <Color x:Key="PrimaryBlue">#347AF0</Color>
     <Color x:Key="ErrorColor">#FF5252</Color>
     <Color x:Key="CellBackground">#EDF1F9</Color>
+    <Color x:Key="LightGrayText">#B5BBC9</Color>
     <Color x:Key="DarkGrayText">#485068</Color>
     <Color x:Key="PositiveTrend">#75BF72</Color>
     <Color x:Key="NegativeTrend">#DF5060</Color>

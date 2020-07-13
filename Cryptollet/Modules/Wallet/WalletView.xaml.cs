@@ -12,9 +12,10 @@ namespace Cryptollet.Modules.Wallet
             BindingContext = viewModel;
         }
 
-        protected override void OnAppearing()
+        protected override async void OnAppearing()
         {
             base.OnAppearing();
+            await (BindingContext as WalletViewModel).InitializeAsync(null);
             var whiteColor = SKColor.Parse("#ffffff");
             var entries = new[]
             {

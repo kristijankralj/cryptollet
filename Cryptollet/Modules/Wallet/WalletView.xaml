@@ -26,22 +26,22 @@
                                    BackgroundColor="White"
                                    Margin="10,20,10,0"/>
                 <StackLayout BackgroundColor="White"
-                         VerticalOptions="FillAndExpand">
+                             VerticalOptions="FillAndExpand">
                     <Label Text="Top Assets"
-                       FontAttributes="Bold"
-                       TextColor="{StaticResource InputText}"
-                       Margin="20,20,0,0"/>
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource InputText}"
+                           Margin="20,20,0,0"/>
                     <CollectionView ItemsSource="{Binding Assets}"
-                                SelectionMode="Single"
-                                HeightRequest="260"
-                                ItemTemplate="{StaticResource AssetCell}"
-                                VerticalScrollBarVisibility="Never" />
+                                    SelectionMode="Single"
+                                    HeightRequest="260"
+                                    ItemTemplate="{StaticResource AssetCell}"
+                                    VerticalScrollBarVisibility="Never" />
                     <Button Text="See All Assets"
-                        Style="{StaticResource NoBackgroundSmallButton}"
-                        Command="{Binding GoToAssetsCommand}"
-                        HorizontalOptions="Center"
-                        FontSize="17"
-                        FontAttributes="Bold"
+                            Style="{StaticResource NoBackgroundSmallButton}"
+                            Command="{Binding GoToAssetsCommand}"
+                            HorizontalOptions="Center"
+                            FontSize="17"
+                            FontAttributes="Bold"
                             Margin="0,5,0,0"/>
                     <Label Text="Latest Transactions"
                        FontAttributes="Bold"
@@ -49,7 +49,7 @@
                        Margin="20,15,0,0"/>
                     <CollectionView ItemsSource="{Binding LatestTransactions}"
                                     SelectionMode="Single"
-                                    HeightRequest="430"
+                                    HeightRequest="{Binding TransactionsHeight}"
                                     VerticalScrollBarVisibility="Never"
                                     ItemTemplate="{StaticResource TransactionCell}" >
                     <CollectionView.EmptyView>
@@ -72,13 +72,13 @@
                     </CollectionView>
 
                     <Button Text="See All Transactions"
-                        Style="{StaticResource NoBackgroundSmallButton}"
-                        Command="{Binding GoToTransactionsCommand}"
-                        HorizontalOptions="Center"
-                        FontSize="17"
-                        FontAttributes="Bold"
-                        Margin="0,5,0,0"
-                        IsVisible="{Binding HasTransactions}" />
+                            Style="{StaticResource NoBackgroundSmallButton}"
+                            Command="{Binding GoToTransactionsCommand}"
+                            HorizontalOptions="Center"
+                            FontSize="17"
+                            FontAttributes="Bold"
+                            Margin="0,5,0,0"
+                            IsVisible="{Binding HasTransactions}" />
                 </StackLayout>
             </StackLayout>
         </ScrollView>

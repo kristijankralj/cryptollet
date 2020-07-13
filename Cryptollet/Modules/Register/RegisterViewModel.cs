@@ -47,16 +47,15 @@ namespace Cryptollet.Modules.Register
         }
 
         public ICommand LoginCommand { get => new Command(async () => await GoToLogin()); }
-        public ICommand RegisterUserCommand { get => new Command(async () => await RegisterUser()); }
+        public ICommand RegisterUserCommand { get => new Command(async () => await RegisterUser(), () => IsNotBusy); }
 
         private async Task RegisterUser()
         {
-            IsBusy = true;
             if (!EntriesCorrectlyPopulated())
             {
-                IsBusy = false;
                 return;
             }
+            IsBusy = true;
             var user = new User()
             {
                 Email = Email.Value,

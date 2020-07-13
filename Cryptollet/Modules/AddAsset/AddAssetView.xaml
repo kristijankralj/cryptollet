@@ -2,6 +2,7 @@
 <ContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:Cryptollet.Common.Converters"
     x:Class="Cryptollet.Modules.AddAsset.AddAssetView">
     <ContentPage.Resources>
         <Style TargetType="RadioButton">
@@ -28,19 +29,21 @@
                 </VisualStateGroupList>
             </Setter>
         </Style>
+        <converters:FirstValidationErrorConverter x:Key="firstValidationErrorConverter" />
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Transaction Type"
                    Padding="10,16,10,0"/>
             <RadioButton Text="Deposit"
-                         IsChecked="True"
+                         IsChecked="{Binding IsDeposit}"
                          Margin="16,0,0,0"/>
             <RadioButton Text="Withdrawn"
                          Margin="16,0,0,0"/>
             <Label Text="Select Asset"
                    Padding="10,10,10,0"/>
             <CollectionView ItemsSource="{Binding AvailableAssets}"
+                            SelectedItem="{Binding SelectedCoin}"
                             ItemsLayout="HorizontalList"
                             SelectionMode="Single"
                             HeightRequest="100">
@@ -80,9 +83,13 @@
                    Text="{Binding Amount.Value, Mode=TwoWay}"
                    Keyboard="Numeric"
                    Margin="16,0,16,0"/>
+            <Label Text="{Binding Amount.Errors, Converter={StaticResource firstValidationErrorConverter}}"
+				   Style="{StaticResource ValidationErrorLabel}"
+                   Margin="16,0,24,0"/>
             <Label Text="Transaction Date"
                    Padding="16,10,16,0"/>
-            <DatePicker Margin="16,0,16,0" />
+            <DatePicker Margin="16,0,16,0"
+                        Date="{Binding TransactionDate}"/>
             <Button Style="{StaticResource BlueButton}"
                     Margin="20"
                     WidthRequest="240"

@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Cryptollet.Common.Base;
+using Cryptollet.Common.Database;
 using Cryptollet.Common.Models;
 using Cryptollet.Common.Navigation;
 using Cryptollet.Common.Network;
@@ -19,69 +21,42 @@ namespace Cryptollet.Modules.Wallet
     public class WalletViewModel: BaseViewModel
     {
         private INavigationService _navigationService;
+        private IRepository<Transaction> _transactionRepository;
         private ICrypoService _crypoService;
+        private List<Coin> _coins = new List<Coin>();
 
         public WalletViewModel(INavigationService navigationService,
-                               ICrypoService crypoService)
+                               ICrypoService crypoService,
+                               IRepository<Transaction> transactionRepository)
         {
             _navigationService = navigationService;
             _crypoService = crypoService;
+            _transactionRepository = transactionRepository;
             Assets = new ObservableCollection<Coin>();
-
-            LatestTransactions = new ObservableCollection<Transaction>
-            {
-                new Transaction
-                {
-                    Status = Constants.TRANSACTION_WITHDRAWN,
-                    StatusImageSource = Constants.TRANSACTION_WITHDRAWN_IMAGE,
-                    TransactionDate = new DateTime(2019, 8, 19),
-                    Amount = 0.021M,
-                    DollarValue = 204,
-                    Symbol = "BTC"
-                },
-                new Transaction
-                {
-                    Status = Constants.TRANSACTION_DEPOSITED,
-                    StatusImageSource = Constants.TRANSACTION_DEPOSITED_IMAGE,
-                    TransactionDate = new DateTime(2019, 8, 16),
-                    Amount = 3.21M,
-                    DollarValue = 695.03M,
-                    Symbol = "ETH"
-                },
-                new Transaction
-                {
-                    Status = Constants.TRANSACTION_DEPOSITED,
-                    StatusImageSource = Constants.TRANSACTION_DEPOSITED_IMAGE,
-                    TransactionDate = new DateTime(2019, 8, 10),
-                    Amount = 37.81M,
-                    DollarValue = 250M,
-                    Symbol = "NEO"
-                },
-                new Transaction
-                {
-                    Status = Constants.TRANSACTION_WITHDRAWN,
-                    StatusImageSource = Constants.TRANSACTION_WITHDRAWN_IMAGE,
-                    TransactionDate = new DateTime(2019, 8, 5),
-                    Amount = 0.021M,
-                    DollarValue = 204,
-                    Symbol = "BTC"
-                },
-                new Transaction
-                {
-                    Status = Constants.TRANSACTION_DEPOSITED,
-                    StatusImageSource = Constants.TRANSACTION_DEPOSITED_IMAGE,
-                    TransactionDate = new DateTime(2019, 8, 1),
-                    Amount = 3.21M,
-                    DollarValue = 695.03M,
-                    Symbol = "ETH"
-                },
-            };
-            //LatestTransactions = new ObservableCollection<Transaction>();
+            LatestTransactions = new ObservableCollection<Transaction>();
         }
 
         public override async Task InitializeAsync(object parameter)
         {
             await LoadAssets();
+            await LoadTransactions();
+        }
+
+        private async Task LoadTransactions()
+        {
+            var transactions = await _transactionRepository.GetAllAsync();
+            if (transactions.Count == 0 || _coins.Count == 0)
+            {
+                return;
+            }
+            transactions.ForEach(t =>
+            {
+                t.StatusImageSource = t.Status == Constants.TRANSACTION_DEPOSITED ?
+                                        Constants.TRANSACTION_DEPOSITED_IMAGE :
+                                        Constants.TRANSACTION_WITHDRAWN_IMAGE;
+                t.DollarValue = t.Amount * (decimal)_coins.First(x => x.Symbol == t.Symbol).Price;
+            });
+            LatestTransactions = new ObservableCollection<Transaction>(transactions);
         }
 
         private async Task LoadAssets()
@@ -92,7 +67,7 @@ namespace Cryptollet.Modules.Wallet
             }
             IsBusy = true;
             IsRefreshing = true;
-            var result = await _crypoService.GetLatestPrices();
+            _coins = await _crypoService.GetLatestPrices();
             Assets = new ObservableCollection<Coin>()
             {
                 new Coin
@@ -100,21 +75,21 @@ namespace Cryptollet.Modules.Wallet
                     Name = "Bitcoin",
                     Amount = 1M,
                     Symbol = "BTC",
-                    DollarValue = 1M * (decimal)result.FirstOrDefault(x => x.Symbol == "BTC").Price
+                    DollarValue = 1M * (decimal)_coins.FirstOrDefault(x => x.Symbol == "BTC").Price
                 },
                 new Coin
                 {
                     Name = "Ethereum",
                     Amount = 8.0175M,
                     Symbol = "ETH",
-                    DollarValue = 8.0175M * (decimal)result.FirstOrDefault(x => x.Symbol == "ETH").Price
+                    DollarValue = 8.0175M * (decimal)_coins.FirstOrDefault(x => x.Symbol == "ETH").Price
                 },
                 new Coin
                 {
                     Name = "Litecoin",
                     Amount = 24.82M,
                     Symbol = "LTC",
-                    DollarValue = 24.82M * (decimal)result.FirstOrDefault(x => x.Symbol == "LTC").Price
+                    DollarValue = 24.82M * (decimal)_coins.FirstOrDefault(x => x.Symbol == "LTC").Price
                 },
             };
             IsRefreshing = false;
@@ -147,6 +122,11 @@ namespace Cryptollet.Modules.Wallet
                     return;
                 }
                 HasTransactions = _latestTransactions.Count > 0;
+                if (_latestTransactions.Count == 0)
+                {
+                    TransactionsHeight = 200;
+                }
+                TransactionsHeight = _latestTransactions.Count * 90;
             }
         }
 
@@ -155,6 +135,13 @@ namespace Cryptollet.Modules.Wallet
         {
             get => _hasTransactions;
             set { SetProperty(ref _hasTransactions, value); }
+        }
+
+        private int _transactionsHeight;
+        public int TransactionsHeight
+        {
+            get => _transactionsHeight;
+            set { SetProperty(ref _transactionsHeight, value); }
         }
 
         public ICommand GoToAssetsCommand { get => new Command(async () => await GoToAssets()); }
