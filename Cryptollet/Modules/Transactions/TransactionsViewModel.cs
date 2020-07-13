@@ -1,8 +1,9 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Cryptollet.Common.Base;
+using Cryptollet.Common.Controllers;
 using Cryptollet.Common.Models;
 using Cryptollet.Common.Navigation;
 using Cryptollet.Modules.AddAsset;
@@ -13,58 +14,20 @@ namespace Cryptollet.Modules.Transactions
     public class TransactionsViewModel: BaseViewModel
     {
         private INavigationService _navigationService;
+        private IWalletController _walletController;
 
-        public TransactionsViewModel(INavigationService navigationService)
+        public TransactionsViewModel(INavigationService navigationService,
+                                     IWalletController walletController)
         {
             _navigationService = navigationService;
-            Transactions = new ObservableCollection<Transaction>
-            {
-                new Transaction
-                {
-                    Status = Constants.TRANSACTION_WITHDRAWN,
-                    StatusImageSource = Constants.TRANSACTION_WITHDRAWN_IMAGE,
-                    TransactionDate = new DateTime(2019, 8, 19),
-                    Amount = 0.021M,
-                    DollarValue = 204,
-                    Symbol = "BTC"
-                },
-                new Transaction
-                {
-                    Status = Constants.TRANSACTION_DEPOSITED,
-                    StatusImageSource = Constants.TRANSACTION_DEPOSITED_IMAGE,
-                    TransactionDate = new DateTime(2019, 8, 16),
-                    Amount = 3.21M,
-                    DollarValue = 695.03M,
-                    Symbol = "ETH"
-                },
-                new Transaction
-                {
-                    Status = Constants.TRANSACTION_DEPOSITED,
-                    StatusImageSource = Constants.TRANSACTION_DEPOSITED_IMAGE,
-                    TransactionDate = new DateTime(2019, 8, 10),
-                    Amount = 37.81M,
-                    DollarValue = 250M,
-                    Symbol = "NEO"
-                },
-                new Transaction
-                {
-                    Status = Constants.TRANSACTION_WITHDRAWN,
-                    StatusImageSource = Constants.TRANSACTION_WITHDRAWN_IMAGE,
-                    TransactionDate = new DateTime(2019, 8, 5),
-                    Amount = 0.021M,
-                    DollarValue = 204,
-                    Symbol = "BTC"
-                },
-                new Transaction
-                {
-                    Status = Constants.TRANSACTION_DEPOSITED,
-                    StatusImageSource = Constants.TRANSACTION_DEPOSITED_IMAGE,
-                    TransactionDate = new DateTime(2019, 8, 1),
-                    Amount = 3.21M,
-                    DollarValue = 695.03M,
-                    Symbol = "ETH"
-                },
-            };
+            _walletController = walletController;
+            Transactions = new ObservableCollection<Transaction>();
+        }
+
+        public override async Task InitializeAsync(object parameter)
+        {
+            var transactions = await _walletController.GetTransactions();
+            Transactions = new ObservableCollection<Transaction>(transactions);
         }
 
         private ObservableCollection<Transaction> _transactions;

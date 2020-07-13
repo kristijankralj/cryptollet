@@ -41,6 +41,7 @@
     <Folder Include="Modules\Transactions\" />
     <Folder Include="Modules\AddAsset\" />
     <Folder Include="Common\Network\" />
+    <Folder Include="Common\Controllers\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Common\Navigation\RegisterView.xaml.cs" />

@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Cryptollet.Common.Base;
-using Cryptollet.Common.Database;
+using Cryptollet.Common.Controllers;
 using Cryptollet.Common.Models;
 using Cryptollet.Common.Navigation;
 using Cryptollet.Common.Network;
@@ -21,17 +20,17 @@ namespace Cryptollet.Modules.Wallet
     public class WalletViewModel: BaseViewModel
     {
         private INavigationService _navigationService;
-        private IRepository<Transaction> _transactionRepository;
         private ICrypoService _crypoService;
+        private IWalletController _walletController;
         private List<Coin> _coins = new List<Coin>();
 
         public WalletViewModel(INavigationService navigationService,
                                ICrypoService crypoService,
-                               IRepository<Transaction> transactionRepository)
+                               IWalletController walletController)
         {
             _navigationService = navigationService;
+            _walletController = walletController;
             _crypoService = crypoService;
-            _transactionRepository = transactionRepository;
             Assets = new ObservableCollection<Coin>();
             LatestTransactions = new ObservableCollection<Transaction>();
         }
@@ -44,19 +43,8 @@ namespace Cryptollet.Modules.Wallet
 
         private async Task LoadTransactions()
         {
-            var transactions = await _transactionRepository.GetAllAsync();
-            if (transactions.Count == 0 || _coins.Count == 0)
-            {
-                return;
-            }
-            transactions.ForEach(t =>
-            {
-                t.StatusImageSource = t.Status == Constants.TRANSACTION_DEPOSITED ?
-                                        Constants.TRANSACTION_DEPOSITED_IMAGE :
-                                        Constants.TRANSACTION_WITHDRAWN_IMAGE;
-                t.DollarValue = t.Amount * (decimal)_coins.First(x => x.Symbol == t.Symbol).Price;
-            });
-            LatestTransactions = new ObservableCollection<Transaction>(transactions);
+            var transactions = await _walletController.GetTransactions();
+            LatestTransactions = new ObservableCollection<Transaction>(transactions.Take(5));
         }
 
         private async Task LoadAssets()
@@ -126,7 +114,7 @@ namespace Cryptollet.Modules.Wallet
                 {
                     TransactionsHeight = 200;
                 }
-                TransactionsHeight = _latestTransactions.Count * 90;
+                TransactionsHeight = _latestTransactions.Count * 85;
             }
         }
 
