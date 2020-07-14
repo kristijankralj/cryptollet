@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,12 +13,14 @@ using Cryptollet.Modules.AddAsset;
 using Cryptollet.Modules.Assets;
 using Cryptollet.Modules.Login;
 using Cryptollet.Modules.Transactions;
+using Microcharts;
+using SkiaSharp;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace Cryptollet.Modules.Wallet
 {
-    public class WalletViewModel: BaseViewModel
+    public class WalletViewModel : BaseViewModel
     {
         private INavigationService _navigationService;
         private ICrypoService _crypoService;
@@ -35,19 +38,7 @@ namespace Cryptollet.Modules.Wallet
             LatestTransactions = new ObservableCollection<Transaction>();
         }
 
-        public override async Task InitializeAsync(object parameter)
-        {
-            await LoadAssets();
-            await LoadTransactions();
-        }
-
-        private async Task LoadTransactions()
-        {
-            var transactions = await _walletController.GetTransactions();
-            LatestTransactions = new ObservableCollection<Transaction>(transactions.Take(5));
-        }
-
-        private async Task LoadAssets()
+        public async Task LoadData(bool reload = false)
         {
             if (IsBusy)
             {
@@ -55,33 +46,48 @@ namespace Cryptollet.Modules.Wallet
             }
             IsBusy = true;
             IsRefreshing = true;
-            _coins = await _crypoService.GetLatestPrices();
-            Assets = new ObservableCollection<Coin>()
-            {
-                new Coin
-                {
-                    Name = "Bitcoin",
-                    Amount = 1M,
-                    Symbol = "BTC",
-                    DollarValue = 1M * (decimal)_coins.FirstOrDefault(x => x.Symbol == "BTC").Price
-                },
-                new Coin
-                {
-                    Name = "Ethereum",
-                    Amount = 8.0175M,
-                    Symbol = "ETH",
-                    DollarValue = 8.0175M * (decimal)_coins.FirstOrDefault(x => x.Symbol == "ETH").Price
-                },
-                new Coin
-                {
-                    Name = "Litecoin",
-                    Amount = 24.82M,
-                    Symbol = "LTC",
-                    DollarValue = 24.82M * (decimal)_coins.FirstOrDefault(x => x.Symbol == "LTC").Price
-                },
-            };
+            var transactions = await _walletController.GetTransactions(reload);
+            LatestTransactions = new ObservableCollection<Transaction>(transactions.Take(5));
+
+            var assets = await _walletController.GetCoins(reload);
+            Assets = new ObservableCollection<Coin>(assets);
+            BuildChart(assets);
+            PortfolioValue = assets.Sum(x => x.DollarValue);
+
             IsRefreshing = false;
             IsBusy = false;
+        }
+
+        private void BuildChart(List<Coin> assets)
+        {
+            var whiteColor = SKColor.Parse("#ffffff");
+            var entries = new[]
+            {
+                new Microcharts.Entry((float)assets[0].DollarValue)
+                {
+                    TextColor = whiteColor,
+                    ValueLabel = assets[0].Name,
+                    Color = SKColor.Parse("#ba68c8"),
+                },
+                new Microcharts.Entry((float)assets[1].DollarValue)
+                {
+                    TextColor = whiteColor,
+                    ValueLabel = assets[1].Name,
+                    Color = SKColor.Parse("#4fc3f7"),
+                },
+                new Microcharts.Entry((float)assets[2].DollarValue)
+                {
+                    TextColor = whiteColor,
+                    ValueLabel = assets[2].Name,
+                    Color = SKColor.Parse("#dce775"),
+                }
+            };
+
+            var chart = new DonutChart { Entries = entries };
+            chart.LabelTextSize = 25;
+            chart.BackgroundColor = whiteColor;
+            chart.HoleRadius = 0.65f;
+            PortfolioView = chart;
         }
 
         private ObservableCollection<Coin> _assets;
@@ -112,7 +118,8 @@ namespace Cryptollet.Modules.Wallet
                 HasTransactions = _latestTransactions.Count > 0;
                 if (_latestTransactions.Count == 0)
                 {
-                    TransactionsHeight = 200;
+                    TransactionsHeight = 430;
+                    return;
                 }
                 TransactionsHeight = _latestTransactions.Count * 85;
             }
@@ -132,13 +139,27 @@ namespace Cryptollet.Modules.Wallet
             set { SetProperty(ref _transactionsHeight, value); }
         }
 
+        private Chart _portfolioView;
+        public Chart PortfolioView
+        {
+            get => _portfolioView;
+            set { SetProperty(ref _portfolioView, value); }
+        }
+
+        private decimal _portfolioValue;
+        public decimal PortfolioValue
+        {
+            get => _portfolioValue;
+            set { SetProperty(ref _portfolioValue, value); }
+        }
+
         public ICommand GoToAssetsCommand { get => new Command(async () => await GoToAssets()); }
         public ICommand GoToTransactionsCommand { get => new Command(async () => await GoToTransactions()); }
         public ICommand SignOutCommand { get => new Command(async () => await SignOut()); }
-        public ICommand RefreshAssetsCommand { get => new Command(async () => await LoadAssets()); }
-        public ICommand AddNewTransactionCommand { get => new Command(async () => await  AddNewTransaction()); }
+        public ICommand RefreshAssetsCommand { get => new Command(async () => await LoadData(true)); }
+        public ICommand AddNewTransactionCommand { get => new Command(async () => await AddNewTransaction()); }
 
-        private async Task  AddNewTransaction()
+        private async Task AddNewTransaction()
         {
             await _navigationService.PushAsync<AddAssetViewModel>();
         }

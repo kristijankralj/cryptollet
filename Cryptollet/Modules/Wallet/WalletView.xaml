@@ -17,14 +17,15 @@
                      Command="{Binding RefreshAssetsCommand}">
         <ScrollView BackgroundColor="White">
             <StackLayout Padding="0,20,0,0">
-                <Label Text="Portfolio: 12.175,06$"
+                <Label Text="{Binding PortfolioValue, StringFormat='Portfolio: {0:N2}$'}"
                        TextColor="{StaticResource PrimaryBlue}"
                        HorizontalOptions="Center"
                        FontSize="22"/>
-                <microcharts:ChartView x:Name="chartView"
-                                   HeightRequest="200"
-                                   BackgroundColor="White"
-                                   Margin="10,20,10,0"/>
+                <microcharts:ChartView Chart="{Binding PortfolioView}"
+                                       HeightRequest="200"
+                                       BackgroundColor="White"
+                                       Margin="10,20,10,0">
+                    </microcharts:ChartView>
                 <StackLayout BackgroundColor="White"
                              VerticalOptions="FillAndExpand">
                     <Label Text="Top Assets"
