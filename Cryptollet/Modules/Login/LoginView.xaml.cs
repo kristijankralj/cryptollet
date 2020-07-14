@@ -1,13 +1,14 @@
-﻿using Xamarin.Forms;
+﻿using Autofac;
+using Xamarin.Forms;
 
 namespace Cryptollet.Modules.Login
 {
     public partial class LoginView : ContentPage
     {
-        public LoginView(LoginViewModel viewModel)
+        public LoginView()
         {
             InitializeComponent();
-            BindingContext = viewModel;
+            BindingContext = App.Container.Resolve<LoginViewModel>();
         }
     }
 }

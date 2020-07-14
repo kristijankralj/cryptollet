@@ -42,6 +42,7 @@
     <Folder Include="Modules\AddAsset\" />
     <Folder Include="Common\Network\" />
     <Folder Include="Common\Controllers\" />
+    <Folder Include="Modules\Loading\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Common\Navigation\RegisterView.xaml.cs" />

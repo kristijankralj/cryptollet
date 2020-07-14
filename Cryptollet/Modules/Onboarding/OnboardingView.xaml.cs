@@ -1,13 +1,14 @@
-﻿using Xamarin.Forms;
+﻿using Autofac;
+using Xamarin.Forms;
 
 namespace Cryptollet.Modules.Onboarding
 {
     public partial class OnboardingView : ContentPage
     {
-        public OnboardingView(OnboardingViewModel viewModel)
+        public OnboardingView()
         {
             InitializeComponent();
-            BindingContext = viewModel;
+            BindingContext = App.Container.Resolve<OnboardingViewModel>();
         }
     }
 }

@@ -1,16 +1,22 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Cryptollet.Common.Base;
 using Cryptollet.Common.Models;
 using Cryptollet.Common.Navigation;
+using Cryptollet.Modules.Login;
 using Xamarin.Forms;
 
 namespace Cryptollet.Modules.Onboarding
 {
-    public class OnboardingViewModel: BaseViewModel, IViewModelCompletion<object>
+    public class OnboardingViewModel: BaseViewModel
     {
-        public event EventHandler<object> Completed;
+        private INavigationService _navigationService;
+
+        public OnboardingViewModel(INavigationService navigationService)
+        {
+            _navigationService = navigationService;
+        }
 
         public ObservableCollection<OnboardingItem> OnboardingSteps { get; set; } = new ObservableCollection<OnboardingItem>
         {
@@ -25,12 +31,11 @@ namespace Cryptollet.Modules.Onboarding
                 "Our top-notch security features will keep you completely safe.")
         };
 
-        public ICommand SkipCommand { get => new Command(FinishOnboarding); }
+        public ICommand SkipCommand { get => new Command(async () => await FinishOnboarding()); }
 
-        private void FinishOnboarding()
+        private async Task FinishOnboarding()
         {
-            Completed?.Invoke(null, null);
-            Completed = null;
+            await _navigationService.PushAsync<LoginViewModel>();
         }
     }
 }

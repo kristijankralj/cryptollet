@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Shell
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:loading="clr-namespace:Cryptollet.Modules.Loading"
+    xmlns:login="clr-namespace:Cryptollet.Modules.Login"
+    xmlns:wallet="clr-namespace:Cryptollet.Modules.Wallet"
+    x:Class="Cryptollet.AppShell">
+
+    <ShellItem>
+        <ShellContent ContentTemplate="{DataTemplate loading:LoadingView}" />
+    </ShellItem>
+
+    <ShellContent Route="LoginViewModel"
+                  ContentTemplate="{DataTemplate login:LoginView}">
+    </ShellContent>
+
+        <FlyoutItem Route="WalletViewModel"
+                FlyoutDisplayOptions="AsMultipleItems" IsTabStop="False">
+        <ShellContent
+                      IsTabStop="False"
+                      ContentTemplate="{DataTemplate wallet:WalletView}"
+                      Title="Overview" />
+    </FlyoutItem>
+    <MenuItem Text="Logout" Command="{Binding ExecuteLogout}" />
+</Shell>

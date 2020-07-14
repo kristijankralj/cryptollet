@@ -1,15 +1,14 @@
-﻿using Microcharts;
-using SkiaSharp;
+﻿using Autofac;
 using Xamarin.Forms;
 
 namespace Cryptollet.Modules.Wallet
 {
     public partial class WalletView : ContentPage
     {
-        public WalletView(WalletViewModel viewModel)
+        public WalletView()
         {
             InitializeComponent();
-            BindingContext = viewModel;
+            BindingContext = App.Container.Resolve<WalletViewModel>();
         }
 
         protected override async void OnAppearing()
