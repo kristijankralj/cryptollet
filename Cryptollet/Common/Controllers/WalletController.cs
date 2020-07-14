@@ -52,12 +52,8 @@ namespace Cryptollet.Common.Controllers
 
         public async Task<List<Coin>> GetCoins(bool forceReload = false)
         {
-            if (_cachedCoins.Count == 0 || forceReload)
-            {
-                _cachedCoins = await _crypoService.GetLatestPrices();
-            }
-            var transactions = await _transactionRepository.GetAllAsync();
-            transactions = transactions.OrderByDescending(x => x.TransactionDate).ToList();
+            List<Transaction> transactions = await LoadTransactions(forceReload);
+
             if (transactions.Count == 0 || _cachedCoins.Count == 0)
             {
                 return _defaultAssets;
@@ -77,17 +73,12 @@ namespace Cryptollet.Common.Controllers
                 };
                 result.Add(newCoin);
             }
-            return result.OrderByDescending(x => x.DollarValue).Take(3).ToList();
+            return result.OrderByDescending(x => x.DollarValue).ToList();
         }
 
         public async Task<List<Transaction>> GetTransactions(bool forceReload = false)
         {
-            if (_cachedCoins.Count == 0 || forceReload)
-            {
-                _cachedCoins = await _crypoService.GetLatestPrices();
-            }
-            var transactions = await _transactionRepository.GetAllAsync();
-            transactions = transactions.OrderByDescending(x => x.TransactionDate).ToList();
+            List<Transaction> transactions = await LoadTransactions(forceReload);
             if (transactions.Count == 0 || _cachedCoins.Count == 0)
             {
                 return transactions;
@@ -99,6 +90,17 @@ namespace Cryptollet.Common.Controllers
                                         Constants.TRANSACTION_WITHDRAWN_IMAGE;
                 t.DollarValue = t.Amount * (decimal)_cachedCoins.First(x => x.Symbol == t.Symbol).Price;
             });
+            return transactions;
+        }
+
+        private async Task<List<Transaction>> LoadTransactions(bool forceReload)
+        {
+            if (_cachedCoins.Count == 0 || forceReload)
+            {
+                _cachedCoins = await _crypoService.GetLatestPrices();
+            }
+            var transactions = await _transactionRepository.GetAllAsync();
+            transactions = transactions.OrderByDescending(x => x.TransactionDate).ToList();
             return transactions;
         }
     }

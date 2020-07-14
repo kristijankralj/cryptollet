@@ -10,5 +10,11 @@ namespace Cryptollet.Modules.Assets
             InitializeComponent();
             BindingContext = viewModel;
         }
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            await (BindingContext as AssetsViewModel).LoadData();
+        }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Cryptollet.Common.Base;
+using Cryptollet.Common.Controllers;
 using Cryptollet.Common.Models;
 using Cryptollet.Common.Navigation;
 using Cryptollet.Modules.AddAsset;
@@ -13,16 +14,20 @@ namespace Cryptollet.Modules.Assets
     public class AssetsViewModel: BaseViewModel
     {
         private INavigationService _navigationService;
+        private IWalletController _walletController;
 
-        public AssetsViewModel(INavigationService navigationService)
+        public AssetsViewModel(INavigationService navigationService,
+                               IWalletController walletController)
         {
             _navigationService = navigationService;
-            Assets = new ObservableCollection<Coin>
-            {
-                new Coin { Name = "Bitcoin", Amount= 0.8934M, Symbol = "BTC", DollarValue = 8452.98M},
-                new Coin { Name = "Ethereum", Amount= 8.0175M, Symbol = "ETH", DollarValue = 1825.72M },
-                new Coin { Name = "Litecoin", Amount= 24.82M, Symbol = "LTC", DollarValue = 1378.45M},
-            };
+            _walletController = walletController;
+            Assets = new ObservableCollection<Coin>();
+        }
+
+        public async Task LoadData(bool reload = false)
+        {
+            var assets = await _walletController.GetCoins(reload);
+            Assets = new ObservableCollection<Coin>(assets);
         }
 
         private ObservableCollection<Coin> _assets;

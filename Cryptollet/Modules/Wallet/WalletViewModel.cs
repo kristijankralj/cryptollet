@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,7 +7,6 @@ using Cryptollet.Common.Base;
 using Cryptollet.Common.Controllers;
 using Cryptollet.Common.Models;
 using Cryptollet.Common.Navigation;
-using Cryptollet.Common.Network;
 using Cryptollet.Modules.AddAsset;
 using Cryptollet.Modules.Assets;
 using Cryptollet.Modules.Login;
@@ -23,17 +21,13 @@ namespace Cryptollet.Modules.Wallet
     public class WalletViewModel : BaseViewModel
     {
         private INavigationService _navigationService;
-        private ICrypoService _crypoService;
         private IWalletController _walletController;
-        private List<Coin> _coins = new List<Coin>();
 
         public WalletViewModel(INavigationService navigationService,
-                               ICrypoService crypoService,
                                IWalletController walletController)
         {
             _navigationService = navigationService;
             _walletController = walletController;
-            _crypoService = crypoService;
             Assets = new ObservableCollection<Coin>();
             LatestTransactions = new ObservableCollection<Transaction>();
         }
@@ -50,7 +44,7 @@ namespace Cryptollet.Modules.Wallet
             LatestTransactions = new ObservableCollection<Transaction>(transactions.Take(5));
 
             var assets = await _walletController.GetCoins(reload);
-            Assets = new ObservableCollection<Coin>(assets);
+            Assets = new ObservableCollection<Coin>(assets.Take(3));
             BuildChart(assets);
             PortfolioValue = assets.Sum(x => x.DollarValue);
 
