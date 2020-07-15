@@ -1,13 +1,14 @@
-﻿using Xamarin.Forms;
+﻿using Autofac;
+using Xamarin.Forms;
 
 namespace Cryptollet.Modules.Register
 {
     public partial class RegisterView : ContentPage
     {
-        public RegisterView(RegisterViewModel viewModel)
+        public RegisterView()
         {
             InitializeComponent();
-            BindingContext = viewModel;
+            BindingContext = App.Container.Resolve<RegisterViewModel>(); ;
         }
     }
 }

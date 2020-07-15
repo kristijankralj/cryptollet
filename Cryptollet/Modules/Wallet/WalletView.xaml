@@ -5,13 +5,7 @@
     xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
     x:Class="Cryptollet.Modules.Wallet.WalletView"
     Title="Portfolio"
-    NavigationPage.HasNavigationBar="True">
-        <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Sign Out"
-                 Order="Primary"
-                 Priority="0"
-                 Command="{Binding SignOutCommand}" />
-    </ContentPage.ToolbarItems>
+    NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <RefreshView IsRefreshing="{Binding IsRefreshing}"
                      Command="{Binding RefreshAssetsCommand}">

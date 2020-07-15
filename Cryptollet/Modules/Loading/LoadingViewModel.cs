@@ -1,9 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Cryptollet.Common.Base;
 using Cryptollet.Common.Navigation;
 using Cryptollet.Modules.Login;
 using Cryptollet.Modules.Onboarding;
-using Cryptollet.Modules.Wallet;
 using Xamarin.Essentials;
 
 namespace Cryptollet.Modules.Loading
@@ -12,9 +12,9 @@ namespace Cryptollet.Modules.Loading
     {
         private INavigationService _navigationService;
 
-        public LoadingViewModel(INavigationService navigationService)
+        public LoadingViewModel(Func<INavigationService> navigationService)
         {
-            _navigationService = navigationService;
+            _navigationService = navigationService();
         }
 
         public override Task InitializeAsync(object parameter)
@@ -27,7 +27,8 @@ namespace Cryptollet.Modules.Loading
 
             if (Preferences.ContainsKey(Constants.IS_USER_LOGGED_IN) && Preferences.Get(Constants.IS_USER_LOGGED_IN, false))
             {
-                return _navigationService.PushAsync<WalletViewModel>();
+                _navigationService.GoToAppShell();
+                return Task.CompletedTask;
             }
 
             return _navigationService.PushAsync<LoginViewModel>();

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Cryptollet.Common.Base;
@@ -24,9 +23,9 @@ namespace Cryptollet.Modules.Assets
             Assets = new ObservableCollection<Coin>();
         }
 
-        public async Task LoadData(bool reload = false)
+        public override async Task InitializeAsync(object parameter)
         {
-            var assets = await _walletController.GetCoins(reload);
+            var assets = await _walletController.GetCoins();
             Assets = new ObservableCollection<Coin>(assets);
         }
 

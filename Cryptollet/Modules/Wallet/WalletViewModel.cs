@@ -9,11 +9,9 @@ using Cryptollet.Common.Models;
 using Cryptollet.Common.Navigation;
 using Cryptollet.Modules.AddAsset;
 using Cryptollet.Modules.Assets;
-using Cryptollet.Modules.Login;
 using Cryptollet.Modules.Transactions;
 using Microcharts;
 using SkiaSharp;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace Cryptollet.Modules.Wallet
@@ -32,8 +30,9 @@ namespace Cryptollet.Modules.Wallet
             LatestTransactions = new ObservableCollection<Transaction>();
         }
 
-        public async Task LoadData(bool reload = false)
+        public override async Task InitializeAsync(object parameter)
         {
+            bool reload = (bool)parameter;
             if (IsBusy)
             {
                 return;
@@ -149,19 +148,12 @@ namespace Cryptollet.Modules.Wallet
 
         public ICommand GoToAssetsCommand { get => new Command(async () => await GoToAssets()); }
         public ICommand GoToTransactionsCommand { get => new Command(async () => await GoToTransactions()); }
-        public ICommand SignOutCommand { get => new Command(async () => await SignOut()); }
-        public ICommand RefreshAssetsCommand { get => new Command(async () => await LoadData(true)); }
+        public ICommand RefreshAssetsCommand { get => new Command(async () => await InitializeAsync(true)); }
         public ICommand AddNewTransactionCommand { get => new Command(async () => await AddNewTransaction()); }
 
         private async Task AddNewTransaction()
         {
             await _navigationService.PushAsync<AddAssetViewModel>();
-        }
-
-        private async Task SignOut()
-        {
-            Preferences.Remove(Constants.IS_USER_LOGGED_IN);
-            await _navigationService.InsertAsRoot<LoginViewModel>();
         }
 
         private async Task GoToTransactions()

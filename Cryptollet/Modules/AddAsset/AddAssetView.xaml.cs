@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-
+﻿
+using Autofac;
 using Xamarin.Forms;
 
 namespace Cryptollet.Modules.AddAsset
 {
     public partial class AddAssetView : ContentPage
     {
-        public AddAssetView(AddAssetViewModel viewModel)
+        public AddAssetView()
         {
             InitializeComponent();
-            BindingContext = viewModel;
+            BindingContext = App.Container.Resolve<AddAssetViewModel>();
         }
     }
 }

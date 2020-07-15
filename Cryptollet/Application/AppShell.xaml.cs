@@ -1,4 +1,6 @@
-﻿using Xamarin.Forms;
+﻿using Autofac;
+using Cryptollet.Modules.AddAsset;
+using Xamarin.Forms;
 
 namespace Cryptollet
 {
@@ -7,6 +9,9 @@ namespace Cryptollet
         public AppShell()
         {
             InitializeComponent();
+            BindingContext = App.Container.Resolve<AppShellViewModel>();
+
+            Routing.RegisterRoute("AddAssetViewModel", typeof(AddAssetView));
         }
     }
 }

@@ -16,7 +16,8 @@
             <Label Style="{StaticResource TitleLabel}"
                    Text="Create Account"/>
             <Image Source="register.png"
-                   Margin="0,30,0,0"></Image>
+                   Margin="0,30,0,0"
+                   HeightRequest="200"/>
             <StackLayout BackgroundColor="White"
                          VerticalOptions="FillAndExpand">
                 <Entry Style="{StaticResource Input}"

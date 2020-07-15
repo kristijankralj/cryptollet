@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Cryptollet.Common.Base;
 using Cryptollet.Common.Database;
@@ -17,10 +18,10 @@ namespace Cryptollet.Modules.Register
         private INavigationService _navigationService;
         private IRepository<User> _userRepository;
 
-        public RegisterViewModel(INavigationService navigationService,
+        public RegisterViewModel(Func<INavigationService> navigationService,
             IRepository<User> repository)
         {
-            _navigationService = navigationService;
+            _navigationService = navigationService();
             _userRepository = repository;
             AddValidations();
         }
@@ -65,7 +66,10 @@ namespace Cryptollet.Modules.Register
             await _userRepository.SaveAsync(user);
 
             Preferences.Set(Constants.IS_USER_LOGGED_IN, true);
-            await _navigationService.InsertAsRoot<WalletViewModel>();
+            Email.Value = string.Empty;
+            Password.Value = string.Empty;
+            Name.Value = string.Empty;
+            _navigationService.GoToAppShell();
             IsBusy = false;
         }
 

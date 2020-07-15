@@ -16,7 +16,7 @@
                    Text="Welcome Back!"/>
             <Image Source="login.png"
                    Margin="0,30,0,0"
-                   HeightRequest="270"></Image>
+                   HeightRequest="200"></Image>
             <StackLayout BackgroundColor="White"
                          VerticalOptions="FillAndExpand">
                 <Entry Style="{StaticResource Input}"

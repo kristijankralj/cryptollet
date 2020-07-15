@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Cryptollet.Common.Base;
@@ -21,11 +22,11 @@ namespace Cryptollet.Modules.Login
         private IRepository<User> _userRepository;
         private IDialogMessage _dialogMessage;
 
-        public LoginViewModel(INavigationService navigationService,
+        public LoginViewModel(Func<INavigationService> navigationService,
             IRepository<User> repository,
             IDialogMessage message)
         {
-            _navigationService = navigationService;
+            _navigationService = navigationService();
             _userRepository = repository;
             _dialogMessage = message;
             AddValidations();
@@ -71,7 +72,9 @@ namespace Cryptollet.Modules.Login
             }
 
             Preferences.Set(Constants.IS_USER_LOGGED_IN, true);
-            await _navigationService.InsertAsRoot<WalletViewModel>();
+            Email.Value = string.Empty;
+            Password.Value = string.Empty;
+            _navigationService.GoToAppShell();
             IsBusy = false;
         }
 
