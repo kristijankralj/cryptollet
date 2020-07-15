@@ -146,24 +146,12 @@ namespace Cryptollet.Modules.Wallet
             set { SetProperty(ref _portfolioValue, value); }
         }
 
-        public ICommand GoToAssetsCommand { get => new Command(async () => await GoToAssets()); }
-        public ICommand GoToTransactionsCommand { get => new Command(async () => await GoToTransactions()); }
         public ICommand RefreshAssetsCommand { get => new Command(async () => await InitializeAsync(true)); }
         public ICommand AddNewTransactionCommand { get => new Command(async () => await AddNewTransaction()); }
 
         private async Task AddNewTransaction()
         {
             await _navigationService.PushAsync<AddAssetViewModel>();
-        }
-
-        private async Task GoToTransactions()
-        {
-            await _navigationService.PushAsync<TransactionsViewModel>();
-        }
-
-        private async Task GoToAssets()
-        {
-            await _navigationService.PushAsync<AssetsViewModel>();
         }
     }
 }

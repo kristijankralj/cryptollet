@@ -126,6 +126,8 @@
     <ImageAsset Include="Assets.xcassets\XRP.png.imageset\XRP.pdf" />
     <ImageAsset Include="Assets.xcassets\XMR.png.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\XMR.png.imageset\MONERO.pdf" />
+    <ImageAsset Include="Assets.xcassets\grow.png.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\grow.png.imageset\grow.pdf" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -172,6 +174,7 @@
     <Folder Include="Assets.xcassets\emptyview.png.imageset\" />
     <Folder Include="Assets.xcassets\XRP.png.imageset\" />
     <Folder Include="Assets.xcassets\XMR.png.imageset\" />
+    <Folder Include="Assets.xcassets\grow.png.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\loading.gif" />

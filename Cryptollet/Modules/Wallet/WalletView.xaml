@@ -31,13 +31,6 @@
                                     HeightRequest="260"
                                     ItemTemplate="{StaticResource AssetCell}"
                                     VerticalScrollBarVisibility="Never" />
-                    <Button Text="See All Assets"
-                            Style="{StaticResource NoBackgroundSmallButton}"
-                            Command="{Binding GoToAssetsCommand}"
-                            HorizontalOptions="Center"
-                            FontSize="17"
-                            FontAttributes="Bold"
-                            Margin="0,5,0,0"/>
                     <Label Text="Latest Transactions"
                        FontAttributes="Bold"
                        TextColor="{StaticResource InputText}"
@@ -65,15 +58,6 @@
                         </StackLayout>
                     </CollectionView.EmptyView>
                     </CollectionView>
-
-                    <Button Text="See All Transactions"
-                            Style="{StaticResource NoBackgroundSmallButton}"
-                            Command="{Binding GoToTransactionsCommand}"
-                            HorizontalOptions="Center"
-                            FontSize="17"
-                            FontAttributes="Bold"
-                            Margin="0,5,0,0"
-                            IsVisible="{Binding HasTransactions}" />
                 </StackLayout>
             </StackLayout>
         </ScrollView>

@@ -11,10 +11,8 @@
                  Command="{Binding TradeCommand}" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <RefreshView>
         <CollectionView ItemsSource="{Binding Transactions}"
                 SelectionMode="Single"
                 ItemTemplate="{StaticResource TransactionCell}" />
-        </RefreshView>
     </ContentPage.Content>
 </ContentPage>

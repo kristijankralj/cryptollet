@@ -5,7 +5,13 @@
     xmlns:wallet="clr-namespace:Cryptollet.Modules.Wallet"
     xmlns:assets="clr-namespace:Cryptollet.Modules.Assets"
     xmlns:transactions="clr-namespace:Cryptollet.Modules.Transactions"
+    xmlns:controls="clr-namespace:Cryptollet.Common.Controls"
+    FlyoutHeaderBehavior="CollapseOnScroll"
     x:Class="Cryptollet.AppShell">
+
+    <Shell.FlyoutHeader>
+        <controls:FlyoutHeader />
+    </Shell.FlyoutHeader>
 
     <FlyoutItem Route="WalletViewModel"
                 FlyoutDisplayOptions="AsMultipleItems">
