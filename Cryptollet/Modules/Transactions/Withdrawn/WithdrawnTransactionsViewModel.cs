@@ -11,12 +11,12 @@ using Xamarin.Forms;
 
 namespace Cryptollet.Modules.Transactions
 {
-    public class TransactionsViewModel: BaseViewModel
+    public class WithdrawnTransactionsViewModel : BaseViewModel
     {
         private INavigationService _navigationService;
         private IWalletController _walletController;
 
-        public TransactionsViewModel(INavigationService navigationService,
+        public WithdrawnTransactionsViewModel(INavigationService navigationService,
                                      IWalletController walletController)
         {
             _navigationService = navigationService;
@@ -28,6 +28,7 @@ namespace Cryptollet.Modules.Transactions
         {
             IsRefreshing = true;
             var transactions = await _walletController.GetTransactions();
+            transactions = transactions.Where(x => x.Status == Constants.TRANSACTION_WITHDRAWN).ToList();
             Transactions = new ObservableCollection<Transaction>(transactions);
             IsRefreshing = false;
         }

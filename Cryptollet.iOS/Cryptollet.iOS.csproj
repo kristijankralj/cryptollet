@@ -128,6 +128,12 @@
     <ImageAsset Include="Assets.xcassets\XMR.png.imageset\MONERO.pdf" />
     <ImageAsset Include="Assets.xcassets\grow.png.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\grow.png.imageset\grow.pdf" />
+    <ImageAsset Include="Assets.xcassets\all_tab.png.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\all_tab.png.imageset\all_tab.pdf" />
+    <ImageAsset Include="Assets.xcassets\deposited_tab.png.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\deposited_tab.png.imageset\deposited_tab.pdf" />
+    <ImageAsset Include="Assets.xcassets\withdrawn_tab.png.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\withdrawn_tab.png.imageset\withdrawn_tab.pdf" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -175,6 +181,9 @@
     <Folder Include="Assets.xcassets\XRP.png.imageset\" />
     <Folder Include="Assets.xcassets\XMR.png.imageset\" />
     <Folder Include="Assets.xcassets\grow.png.imageset\" />
+    <Folder Include="Assets.xcassets\all_tab.png.imageset\" />
+    <Folder Include="Assets.xcassets\deposited_tab.png.imageset\" />
+    <Folder Include="Assets.xcassets\withdrawn_tab.png.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\loading.gif" />

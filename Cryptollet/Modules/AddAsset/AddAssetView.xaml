@@ -3,33 +3,10 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:converters="clr-namespace:Cryptollet.Common.Converters"
-    x:Class="Cryptollet.Modules.AddAsset.AddAssetView">
+    x:Class="Cryptollet.Modules.AddAsset.AddAssetView"
+    Shell.TabBarIsVisible="False">
     <ContentPage.Resources>
-        <Style TargetType="RadioButton">
-            <Setter Property="VisualStateManager.VisualStateGroups">
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="TextColor"
-                                        Value="DarkGray" />
-                                <Setter Property="Opacity"
-                                        Value="0.8" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="IsChecked">
-                            <VisualState.Setters>
-                                <Setter Property="TextColor"
-                                        Value="{StaticResource PrimaryBlue}" />
-                                <Setter Property="Opacity"
-                                        Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </Setter>
-        </Style>
-        <converters:FirstValidationErrorConverter x:Key="firstValidationErrorConverter" />
+        <converters:FirstValidationErrorConverter x:Key="FirstValidationErrorConverter" />
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
@@ -83,7 +60,7 @@
                    Text="{Binding Amount.Value, Mode=TwoWay}"
                    Keyboard="Numeric"
                    Margin="16,0,16,0"/>
-            <Label Text="{Binding Amount.Errors, Converter={StaticResource firstValidationErrorConverter}}"
+            <Label Text="{Binding Amount.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
 				   Style="{StaticResource ValidationErrorLabel}"
                    Margin="16,0,24,0"/>
             <Label Text="Transaction Date"

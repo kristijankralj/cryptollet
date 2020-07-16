@@ -7,7 +7,6 @@ using Cryptollet.Common.Database;
 using Cryptollet.Common.Dialog;
 using Cryptollet.Common.Models;
 using Cryptollet.Common.Navigation;
-using Cryptollet.Common.Network;
 using Cryptollet.Common.Validation;
 using Xamarin.Forms;
 

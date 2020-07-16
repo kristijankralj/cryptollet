@@ -11,7 +11,7 @@
                      Command="{Binding RefreshAssetsCommand}">
         <ScrollView BackgroundColor="White">
             <StackLayout Padding="0,20,0,0">
-                <Label Text="{Binding PortfolioValue, StringFormat='Portfolio: {0:N2}$'}"
+                <Label Text="{Binding PortfolioValue, StringFormat='Balance: {0:N2}$'}"
                        TextColor="{StaticResource PrimaryBlue}"
                        HorizontalOptions="Center"
                        FontSize="22"/>
