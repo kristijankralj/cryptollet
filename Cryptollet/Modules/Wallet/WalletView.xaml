@@ -18,7 +18,8 @@
                 <microcharts:ChartView Chart="{Binding PortfolioView}"
                                        HeightRequest="200"
                                        BackgroundColor="White"
-                                       Margin="10,20,10,0">
+                                       Margin="10,20,10,0"
+                                       IsVisible="{Binding HasTransactions}">
                     </microcharts:ChartView>
                 <StackLayout BackgroundColor="White"
                              VerticalOptions="FillAndExpand">

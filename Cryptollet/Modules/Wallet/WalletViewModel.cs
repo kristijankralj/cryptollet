@@ -54,28 +54,17 @@ namespace Cryptollet.Modules.Wallet
         private void BuildChart(List<Coin> assets)
         {
             var whiteColor = SKColor.Parse("#ffffff");
-            var entries = new[]
+            List<Microcharts.Entry> entries = new List<Microcharts.Entry>();
+            var colors = Coin.GetAvailableAssets();
+            foreach (var item in assets)
             {
-                new Microcharts.Entry((float)assets[0].DollarValue)
+                entries.Add(new Microcharts.Entry((float)item.DollarValue)
                 {
                     TextColor = whiteColor,
-                    ValueLabel = assets[0].Name,
-                    Color = SKColor.Parse("#ba68c8"),
-                },
-                new Microcharts.Entry((float)assets[1].DollarValue)
-                {
-                    TextColor = whiteColor,
-                    ValueLabel = assets[1].Name,
-                    Color = SKColor.Parse("#4fc3f7"),
-                },
-                new Microcharts.Entry((float)assets[2].DollarValue)
-                {
-                    TextColor = whiteColor,
-                    ValueLabel = assets[2].Name,
-                    Color = SKColor.Parse("#dce775"),
-                }
-            };
-
+                    ValueLabel = item.Name,
+                    Color = SKColor.Parse(colors.First(x => x.Symbol == item.Symbol).HexColor),
+                });
+            }
             var chart = new DonutChart { Entries = entries };
             chart.LabelTextSize = 25;
             chart.BackgroundColor = whiteColor;
