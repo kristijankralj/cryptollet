@@ -10,15 +10,15 @@ using Cryptollet.Common.Navigation;
 using Cryptollet.Common.Validation;
 using Xamarin.Forms;
 
-namespace Cryptollet.Modules.AddAsset
+namespace Cryptollet.Modules.AddTransaction
 {
-    public class AddAssetViewModel: BaseViewModel
+    public class AddTransactionViewModel: BaseViewModel
     {
         private readonly IDialogMessage _dialogMessage;
         private readonly INavigationService _navigationService;
         private readonly IRepository<Transaction> _transactionRepository;
 
-        public AddAssetViewModel(IDialogMessage dialogMessage,
+        public AddTransactionViewModel(IDialogMessage dialogMessage,
                                  INavigationService navigationService,
                                  IRepository<Transaction> transactionRepository)
         {

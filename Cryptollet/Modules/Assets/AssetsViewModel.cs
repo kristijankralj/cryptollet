@@ -5,7 +5,7 @@ using Cryptollet.Common.Base;
 using Cryptollet.Common.Controllers;
 using Cryptollet.Common.Models;
 using Cryptollet.Common.Navigation;
-using Cryptollet.Modules.AddAsset;
+using Cryptollet.Modules.AddTransaction;
 using Xamarin.Forms;
 
 namespace Cryptollet.Modules.Assets
@@ -39,7 +39,7 @@ namespace Cryptollet.Modules.Assets
         public ICommand AddAssetCommand { get => new Command(async () => await AddAsset()); }
         private async Task AddAsset()
         {
-            await _navigationService.PushAsync<AddAssetViewModel>();
+            await _navigationService.PushAsync<AddTransactionViewModel>();
         }
     }
 }

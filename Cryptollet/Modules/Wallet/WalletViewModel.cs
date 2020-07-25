@@ -7,7 +7,7 @@ using Cryptollet.Common.Base;
 using Cryptollet.Common.Controllers;
 using Cryptollet.Common.Models;
 using Cryptollet.Common.Navigation;
-using Cryptollet.Modules.AddAsset;
+using Cryptollet.Modules.AddTransaction;
 using Cryptollet.Modules.Assets;
 using Cryptollet.Modules.Transactions;
 using Microcharts;
@@ -140,7 +140,7 @@ namespace Cryptollet.Modules.Wallet
 
         private async Task AddNewTransaction()
         {
-            await _navigationService.PushAsync<AddAssetViewModel>();
+            await _navigationService.PushAsync<AddTransactionViewModel>();
         }
     }
 }

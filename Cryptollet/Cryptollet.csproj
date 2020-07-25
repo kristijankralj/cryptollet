@@ -39,7 +39,7 @@
     <Folder Include="Common\Styles\" />
     <Folder Include="Modules\Assets\" />
     <Folder Include="Modules\Transactions\" />
-    <Folder Include="Modules\AddAsset\" />
+    <Folder Include="Modules\AddTransaction\" />
     <Folder Include="Common\Network\" />
     <Folder Include="Common\Controllers\" />
     <Folder Include="Modules\Loading\" />
