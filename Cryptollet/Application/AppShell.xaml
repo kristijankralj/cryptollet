@@ -8,6 +8,7 @@
     xmlns:controls="clr-namespace:Cryptollet.Common.Controls"
     FlyoutHeaderBehavior="CollapseOnScroll"
     FlyoutVerticalScrollMode="Enabled"
+    FlyoutBackgroundColor="LightSlateGray"
     x:Class="Cryptollet.AppShell">
     <Shell.Resources>
         <Style x:Key="BaseStyle" TargetType="Element">

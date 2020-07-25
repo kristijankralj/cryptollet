@@ -1,5 +1,4 @@
-﻿
-using Autofac;
+﻿using Autofac;
 using Xamarin.Forms;
 
 namespace Cryptollet.Modules.Assets

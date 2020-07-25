@@ -12,7 +12,7 @@
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <CollectionView ItemsSource="{Binding Assets}"
-            SelectionMode="Single"
+            SelectionMode="None"
             ItemTemplate="{StaticResource AssetCell}"/>
     </ContentPage.Content>
 </ContentPage>

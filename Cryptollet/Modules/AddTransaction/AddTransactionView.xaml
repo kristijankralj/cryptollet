@@ -3,7 +3,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:converters="clr-namespace:Cryptollet.Common.Converters"
-    x:Class="Cryptollet.Modules.AddAsset.AddAssetView"
+    x:Class="Cryptollet.Modules.AddTransaction.AddTransactionView"
     Shell.TabBarIsVisible="False">
     <ContentPage.Resources>
         <converters:FirstValidationErrorConverter x:Key="FirstValidationErrorConverter" />

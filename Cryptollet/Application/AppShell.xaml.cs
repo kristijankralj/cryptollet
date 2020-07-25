@@ -11,7 +11,7 @@ namespace Cryptollet
             InitializeComponent();
             BindingContext = App.Container.Resolve<AppShellViewModel>();
 
-            Routing.RegisterRoute("AddTransactionViewModel", typeof(AddAssetView));
+            Routing.RegisterRoute("AddTransactionViewModel", typeof(AddTransactionView));
         }
     }
 }

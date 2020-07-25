@@ -4,9 +4,9 @@ using Xamarin.Forms;
 
 namespace Cryptollet.Modules.AddTransaction
 {
-    public partial class AddAssetView : ContentPage
+    public partial class AddTransactionView : ContentPage
     {
-        public AddAssetView()
+        public AddTransactionView()
         {
             InitializeComponent();
             BindingContext = App.Container.Resolve<AddTransactionViewModel>();
