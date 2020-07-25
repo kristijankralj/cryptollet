@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Cryptollet.Modules.Login.LoginView"
              xmlns:converters="clr-namespace:Cryptollet.Common.Converters"
-             NavigationPage.HasNavigationBar="False">
+             Shell.NavBarIsVisible="False"
+             Shell.FlyoutBehavior="Disabled">
     <ContentPage.Resources>
         <ResourceDictionary>
             <converters:FirstValidationErrorConverter x:Key="firstValidationErrorConverter" />

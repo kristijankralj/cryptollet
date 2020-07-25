@@ -1,6 +1,8 @@
-﻿using System.Windows.Input;
+﻿using System.Threading.Tasks;
+using System.Windows.Input;
 using Cryptollet.Common.Base;
 using Cryptollet.Common.Navigation;
+using Cryptollet.Modules.Login;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -15,12 +17,13 @@ namespace Cryptollet
             _navigationService = navigationService;
         }
 
-        public ICommand SignOutCommand { get => new Command(SignOut); }
+        public ICommand SignOutCommand { get => new Command(async () => await SignOut()); }
 
-        private void SignOut()
+        private async Task SignOut()
         {
             Preferences.Remove(Constants.IS_USER_LOGGED_IN);
-            _navigationService.GoToStart();
+            _navigationService.GoToLoginFlow();
+            await _navigationService.InsertAsRoot<LoginViewModel>();
         }
     }
 }

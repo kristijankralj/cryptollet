@@ -34,7 +34,7 @@
                 FlyoutDisplayOptions="AsMultipleItems"
                 Style="{StaticResource BaseStyle}">
         <ShellContent ContentTemplate="{DataTemplate wallet:WalletView}"
-                Title="Portfolio" />
+                Title="Portfolio"/>
     </FlyoutItem>
     <FlyoutItem Route="AssetsViewModel"
                 FlyoutDisplayOptions="AsMultipleItems"

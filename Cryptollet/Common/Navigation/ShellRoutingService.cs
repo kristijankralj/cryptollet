@@ -4,19 +4,28 @@ using Xamarin.Forms;
 
 namespace Cryptollet.Common.Navigation
 {
+    public interface INavigationService
+    {
+        Task PushAsync<TViewModel>() where TViewModel : BaseViewModel;
+        Task PopAsync();
+        Task InsertAsRoot<TViewModel>() where TViewModel : BaseViewModel;
+        void GoToMainFlow();
+        void GoToLoginFlow();
+    }
+
     public class ShellRoutingService: INavigationService
     {
-        public void GoToAppShell()
+        public void GoToMainFlow()
         {
-            //Already in shell, do nothing
+            Application.Current.MainPage = new AppShell();
         }
 
-        public void GoToStart()
+        public void GoToLoginFlow()
         {
-            App.Current.MainPage = App.MainNavigation;
+            Application.Current.MainPage = new LoginShell();
         }
 
-        public Task InsertAsRoot<TViewModel>(object parameter = null) where TViewModel : BaseViewModel
+        public Task InsertAsRoot<TViewModel>() where TViewModel : BaseViewModel
         {
             return Shell.Current.GoToAsync("//" + typeof(TViewModel).Name);
         }
@@ -26,7 +35,7 @@ namespace Cryptollet.Common.Navigation
             return Shell.Current.Navigation.PopAsync();
         }
 
-        public Task PushAsync<TViewModel>(object parameter = null) where TViewModel : BaseViewModel
+        public Task PushAsync<TViewModel>() where TViewModel : BaseViewModel
         {
             return Shell.Current.GoToAsync(typeof(TViewModel).Name);
         }

@@ -54,11 +54,11 @@ namespace Cryptollet.Modules.Wallet
         private void BuildChart(List<Coin> assets)
         {
             var whiteColor = SKColor.Parse("#ffffff");
-            List<Microcharts.Entry> entries = new List<Microcharts.Entry>();
+            List<ChartEntry> entries = new List<ChartEntry>();
             var colors = Coin.GetAvailableAssets();
             foreach (var item in assets)
             {
-                entries.Add(new Microcharts.Entry((float)item.DollarValue)
+                entries.Add(new ChartEntry((float)item.DollarValue)
                 {
                     TextColor = whiteColor,
                     ValueLabel = item.Name,

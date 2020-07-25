@@ -74,7 +74,7 @@ namespace Cryptollet.Modules.Login
             Preferences.Set(Constants.IS_USER_LOGGED_IN, true);
             Email.Value = string.Empty;
             Password.Value = string.Empty;
-            _navigationService.GoToAppShell();
+            _navigationService.GoToMainFlow();
             IsBusy = false;
         }
 
@@ -86,7 +86,7 @@ namespace Cryptollet.Modules.Login
 
         private async Task GoToRegister()
         {
-            await _navigationService.PushAsync<RegisterViewModel>();
+            await _navigationService.InsertAsRoot<RegisterViewModel>();
         }
 
         private void AddValidations()

@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using Cryptollet.Common.Base;
 using Cryptollet.Common.Navigation;
 using Cryptollet.Modules.Login;
-using Cryptollet.Modules.Onboarding;
 using Xamarin.Essentials;
 
 namespace Cryptollet.Modules.Loading
@@ -22,16 +21,18 @@ namespace Cryptollet.Modules.Loading
             if (!Preferences.ContainsKey(Constants.SHOWN_ONBOARDING))
             {
                 Preferences.Set(Constants.SHOWN_ONBOARDING, true);
-                return _navigationService.PushAsync<OnboardingViewModel>();
+                _navigationService.GoToLoginFlow();
+                return Task.CompletedTask;
             }
 
             if (Preferences.ContainsKey(Constants.IS_USER_LOGGED_IN) && Preferences.Get(Constants.IS_USER_LOGGED_IN, false))
             {
-                _navigationService.GoToAppShell();
+                _navigationService.GoToMainFlow();
                 return Task.CompletedTask;
             }
 
-            return _navigationService.PushAsync<LoginViewModel>();
+            _navigationService.GoToLoginFlow();
+            return _navigationService.InsertAsRoot<LoginViewModel>();
         }
     }
 }

@@ -7,6 +7,7 @@ using Cryptollet.Common.Models;
 using Cryptollet.Common.Navigation;
 using Cryptollet.Common.Security;
 using Cryptollet.Common.Validation;
+using Cryptollet.Modules.Login;
 using Cryptollet.Modules.Wallet;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -69,13 +70,13 @@ namespace Cryptollet.Modules.Register
             Email.Value = string.Empty;
             Password.Value = string.Empty;
             Name.Value = string.Empty;
-            _navigationService.GoToAppShell();
+            _navigationService.GoToMainFlow();
             IsBusy = false;
         }
 
         private async Task GoToLogin()
         {
-            await _navigationService.PopAsync();
+            await _navigationService.InsertAsRoot<LoginViewModel>();
         }
 
         private void AddValidations()
