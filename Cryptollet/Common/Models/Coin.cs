@@ -40,7 +40,7 @@ namespace Cryptollet.Common.Models
                 new Coin("Litecoin", "LTC", "LTC.png", "#9063B0"),
                 new Coin("Monero", "XMR", "XMR.png", "#DA8B90"),
                 new Coin("Ripple", "XRP", "XRP.png", "#856F92"),
-                new Coin("Stellar", "XLM", "STELLAR.png", "#50A665")
+                new Coin("Stellar", "XLM", "XLM.png", "#50A665")
             };
         }
     }

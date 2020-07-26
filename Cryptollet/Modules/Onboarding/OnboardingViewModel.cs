@@ -35,7 +35,7 @@ namespace Cryptollet.Modules.Onboarding
 
         private async Task FinishOnboarding()
         {
-            await _navigationService.PushAsync<LoginViewModel>();
+            await _navigationService.InsertAsRoot<LoginViewModel>();
         }
     }
 }

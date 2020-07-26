@@ -8,8 +8,6 @@ using Cryptollet.Common.Controllers;
 using Cryptollet.Common.Models;
 using Cryptollet.Common.Navigation;
 using Cryptollet.Modules.AddTransaction;
-using Cryptollet.Modules.Assets;
-using Cryptollet.Modules.Transactions;
 using Microcharts;
 using SkiaSharp;
 using Xamarin.Forms;
@@ -66,7 +64,6 @@ namespace Cryptollet.Modules.Wallet
                 });
             }
             var chart = new DonutChart { Entries = entries };
-            chart.LabelTextSize = 25;
             chart.BackgroundColor = whiteColor;
             chart.HoleRadius = 0.65f;
             PortfolioView = chart;

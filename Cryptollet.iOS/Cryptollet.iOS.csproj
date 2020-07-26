@@ -96,8 +96,6 @@
     <ImageAsset Include="Assets.xcassets\DASH.png.imageset\DASH.pdf" />
     <ImageAsset Include="Assets.xcassets\EOS.png.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\EOS.png.imageset\EOS.pdf" />
-    <ImageAsset Include="Assets.xcassets\STELLAR.png.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\STELLAR.png.imageset\XLM.pdf" />
     <ImageAsset Include="Assets.xcassets\emptyview.png.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\emptyview.png.imageset\emptyview.pdf" />
     <ImageAsset Include="Assets.xcassets\welcome.png.imageset\welcome.pdf" />
@@ -134,6 +132,8 @@
     <ImageAsset Include="Assets.xcassets\deposited_tab.png.imageset\deposited_tab.pdf" />
     <ImageAsset Include="Assets.xcassets\withdrawn_tab.png.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\withdrawn_tab.png.imageset\withdrawn_tab.pdf" />
+    <ImageAsset Include="Assets.xcassets\XLM.png.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\XLM.png.imageset\XLM.pdf" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -176,7 +176,6 @@
     <Folder Include="Assets.xcassets\BCH.png.imageset\" />
     <Folder Include="Assets.xcassets\DASH.png.imageset\" />
     <Folder Include="Assets.xcassets\EOS.png.imageset\" />
-    <Folder Include="Assets.xcassets\STELLAR.png.imageset\" />
     <Folder Include="Assets.xcassets\emptyview.png.imageset\" />
     <Folder Include="Assets.xcassets\XRP.png.imageset\" />
     <Folder Include="Assets.xcassets\XMR.png.imageset\" />
@@ -184,6 +183,7 @@
     <Folder Include="Assets.xcassets\all_tab.png.imageset\" />
     <Folder Include="Assets.xcassets\deposited_tab.png.imageset\" />
     <Folder Include="Assets.xcassets\withdrawn_tab.png.imageset\" />
+    <Folder Include="Assets.xcassets\XLM.png.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\loading.gif" />
