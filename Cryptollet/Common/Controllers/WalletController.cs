@@ -16,7 +16,7 @@ namespace Cryptollet.Common.Controllers
     public class WalletController : IWalletController
     {
         private IRepository<Transaction> _transactionRepository;
-        private ICrypoService _crypoService;
+        private ICryptoService _cryptoService;
         private List<Coin> _cachedCoins = new List<Coin>();
         private List<Coin> _defaultAssets = new List<Coin>
         {
@@ -44,10 +44,10 @@ namespace Cryptollet.Common.Controllers
         };
 
         public WalletController(IRepository<Transaction> transactionRepository,
-                                ICrypoService crypoService)
+                                ICryptoService cryptoService)
         {
             _transactionRepository = transactionRepository;
-            _crypoService = crypoService;
+            _cryptoService = cryptoService;
         }
 
         public async Task<List<Coin>> GetCoins(bool forceReload = false)
@@ -97,7 +97,7 @@ namespace Cryptollet.Common.Controllers
         {
             if (_cachedCoins.Count == 0 || forceReload)
             {
-                _cachedCoins = await _crypoService.GetLatestPrices();
+                _cachedCoins = await _cryptoService.GetLatestPrices();
             }
             var transactions = await _transactionRepository.GetAllAsync();
             transactions = transactions.OrderByDescending(x => x.TransactionDate).ToList();

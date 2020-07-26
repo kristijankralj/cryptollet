@@ -4,16 +4,16 @@ using Cryptollet.Common.Models;
 
 namespace Cryptollet.Common.Network
 {
-    public interface ICrypoService
+    public interface ICryptoService
     {
         Task<List<Coin>> GetLatestPrices();
     }
 
-    public class CrypoService : ICrypoService
+    public class CryptoService : ICryptoService
     {
         private INetworkService _networkService;
 
-        public CrypoService(INetworkService networkService)
+        public CryptoService(INetworkService networkService)
         {
             _networkService = networkService;
         }
