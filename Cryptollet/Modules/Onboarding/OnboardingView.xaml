@@ -2,8 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Cryptollet.Modules.Onboarding.OnboardingView"
-             Shell.FlyoutBehavior="Disabled"
-             NavigationPage.HasNavigationBar="False">
+             Shell.NavBarIsVisible="False"
+             Shell.FlyoutBehavior="Disabled">
     <ContentPage.Content>
         <StackLayout
                      VerticalOptions="StartAndExpand"
