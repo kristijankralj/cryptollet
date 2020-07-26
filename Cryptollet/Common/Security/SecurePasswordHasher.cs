@@ -21,7 +21,7 @@ namespace Cryptollet.Common.Security
         /// <param name="password">The password.</param>
         /// <param name="iterations">Number of iterations.</param>
         /// <returns>The hash.</returns>
-        public static string Hash(string password, int iterations)
+        private static string Hash(string password, int iterations)
         {
             // Create salt
             using (var rng = new RNGCryptoServiceProvider())

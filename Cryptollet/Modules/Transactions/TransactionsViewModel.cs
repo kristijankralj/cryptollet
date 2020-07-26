@@ -26,6 +26,11 @@ namespace Cryptollet.Modules.Transactions
 
         public override async Task InitializeAsync(object parameter)
         {
+            await GetTransactions();
+        }
+
+        private async Task GetTransactions()
+        {
             IsRefreshing = true;
             var transactions = await _walletController.GetTransactions();
             Transactions = new ObservableCollection<Transaction>(transactions);
@@ -47,6 +52,12 @@ namespace Cryptollet.Modules.Transactions
         }
 
         public ICommand TradeCommand { get => new Command(async () => await Trade()); }
+        public ICommand RefreshTransactionsCommand { get => new Command(async () => await RefreshTransactions()); }
+
+        private async Task RefreshTransactions()
+        {
+            await GetTransactions();
+        }
 
         private async Task Trade()
         {

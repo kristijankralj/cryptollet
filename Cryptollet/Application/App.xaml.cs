@@ -20,7 +20,6 @@ namespace Cryptollet
             //scan and register all classes in the assembly
             var dataAccess = Assembly.GetExecutingAssembly();
             builder.RegisterAssemblyTypes(dataAccess)
-                   .Where(x => x.Namespace != "Navigation")
                    .AsImplementedInterfaces()
                    .AsSelf();
             builder.RegisterType<Repository<User>>().As<IRepository<User>>();
