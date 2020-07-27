@@ -12,6 +12,7 @@ using Xamarin.Forms;
 
 namespace Cryptollet.Modules.AddTransaction
 {
+    [QueryProperty("Id", "id")]
     public class AddTransactionViewModel: BaseViewModel
     {
         private readonly IDialogMessage _dialogMessage;
@@ -27,8 +28,20 @@ namespace Cryptollet.Modules.AddTransaction
             _navigationService = navigationService;
             AvailableAssets = new ObservableCollection<Coin>(Coin.GetAvailableAssets());
             AddValidations();
-            IsDeposit = true;
-            TransactionDate = DateTime.Now;
+        }
+
+        public override async Task InitializeAsync(object parameter)
+        {
+            if (string.IsNullOrEmpty(Id) || !int.TryParse(Id, out int transactionId))
+            {
+                IsDeposit = true;
+                TransactionDate = DateTime.Now;
+                return;
+            }
+            var selectedTransaction = await _transactionRepository.GetById(transactionId);
+            IsDeposit = selectedTransaction.Status == Constants.TRANSACTION_DEPOSITED;
+            Amount.Value = selectedTransaction.Amount;
+            TransactionDate = selectedTransaction.TransactionDate;
         }
 
         private ObservableCollection<Coin> _availableAssets;
@@ -65,6 +78,16 @@ namespace Cryptollet.Modules.AddTransaction
             set { SetProperty(ref _isDeposit, value); }
         }
 
+        private string _id;
+        public string Id
+        {
+            get => _id;
+            set
+            {
+                _id = Uri.UnescapeDataString(value);
+            }
+        }
+
         public ICommand AddAssetCommand { get => new Command(async () => await AddAsset(),() => IsNotBusy); }
 
         private async Task AddAsset()
@@ -91,7 +114,8 @@ namespace Cryptollet.Modules.AddTransaction
                 Amount = Amount.Value,
                 TransactionDate = TransactionDate,
                 Symbol = SelectedCoin.Symbol,
-                Status = IsDeposit ? Constants.TRANSACTION_DEPOSITED : Constants.TRANSACTION_WITHDRAWN
+                Status = IsDeposit ? Constants.TRANSACTION_DEPOSITED : Constants.TRANSACTION_WITHDRAWN,
+                Id = string.IsNullOrEmpty(Id) ? 0 : int.Parse(Id)  
             };
             await _transactionRepository.SaveAsync(transaction);
         }

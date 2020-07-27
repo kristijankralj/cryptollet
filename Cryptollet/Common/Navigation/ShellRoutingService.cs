@@ -6,9 +6,9 @@ namespace Cryptollet.Common.Navigation
 {
     public interface INavigationService
     {
-        Task PushAsync<TViewModel>() where TViewModel : BaseViewModel;
+        Task PushAsync<TViewModel>(string parameters = null) where TViewModel : BaseViewModel;
         Task PopAsync();
-        Task InsertAsRoot<TViewModel>() where TViewModel : BaseViewModel;
+        Task InsertAsRoot<TViewModel>(string parameters = null) where TViewModel : BaseViewModel;
         void GoToMainFlow();
         void GoToLoginFlow();
     }
@@ -25,19 +25,29 @@ namespace Cryptollet.Common.Navigation
             Application.Current.MainPage = new LoginShell();
         }
 
-        public Task InsertAsRoot<TViewModel>() where TViewModel : BaseViewModel
-        {
-            return Shell.Current.GoToAsync("//" + typeof(TViewModel).Name);
-        }
-
         public Task PopAsync()
         {
             return Shell.Current.Navigation.PopAsync();
         }
 
-        public Task PushAsync<TViewModel>() where TViewModel : BaseViewModel
+        public Task InsertAsRoot<TViewModel>(string parameters = null) where TViewModel : BaseViewModel
         {
-            return Shell.Current.GoToAsync(typeof(TViewModel).Name);
+            return GoToAsync<TViewModel>("//", parameters);
+        }
+
+        public Task PushAsync<TViewModel>(string parameters = null) where TViewModel : BaseViewModel
+        {
+            return GoToAsync<TViewModel>("", parameters);
+        }
+
+        private Task GoToAsync<TViewModel>(string routePrefix, string parameters) where TViewModel : BaseViewModel
+        {
+            var route = routePrefix + typeof(TViewModel).Name;
+            if (!string.IsNullOrWhiteSpace(parameters))
+            {
+                route += $"?{parameters}";
+            }
+            return Shell.Current.GoToAsync(route);
         }
     }
 }

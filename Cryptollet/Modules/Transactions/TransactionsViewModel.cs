@@ -57,8 +57,27 @@ namespace Cryptollet.Modules.Transactions
             set { SetProperty(ref _transactions, value); }
         }
 
+        private Transaction _selectedTransaction;
+        public Transaction SelectedTransaction
+        {
+            get => _selectedTransaction;
+            set { SetProperty(ref _selectedTransaction, value); }
+        }
+
         public ICommand TradeCommand { get => new Command(async () => await Trade()); }
         public ICommand RefreshTransactionsCommand { get => new Command(async () => await RefreshTransactions()); }
+
+        public ICommand TransactionSelectedCommand { get => new Command(async () => await TransactionSelected()); }
+
+        private async Task TransactionSelected()
+        {
+            if (SelectedTransaction == null)
+            {
+                return;
+            }
+            await _navigationService.PushAsync<AddTransactionViewModel>($"id={SelectedTransaction.Id}");
+            SelectedTransaction = null;
+        }
 
         private async Task RefreshTransactions()
         {
