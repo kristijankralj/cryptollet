@@ -44,8 +44,6 @@
     <Folder Include="Common\Controllers\" />
     <Folder Include="Modules\Loading\" />
     <Folder Include="Common\Controls\" />
-    <Folder Include="Modules\Transactions\Withdrawn\" />
-    <Folder Include="Modules\Transactions\Deposited\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Common\Navigation\RegisterView.xaml.cs" />

@@ -8,7 +8,6 @@ using Cryptollet.Common.Navigation;
 using Cryptollet.Common.Security;
 using Cryptollet.Common.Validation;
 using Cryptollet.Modules.Login;
-using Cryptollet.Modules.Wallet;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 

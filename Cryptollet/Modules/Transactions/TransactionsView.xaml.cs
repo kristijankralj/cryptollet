@@ -15,7 +15,7 @@ namespace Cryptollet.Modules.Transactions
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            await (BindingContext as TransactionsViewModel).InitializeAsync(null);
+            await (BindingContext as TransactionsViewModel).InitializeAsync(string.Empty);
         }
     }
 }

@@ -10,7 +10,6 @@ using Cryptollet.Common.Navigation;
 using Cryptollet.Common.Security;
 using Cryptollet.Common.Validation;
 using Cryptollet.Modules.Register;
-using Cryptollet.Modules.Wallet;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 

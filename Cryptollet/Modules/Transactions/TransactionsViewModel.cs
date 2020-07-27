@@ -15,6 +15,7 @@ namespace Cryptollet.Modules.Transactions
     {
         private INavigationService _navigationService;
         private IWalletController _walletController;
+        private string _filter = string.Empty;
 
         public TransactionsViewModel(INavigationService navigationService,
                                      IWalletController walletController)
@@ -26,6 +27,7 @@ namespace Cryptollet.Modules.Transactions
 
         public override async Task InitializeAsync(object parameter)
         {
+            _filter = parameter.ToString();
             await GetTransactions();
         }
 
@@ -33,6 +35,10 @@ namespace Cryptollet.Modules.Transactions
         {
             IsRefreshing = true;
             var transactions = await _walletController.GetTransactions();
+            if (!string.IsNullOrEmpty(_filter))
+            {
+                transactions = transactions.Where(x => x.Status == _filter).ToList();
+            }
             Transactions = new ObservableCollection<Transaction>(transactions);
             IsRefreshing = false;
         }

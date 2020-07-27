@@ -9,13 +9,13 @@ namespace Cryptollet.Modules.Transactions
         public DepositedTransactionsView()
         {
             InitializeComponent();
-            BindingContext = App.Container.Resolve<DepositedTransactionsViewModel>();
+            BindingContext = App.Container.Resolve<TransactionsViewModel>();
         }
 
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            await (BindingContext as DepositedTransactionsViewModel).InitializeAsync(null);
+            await (BindingContext as TransactionsViewModel).InitializeAsync(Constants.TRANSACTION_DEPOSITED);
         }
     }
 }

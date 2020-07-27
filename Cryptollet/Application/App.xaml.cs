@@ -2,7 +2,6 @@
 using Autofac;
 using Cryptollet.Common.Database;
 using Cryptollet.Common.Models;
-using Cryptollet.Common.Navigation;
 using Cryptollet.Modules.Loading;
 using Xamarin.Forms;
 
@@ -24,7 +23,6 @@ namespace Cryptollet
                    .AsSelf();
             builder.RegisterType<Repository<User>>().As<IRepository<User>>();
             builder.RegisterType<Repository<Transaction>>().As<IRepository<Transaction>>();
-            builder.RegisterType<ShellRoutingService>().As<INavigationService>();
 
             //get container
             Container = builder.Build();
