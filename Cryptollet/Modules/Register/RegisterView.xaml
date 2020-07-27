@@ -8,7 +8,7 @@
     Shell.FlyoutBehavior="Disabled">
     <ContentPage.Resources>
         <ResourceDictionary>
-            <converters:FirstValidationErrorConverter x:Key="firstValidationErrorConverter" />
+            <converters:FirstValidationErrorConverter x:Key="FirstValidationErrorConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
@@ -25,7 +25,7 @@
                        Text="{Binding Name.Value, Mode=TwoWay}"
                        Placeholder="First Name"
                        Margin="24,30,24,0" />
-                <Label Text="{Binding Name.Errors, Converter={StaticResource firstValidationErrorConverter}}"
+                <Label Text="{Binding Name.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
 					   Style="{StaticResource ValidationErrorLabel}"
                        Margin="26,0,24,10"/>
                 <Entry Style="{StaticResource Input}"
@@ -33,7 +33,7 @@
                        Keyboard="Email"
                        Text="{Binding Email.Value, Mode=TwoWay}"
                        Margin="24,0,24,0" />
-                <Label Text="{Binding Email.Errors, Converter={StaticResource firstValidationErrorConverter}}"
+                <Label Text="{Binding Email.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
 					   Style="{StaticResource ValidationErrorLabel}"
                        Margin="26,0,24,10"/>
                 <Entry Style="{StaticResource Input}"
@@ -41,7 +41,7 @@
                        Text="{Binding Password.Value, Mode=TwoWay}"
                        Margin="24,0,24,0"
                        IsPassword="True"/>
-                <Label Text="{Binding Password.Errors, Converter={StaticResource firstValidationErrorConverter}}"
+                <Label Text="{Binding Password.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
 					   Style="{StaticResource ValidationErrorLabel}"
                        Margin="26,0,24,10"/>
                 <StackLayout HorizontalOptions="Center"

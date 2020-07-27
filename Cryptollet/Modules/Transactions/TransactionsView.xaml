@@ -5,10 +5,10 @@
     x:Class="Cryptollet.Modules.Transactions.TransactionsView"
     Title="Transactions">
     <ContentPage.ToolbarItems>
-            <ToolbarItem Text="Add"
-                 Order="Primary"
-                 Priority="0"
-                 Command="{Binding TradeCommand}" />
+        <ToolbarItem Text="Add"
+                Order="Primary"
+                Priority="0"
+                Command="{Binding TradeCommand}" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <RefreshView IsRefreshing="{Binding IsRefreshing}"

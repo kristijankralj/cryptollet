@@ -102,4 +102,33 @@
             </Frame>
         </StackLayout>
     </DataTemplate>
+
+    <!-- Coin Cell-->
+    <DataTemplate x:Key="CoinCell">
+        <StackLayout VerticalOptions="Center">
+            <Frame Margin="10,5,10,5"
+                    HasShadow="True"
+                    CornerRadius="32"
+                    BorderColor="LightGray"
+                    VerticalOptions="Center"
+                    HeightRequest="40">
+                <Grid ColumnDefinitions="Auto,Auto">
+                    <Image Grid.Column="0"
+                            Aspect="AspectFit"
+                            WidthRequest="36"
+                            HeightRequest="36"
+                            Source="{Binding ImageUrl}"/>
+                    <Label Grid.Column="1"
+                            WidthRequest="120"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center"
+                            HorizontalTextAlignment="Center"
+                            Text="{Binding Name}"
+                            FontSize="18"
+                            FontAttributes="Bold"
+                            TextColor="{StaticResource InputText}"/>
+                </Grid>
+            </Frame>
+        </StackLayout>
+    </DataTemplate>
 </ResourceDictionary>

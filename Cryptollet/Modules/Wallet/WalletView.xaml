@@ -4,8 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
     x:Class="Cryptollet.Modules.Wallet.WalletView"
-    Title="Portfolio"
-    NavigationPage.HasNavigationBar="False">
+    Title="Portfolio">
     <ContentPage.Content>
         <RefreshView IsRefreshing="{Binding IsRefreshing}"
                      Command="{Binding RefreshAssetsCommand}">
