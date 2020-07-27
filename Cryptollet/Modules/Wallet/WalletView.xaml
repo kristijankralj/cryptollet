@@ -27,13 +27,13 @@
                             Margin="20,20,0,0"/>
                     <CollectionView ItemsSource="{Binding Assets}"
                                     SelectionMode="Single"
-                                    HeightRequest="260"
+                                    HeightRequest="{Binding CoinsHeight}"
                                     ItemTemplate="{StaticResource AssetCell}"
                                     VerticalScrollBarVisibility="Never" />
                     <Label Text="Latest Transactions"
-                            FontAttributes="Bold"
-                            TextColor="{StaticResource InputText}"
-                            Margin="20,15,0,0"/>
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource InputText}"
+                           Margin="20,15,0,0"/>
                     <CollectionView ItemsSource="{Binding LatestTransactions}"
                                     SelectionMode="Single"
                                     HeightRequest="{Binding TransactionsHeight}"

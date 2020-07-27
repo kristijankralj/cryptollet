@@ -90,7 +90,6 @@
     <ImageAsset Include="Assets.xcassets\withdrawn.png.imageset\withdrawn.pdf" />
     <ImageAsset Include="Assets.xcassets\deposited.png.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\deposited.png.imageset\deposited.pdf" />
-    <ImageAsset Include="Assets.xcassets\BCH.png.imageset\BCH.pdf" />
     <ImageAsset Include="Assets.xcassets\BCH.png.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\DASH.png.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\DASH.png.imageset\DASH.pdf" />
@@ -134,6 +133,7 @@
     <ImageAsset Include="Assets.xcassets\withdrawn_tab.png.imageset\withdrawn_tab.pdf" />
     <ImageAsset Include="Assets.xcassets\XLM.png.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\XLM.png.imageset\XLM.pdf" />
+    <ImageAsset Include="Assets.xcassets\BCH.png.imageset\BCH-1.pdf" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

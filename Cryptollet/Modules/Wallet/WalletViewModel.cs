@@ -73,7 +73,15 @@ namespace Cryptollet.Modules.Wallet
         public ObservableCollection<Coin> Assets
         {
             get => _assets;
-            set { SetProperty(ref _assets, value); }
+            set
+            {
+                SetProperty(ref _assets, value);
+                if (_assets == null)
+                {
+                    return;
+                }
+                CoinsHeight = _assets.Count * 85;
+            }
         }
 
         private bool _isRefreshing;
@@ -116,6 +124,13 @@ namespace Cryptollet.Modules.Wallet
         {
             get => _transactionsHeight;
             set { SetProperty(ref _transactionsHeight, value); }
+        }
+
+        private int _coinsHeight;
+        public int CoinsHeight
+        {
+            get => _coinsHeight;
+            set { SetProperty(ref _coinsHeight, value); }
         }
 
         private Chart _portfolioView;
