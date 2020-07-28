@@ -12,4 +12,6 @@
     <Color x:Key="DarkGrayText">#485068</Color>
     <Color x:Key="PositiveTrend">#75BF72</Color>
     <Color x:Key="NegativeTrend">#DF5060</Color>
+    <Color x:Key="DepositedTab">#689F39</Color>
+    <Color x:Key="WithdrawnTab">#ED3B3B</Color>
 </ResourceDictionary>
