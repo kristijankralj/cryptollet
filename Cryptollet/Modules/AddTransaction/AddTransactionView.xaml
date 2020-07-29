@@ -45,7 +45,7 @@
                     Margin="20"
                     WidthRequest="240"
                     Text="Add"
-                    Command="{Binding AddAssetCommand}"/>
+                    Command="{Binding AddTransactionCommand}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

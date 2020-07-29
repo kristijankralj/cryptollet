@@ -90,9 +90,9 @@ namespace Cryptollet.Modules.AddTransaction
             }
         }
 
-        public ICommand AddAssetCommand { get => new Command(async () => await AddAsset(),() => IsNotBusy); }
+        public ICommand AddTransactionCommand { get => new Command(async () => await AddTransaction(),() => IsNotBusy); }
 
-        private async Task AddAsset()
+        private async Task AddTransaction()
         {
             if (!EntriesAreCorrectlyPopulated())
             {
@@ -125,7 +125,7 @@ namespace Cryptollet.Modules.AddTransaction
         private void AddValidations()
         {
             _amount = new ValidatableObject<decimal>();
-            _amount.Validations.Add(new NonNegativeRule { ValidationMessage = "Please enter amount greated than zero." });
+            _amount.Validations.Add(new NonNegativeRule { ValidationMessage = "Please enter amount greater than zero." });
         }
 
         private bool EntriesAreCorrectlyPopulated()
