@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Cryptollet.Common.Base;
@@ -42,6 +43,7 @@ namespace Cryptollet.Modules.AddTransaction
             IsDeposit = selectedTransaction.Status == Constants.TRANSACTION_DEPOSITED;
             Amount.Value = selectedTransaction.Amount;
             TransactionDate = selectedTransaction.TransactionDate;
+            SelectedCoin = Coin.GetAvailableAssets().First(x => x.Symbol == selectedTransaction.Symbol);
         }
 
         private ObservableCollection<Coin> _availableAssets;

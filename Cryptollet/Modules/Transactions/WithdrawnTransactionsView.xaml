@@ -14,8 +14,10 @@
         <RefreshView IsRefreshing="{Binding IsRefreshing}"
                      Command="{Binding RefreshTransactionsCommand}">
         <CollectionView ItemsSource="{Binding Transactions}"
-                SelectionMode="Single"
-                ItemTemplate="{StaticResource TransactionCell}" />
+                        SelectionMode="Single"
+                        ItemTemplate="{StaticResource TransactionCell}"
+                        SelectedItem="{Binding SelectedTransaction}"
+                        SelectionChangedCommand="{Binding TransactionSelectedCommand}"/>
         </RefreshView>
     </ContentPage.Content>
 </ContentPage>
