@@ -31,7 +31,6 @@ namespace Cryptollet.Common.Navigation
             return Shell.Current.Navigation.PopAsync();
         }
 
-
         public Task GoBackAsync()
         {
             return Shell.Current.GoToAsync("..");
