@@ -6,7 +6,8 @@ namespace Cryptollet.Common.Dialog
     public interface IDialogMessage
     {
         Task DisplayAlert(string title, string message, string cancel);
-        Task<string> DisplayPrompt(string title, string message);
+        Task<bool> DisplayAlert(string title, string message, string accept, string cancel);
+        Task<string> DisplayPrompt(string title, string message, string accept, string cancel);
         Task<string> DisplayActionSheet(string title, string destruction, params string[] buttons);
     }
 
@@ -17,9 +18,14 @@ namespace Cryptollet.Common.Dialog
             await Shell.Current.DisplayAlert(title, message, cancel);
         }
 
-        public Task<string> DisplayPrompt(string title, string message)
+        public Task<bool> DisplayAlert(string title, string message, string accept, string cancel)
         {
-            return Shell.Current.DisplayPromptAsync(title, message);
+            return Shell.Current.DisplayAlert(title, message, accept, cancel);
+        }
+
+        public Task<string> DisplayPrompt(string title, string message, string accept, string cancel)
+        {
+            return Shell.Current.DisplayPromptAsync(title, message, accept, cancel);
         }
 
         public Task<string> DisplayActionSheet(string title, string destruction, params string[] buttons)

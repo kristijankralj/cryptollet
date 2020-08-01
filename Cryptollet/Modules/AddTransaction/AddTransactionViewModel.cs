@@ -91,6 +91,18 @@ namespace Cryptollet.Modules.AddTransaction
         }
 
         public ICommand AddTransactionCommand { get => new Command(async () => await AddTransaction(),() => IsNotBusy); }
+        public ICommand BackCommand { get => new Command(async () => await GoBack()); }
+
+        private async Task GoBack()
+        {
+            var shouldGoBack = await _dialogMessage.DisplayAlert("Confirm",
+                "Are you sure you want to navigate back? Any unsaved changes will be lost.", "Ok", "Canel");
+            if (shouldGoBack)
+            {
+                await _navigationService.GoBackAsync();
+            }
+        }
+
 
         private async Task AddTransaction()
         {

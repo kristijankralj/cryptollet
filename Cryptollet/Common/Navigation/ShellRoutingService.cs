@@ -9,6 +9,7 @@ namespace Cryptollet.Common.Navigation
         Task PushAsync<TViewModel>(string parameters = null) where TViewModel : BaseViewModel;
         Task PopAsync();
         Task InsertAsRoot<TViewModel>(string parameters = null) where TViewModel : BaseViewModel;
+        Task GoBackAsync();
         void GoToMainFlow();
         void GoToLoginFlow();
     }
@@ -28,6 +29,12 @@ namespace Cryptollet.Common.Navigation
         public Task PopAsync()
         {
             return Shell.Current.Navigation.PopAsync();
+        }
+
+
+        public Task GoBackAsync()
+        {
+            return Shell.Current.GoToAsync("..");
         }
 
         public Task InsertAsRoot<TViewModel>(string parameters = null) where TViewModel : BaseViewModel
