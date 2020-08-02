@@ -27,7 +27,8 @@ namespace Cryptollet.Common.Network
             foreach (var coin in coins)
             {
                 Dictionary<string,double?> coinPrices = result[coin.Name.Replace(' ', '-').ToLower()];
-                coin.Price = coinPrices["usd"].HasValue ? coinPrices["usd"].Value : 0;
+                var coinPrice = coinPrices["usd"];
+                coin.Price = coinPrice.HasValue ? coinPrice.Value : 0;
             }
 
             return coins;
