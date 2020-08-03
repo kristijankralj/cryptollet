@@ -19,7 +19,7 @@
                                            Aspect="AspectFit"
                                            HeightRequest="270"
                                            Margin="0,80,0,0"
-                               HorizontalOptions="Center" />
+                                           HorizontalOptions="Center" />
                             <StackLayout BackgroundColor="White"
                                          VerticalOptions="FillAndExpand">
                                     <Label Text="{Binding Title}"

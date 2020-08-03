@@ -36,9 +36,9 @@ namespace Cryptollet.Modules.Assets
             set { SetProperty(ref _assets, value); }
         }
 
-        public ICommand AddAssetCommand { get => new Command(async () => await AddAsset()); }
+        public ICommand AddTransactionCommand { get => new Command(async () => await AddTransaction()); }
 
-        private async Task AddAsset()
+        private async Task AddTransaction()
         {
             await _navigationService.PushAsync<AddTransactionViewModel>();
         }

@@ -8,7 +8,7 @@
             <ToolbarItem Text="Add"
                  Order="Primary"
                  Priority="0"
-                 Command="{Binding AddAssetCommand}" />
+                 Command="{Binding AddTransactionCommand}" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <CollectionView ItemsSource="{Binding Assets}"
