@@ -28,6 +28,7 @@
                 <Label Text="{Binding Name.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
 					   Style="{StaticResource ValidationErrorLabel}"
                        Margin="26,0,24,10"/>
+
                 <Entry Style="{StaticResource Input}"
                        Placeholder="Email address"
                        Keyboard="Email"
@@ -36,6 +37,7 @@
                 <Label Text="{Binding Email.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
 					   Style="{StaticResource ValidationErrorLabel}"
                        Margin="26,0,24,10"/>
+
                 <Entry Style="{StaticResource Input}"
                        Placeholder="Password"
                        Text="{Binding Password.Value, Mode=TwoWay}"

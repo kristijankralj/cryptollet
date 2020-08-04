@@ -85,7 +85,7 @@ namespace Cryptollet.Modules.Register
             _name = new ValidatableObject<string>();
 
             _email.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "Email is empty." });
-            _email.Validations.Add(new EmailRule<string> { ValidationMessage = "Email is not in correct format." });
+            _email.Validations.Add(new EmailRule<string> { ValidationMessage = "Email is not in a correct format." });
 
             _password.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "Password is empty." });
 

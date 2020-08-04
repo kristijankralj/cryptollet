@@ -8,7 +8,7 @@ namespace Cryptollet.Modules.Register
         public RegisterView()
         {
             InitializeComponent();
-            BindingContext = App.Container.Resolve<RegisterViewModel>(); ;
+            BindingContext = App.Container.Resolve<RegisterViewModel>();
         }
     }
 }

@@ -14,4 +14,5 @@
     <Color x:Key="NegativeTrend">#DF5060</Color>
     <Color x:Key="DepositedTab">#689F39</Color>
     <Color x:Key="WithdrawnTab">#ED3B3B</Color>
+    <Color x:Key="DetailsText">#485068</Color>
 </ResourceDictionary>

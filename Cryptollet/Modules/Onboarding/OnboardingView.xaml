@@ -33,7 +33,7 @@
                                            TextColor="Black"/>
                                     <Label Text="{Binding Details}"
                                            FontSize="Body"
-                                           TextColor="#485068"
+                                           TextColor="{StaticResource DetailsText}"
                                            HorizontalOptions="Center"
                                            HorizontalTextAlignment="Center"
                                            MaxLines="5"
@@ -46,7 +46,7 @@
             </CarouselView>
             <Button Text="Skip"
                     FontSize="20"
-                    TextColor="#347AF0"
+                    TextColor="{StaticResource PrimaryBlue}"
                     VerticalOptions="Start"
                     HorizontalOptions="End"
                     BackgroundColor="Transparent"
