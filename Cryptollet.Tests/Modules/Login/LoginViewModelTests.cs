@@ -4,6 +4,7 @@ using Cryptollet.Common.Database;
 using Cryptollet.Common.Dialog;
 using Cryptollet.Common.Models;
 using Cryptollet.Common.Navigation;
+using Cryptollet.Common.Security;
 using Cryptollet.Common.Settings;
 using Cryptollet.Modules.Login;
 using Cryptollet.Modules.Register;
@@ -62,6 +63,26 @@ namespace Cryptollet.Tests.Modules.Login
             viewModel.LoginCommand.Execute(null);
 
             _mockDialogMessage.VerifyThatDisplayAlertWasCalledWithMessage("Credentials are wrong.");
+        }
+
+        [Fact]
+        public void LoginCommand_navigates_to_the_main_flow_when_email_and_password_are_correct()
+        {
+            _mockRepository.GetAllAsyncReturns(new List<User>()
+            {
+                new User
+                {
+                     Email = "email@crypto.com",
+                     HashedPassword = SecurePasswordHasher.Hash("pass")
+                }
+            });
+            LoginViewModel viewModel = CreateLoginViewModel();
+            viewModel.Email.Value = "email@crypto.com";
+            viewModel.Password.Value = "pass";
+
+            viewModel.LoginCommand.Execute(null);
+
+            _mockNavigationService.VerifyThatGoToMainFlowWasCalled();
         }
 
         private LoginViewModel CreateLoginViewModel()

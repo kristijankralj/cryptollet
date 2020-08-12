@@ -1,14 +1,13 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Windows.Input;
 using Cryptollet.Common.Base;
 using Cryptollet.Common.Database;
 using Cryptollet.Common.Models;
 using Cryptollet.Common.Navigation;
 using Cryptollet.Common.Security;
+using Cryptollet.Common.Settings;
 using Cryptollet.Common.Validation;
 using Cryptollet.Modules.Login;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace Cryptollet.Modules.Register
@@ -17,12 +16,15 @@ namespace Cryptollet.Modules.Register
     {
         private INavigationService _navigationService;
         private IRepository<User> _userRepository;
+        private IUserPreferences _userPreferences;
 
         public RegisterViewModel(INavigationService navigationService,
-            IRepository<User> repository)
+            IRepository<User> repository,
+            IUserPreferences userPreferences)
         {
             _navigationService = navigationService;
             _userRepository = repository;
+            _userPreferences = userPreferences;
             AddValidations();
         }
 
@@ -65,7 +67,7 @@ namespace Cryptollet.Modules.Register
             };
             await _userRepository.SaveAsync(user);
 
-            Preferences.Set(Constants.IS_USER_LOGGED_IN, true);
+            _userPreferences.Set(Constants.IS_USER_LOGGED_IN, true);
             _navigationService.GoToMainFlow();
             IsBusy = false;
         }

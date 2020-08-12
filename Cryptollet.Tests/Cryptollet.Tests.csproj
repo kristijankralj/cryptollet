@@ -33,6 +33,7 @@
     <Folder Include="Modules\Loading\" />
     <Folder Include="Modules\Onboarding\" />
     <Folder Include="Modules\Login\" />
+    <Folder Include="Modules\Register\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Cryptollet\Cryptollet.csproj" />
