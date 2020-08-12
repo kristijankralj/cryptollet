@@ -8,6 +8,7 @@ using Cryptollet.Common.Dialog;
 using Cryptollet.Common.Models;
 using Cryptollet.Common.Navigation;
 using Cryptollet.Common.Security;
+using Cryptollet.Common.Settings;
 using Cryptollet.Common.Validation;
 using Cryptollet.Modules.Register;
 using Xamarin.Essentials;
@@ -20,14 +21,17 @@ namespace Cryptollet.Modules.Login
         private INavigationService _navigationService;
         private IRepository<User> _userRepository;
         private IDialogMessage _dialogMessage;
+        private IUserPreferences _userPreferences;
 
-        public LoginViewModel(Func<INavigationService> navigationService,
+        public LoginViewModel(INavigationService navigationService,
             IRepository<User> repository,
-            IDialogMessage message)
+            IDialogMessage message,
+            IUserPreferences userPreferences)
         {
-            _navigationService = navigationService();
+            _navigationService = navigationService;
             _userRepository = repository;
             _dialogMessage = message;
+            _userPreferences = userPreferences;
             AddValidations();
         }
 
@@ -70,9 +74,7 @@ namespace Cryptollet.Modules.Login
                 return;
             }
 
-            Preferences.Set(Constants.IS_USER_LOGGED_IN, true);
-            Email.Value = string.Empty;
-            Password.Value = string.Empty;
+            _userPreferences.Set(Constants.IS_USER_LOGGED_IN, true);
             _navigationService.GoToMainFlow();
             IsBusy = false;
         }

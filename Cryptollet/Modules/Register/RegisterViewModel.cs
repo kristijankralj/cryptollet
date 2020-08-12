@@ -18,10 +18,10 @@ namespace Cryptollet.Modules.Register
         private INavigationService _navigationService;
         private IRepository<User> _userRepository;
 
-        public RegisterViewModel(Func<INavigationService> navigationService,
+        public RegisterViewModel(INavigationService navigationService,
             IRepository<User> repository)
         {
-            _navigationService = navigationService();
+            _navigationService = navigationService;
             _userRepository = repository;
             AddValidations();
         }
@@ -66,9 +66,6 @@ namespace Cryptollet.Modules.Register
             await _userRepository.SaveAsync(user);
 
             Preferences.Set(Constants.IS_USER_LOGGED_IN, true);
-            Email.Value = string.Empty;
-            Password.Value = string.Empty;
-            Name.Value = string.Empty;
             _navigationService.GoToMainFlow();
             IsBusy = false;
         }
