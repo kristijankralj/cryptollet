@@ -14,5 +14,10 @@ namespace Cryptollet.Tests.Mocks
             mock.Setup(x => x.GetAllAsync())
                 .Returns(Task.FromResult(users));
         }
+
+        public static void VerifyThatSaveAsyncWasCalled(this Mock<IRepository<User>> mock)
+        {
+            mock.Verify(x => x.SaveAsync(It.IsAny<User>()), Times.Once);
+        }
     }
 }

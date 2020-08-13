@@ -47,6 +47,32 @@ namespace Cryptollet.Tests.Modules.Register
             viewModel.Password.Errors.Should().NotBeEmpty();
         }
 
+        [Fact]
+        public void RegisterUserCommand_registers_new_user()
+        {
+            RegisterNewUser();
+
+            _mockRepository.VerifyThatSaveAsyncWasCalled();
+        }
+
+        [Fact]
+        public void RegisterUserCommand_navigates_to_the_main_flow()
+        {
+            RegisterNewUser();
+
+            _mockNavigationService.VerifyThatGoToMainFlowWasCalled();
+        }
+
+        private void RegisterNewUser()
+        {
+            RegisterViewModel viewModel = CreateRegisterViewModel();
+            viewModel.Name.Value = "Tester";
+            viewModel.Email.Value = "email@crypto.com";
+            viewModel.Password.Value = "pass";
+
+            viewModel.RegisterUserCommand.Execute(null);
+        }
+
         private RegisterViewModel CreateRegisterViewModel()
         {
             return new RegisterViewModel(_mockNavigationService.Object,

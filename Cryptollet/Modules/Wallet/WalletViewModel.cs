@@ -49,7 +49,7 @@ namespace Cryptollet.Modules.Wallet
             IsBusy = false;
         }
 
-        private void BuildChart(List<Coin> assets)
+        protected virtual void BuildChart(List<Coin> assets)
         {
             var whiteColor = SKColor.Parse("#ffffff");
             List<ChartEntry> entries = new List<ChartEntry>();

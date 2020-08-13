@@ -14,5 +14,11 @@ namespace Cryptollet.Tests.Mocks
             mock.Setup(x => x.GetCoins(It.IsAny<bool>()))
                 .Returns(Task.FromResult(coins));
         }
+
+        public static void GetTransactionsReturns(this Mock<IWalletController> mock, List<Transaction> transactions)
+        {
+            mock.Setup(x => x.GetTransactions(It.IsAny<bool>()))
+                .Returns(Task.FromResult(transactions));
+        }
     }
 }

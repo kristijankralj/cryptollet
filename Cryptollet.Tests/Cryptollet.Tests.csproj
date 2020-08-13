@@ -34,6 +34,8 @@
     <Folder Include="Modules\Onboarding\" />
     <Folder Include="Modules\Login\" />
     <Folder Include="Modules\Register\" />
+    <Folder Include="Modules\Wallet\" />
+    <Folder Include="Modules\Transactions\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Cryptollet\Cryptollet.csproj" />
