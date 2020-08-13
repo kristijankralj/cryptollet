@@ -13,18 +13,33 @@ variables:
   buildConfiguration: 'Release'
   outputDirectory: '$(build.binariesDirectory)/$(buildConfiguration)'
 
-steps:
-#Install nuget
-- task: NuGetToolInstaller@1
+jobs:
 
-#Restore nuget packages
-- task: NuGetCommand@2
-  inputs:
-    restoreSolution: '**/*.sln'
+- job: BuildAndroid
+  displayName: "Build Android"
 
-# Build a Xamarin.Android project.
-- task: XamarinAndroid@1
-  inputs:
-    projectFile: '**/*droid*.csproj'
-    outputDirectory: '$(outputDirectory)'
-    configuration: '$(buildConfiguration)'
+  steps:
+  #Install nuget
+  - task: NuGetToolInstaller@1
+
+  #Restore nuget packages
+  - task: NuGetCommand@2
+    inputs:
+      restoreSolution: '**/*.sln'
+
+  # Build a Xamarin.Android project.
+  - task: XamarinAndroid@1
+    inputs:
+      projectFile: '**/*droid*.csproj'
+      outputDirectory: '$(outputDirectory)'
+      configuration: '$(buildConfiguration)'
+
+- job: BuildiOS
+  displayName: "Build iOS"
+  steps:
+  - task: XamariniOS@2
+    inputs:
+      solutionFile: '**/*.sln'
+      configuration: 'Release'
+      packageApp: true
+      runNugetRestore: true
