@@ -34,12 +34,11 @@ jobs:
       outputDirectory: '$(outputDirectory)'
       configuration: '$(buildConfiguration)'
 
-- job: BuildiOS
-  displayName: "Build iOS"
+- job: RunTests
+  displayName: "Run unit tests"
   steps:
-  - task: XamariniOS@2
+  - task: DotNetCoreCLI@2
     inputs:
-      solutionFile: '**/*.sln'
-      configuration: 'Release'
-      packageApp: true
-      runNugetRestore: true
+      command: 'test'
+      projects: 'Cryptollet.Tests/Cryptollet.Tests.csproj'
+      configuration: '$(buildConfiguration)'
