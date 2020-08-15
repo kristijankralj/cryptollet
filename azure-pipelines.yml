@@ -55,7 +55,7 @@ jobs:
       buildForSimulator: true
 
 - job: RunTests
-  displayName: "Run unit tests"
+  displayName: "Run Unit Tests"
   steps:
   - task: DotNetCoreCLI@2
     inputs:
