@@ -25,7 +25,7 @@ jobs:
   #Restore nuget packages
   - task: NuGetCommand@2
     inputs:
-      restoreSolution: '**/*.sln'
+      restoreSolution: 'Cryptollet.sln'
 
   # Build a Xamarin.Android project.
   - task: XamarinAndroid@1
