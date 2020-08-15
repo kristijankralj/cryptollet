@@ -30,9 +30,29 @@ jobs:
   # Build a Xamarin.Android project.
   - task: XamarinAndroid@1
     inputs:
-      projectFile: '**/*droid*.csproj'
+      projectFile: 'Cryptollet.Android/Cryptollet.Android.csproj'
       outputDirectory: '$(outputDirectory)'
       configuration: '$(buildConfiguration)'
+
+- job: BuildiOS
+  displayName: "Build iOS"
+  steps:
+  # Install NuGet
+  - task: NuGetToolInstaller@1
+
+  # Restore NuGet Packages
+  - task: NuGetCommand@2
+    inputs:
+      restoreSolution: 'Cryptollet.sln'
+  # Build the iOS project
+  - task: XamariniOS@2
+    displayName: "Build iOS project"
+    inputs:
+      solutionFile: 'Cryptollet.sln'
+      configuration: '$(buildConfiguration)'
+      packageApp: false
+      runNugetRestore: false
+      buildForSimulator: true
 
 - job: RunTests
   displayName: "Run unit tests"
