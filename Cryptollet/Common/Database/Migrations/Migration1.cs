@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Cryptollet.Common.Models;
 
@@ -24,6 +23,7 @@ namespace Cryptollet.Common.Database.Migrations
             {
                 return;
             }
+            //transfer data to the new column
             await _repository.Database.ExecuteAsync("UPDATE [Transaction] SET UserEmail = UserId");
             //get all saved transactions
             var savedObjects = await _repository.GetAllAsync();
