@@ -68,6 +68,7 @@ namespace Cryptollet.Modules.Register
             await _userRepository.SaveAsync(user);
 
             _userPreferences.Set(Constants.IS_USER_LOGGED_IN, true);
+            _userPreferences.Set(Constants.USER_ID, Email.Value);
             _navigationService.GoToMainFlow();
             IsBusy = false;
         }

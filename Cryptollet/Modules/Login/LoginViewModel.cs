@@ -75,6 +75,7 @@ namespace Cryptollet.Modules.Login
             }
 
             _userPreferences.Set(Constants.IS_USER_LOGGED_IN, true);
+            _userPreferences.Set(Constants.USER_ID, Email.Value);
             _navigationService.GoToMainFlow();
             IsBusy = false;
         }

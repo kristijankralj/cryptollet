@@ -24,6 +24,7 @@ namespace Cryptollet.Common.Database
         Task<int> DeleteAsync(T item);
         Task<List<T>> GetAllAsync();
         Task<int> SaveAsync(T item);
+        SQLiteAsyncConnection Database { get; }
     }
 
     public class Repository<T> : IRepository<T> where T : IDatabaseItem, new()
@@ -33,7 +34,7 @@ namespace Cryptollet.Common.Database
             return new SQLiteAsyncConnection(DatabaseConstants.DatabasePath, DatabaseConstants.Flags);
         });
 
-        private SQLiteAsyncConnection Database => lazyInitializer.Value;
+        public SQLiteAsyncConnection Database => lazyInitializer.Value;
 
         public Repository()
         {

@@ -8,6 +8,7 @@ using Cryptollet.Common.Database;
 using Cryptollet.Common.Dialog;
 using Cryptollet.Common.Models;
 using Cryptollet.Common.Navigation;
+using Cryptollet.Common.Settings;
 using Cryptollet.Common.Validation;
 using Xamarin.Forms;
 
@@ -19,14 +20,17 @@ namespace Cryptollet.Modules.AddTransaction
         private readonly IDialogMessage _dialogMessage;
         private readonly INavigationService _navigationService;
         private readonly IRepository<Transaction> _transactionRepository;
+        private readonly IUserPreferences _userPreferences;
 
         public AddTransactionViewModel(IDialogMessage dialogMessage,
                                  INavigationService navigationService,
-                                 IRepository<Transaction> transactionRepository)
+                                 IRepository<Transaction> transactionRepository,
+                                 IUserPreferences userPreferences)
         {
             _dialogMessage = dialogMessage;
             _transactionRepository = transactionRepository;
             _navigationService = navigationService;
+            _userPreferences = userPreferences;
             AvailableAssets = new ObservableCollection<Coin>(Coin.GetAvailableAssets());
             AddValidations();
         }
@@ -123,13 +127,15 @@ namespace Cryptollet.Modules.AddTransaction
 
         private async Task SaveNewTransaction()
         {
+            var userId = _userPreferences.Get(Constants.USER_ID, string.Empty);
             var transaction = new Transaction
             {
                 Amount = Amount.Value,
                 TransactionDate = TransactionDate,
                 Symbol = SelectedCoin.Symbol,
                 Status = IsDeposit ? Constants.TRANSACTION_DEPOSITED : Constants.TRANSACTION_WITHDRAWN,
-                Id = string.IsNullOrEmpty(Id) ? 0 : int.Parse(Id)  
+                Id = string.IsNullOrEmpty(Id) ? 0 : int.Parse(Id),
+                UserEmail = userId
             };
             await _transactionRepository.SaveAsync(transaction);
         }
