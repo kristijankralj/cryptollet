@@ -1,6 +1,8 @@
 ﻿using System.Reflection;
 using Autofac;
 using Cryptollet.Common.Database;
+using Cryptollet.Common.Database.Migrations;
+using Cryptollet.Common.Extensions;
 using Cryptollet.Common.Models;
 using Cryptollet.Modules.Loading;
 using Xamarin.Forms;
@@ -26,6 +28,10 @@ namespace Cryptollet
 
             //get container
             Container = builder.Build();
+
+            //run database migrations
+            var migrationService = Container.Resolve<IMigrationService>();
+            migrationService.RunDatabaseMigrations().SafeFireAndForget(false);
             //set first page
             MainPage = Container.Resolve<LoadingView>();
         }

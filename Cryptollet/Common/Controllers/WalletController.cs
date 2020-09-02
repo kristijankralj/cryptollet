@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Cryptollet.Common.Database;
 using Cryptollet.Common.Models;
 using Cryptollet.Common.Network;
+using Cryptollet.Common.Settings;
 
 namespace Cryptollet.Common.Controllers
 {
@@ -17,6 +18,7 @@ namespace Cryptollet.Common.Controllers
     {
         private IRepository<Transaction> _transactionRepository;
         private ICryptoService _cryptoService;
+        private IUserPreferences _userPreferences;
         private List<Coin> _cachedCoins = new List<Coin>();
         private List<Coin> _defaultAssets = new List<Coin>
         {
@@ -44,10 +46,12 @@ namespace Cryptollet.Common.Controllers
         };
 
         public WalletController(IRepository<Transaction> transactionRepository,
-                                ICryptoService cryptoService)
+                                ICryptoService cryptoService,
+                                IUserPreferences userPreferences)
         {
             _transactionRepository = transactionRepository;
             _cryptoService = cryptoService;
+            _userPreferences = userPreferences;
         }
 
         public async Task<List<Coin>> GetCoins(bool forceReload = false)
@@ -99,8 +103,10 @@ namespace Cryptollet.Common.Controllers
             {
                 _cachedCoins = await _cryptoService.GetLatestPrices();
             }
+            var currentUser = _userPreferences.Get(Constants.USER_ID, string.Empty);
             var transactions = await _transactionRepository.GetAllAsync();
-            transactions = transactions.OrderByDescending(x => x.TransactionDate).ToList();
+            transactions = transactions.Where(x => x.UserEmail == currentUser)
+                            .OrderByDescending(x => x.TransactionDate).ToList();
             return transactions;
         }
     }

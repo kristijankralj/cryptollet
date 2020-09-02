@@ -7,7 +7,9 @@ namespace Cryptollet.Common.Settings
     {
         bool ContainsKey(string key);
         void Set(string key, bool value);
+        void Set(string key, string value);
         bool Get(string key, bool defaultValue);
+        string Get(string key, string defaultValue);
     }
 
     /// <summary>
@@ -26,7 +28,17 @@ namespace Cryptollet.Common.Settings
             return Preferences.Get(key, defaultValue);
         }
 
+        public string Get(string key, string defaultValue)
+        {
+            return Preferences.Get(key, defaultValue);
+        }
+
         public void Set(string key, bool value)
+        {
+            Preferences.Set(key, value);
+        }
+
+        public void Set(string key, string value)
         {
             Preferences.Set(key, value);
         }

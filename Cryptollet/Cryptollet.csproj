@@ -11,7 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1269" />
+    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1364" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
     <PackageReference Include="Autofac" Version="5.2.0" />
     <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
@@ -45,8 +45,31 @@
     <Folder Include="Modules\Loading\" />
     <Folder Include="Common\Controls\" />
     <Folder Include="Common\Settings\" />
+    <Folder Include="Common\Database\Migrations\" />
+    <Folder Include="Common\Localization\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Common\Navigation\RegisterView.xaml.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Common\Localization\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Common\Localization\Resources.hr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.hr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Resources.hr" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Common\Localization\Resources.hr.Designer.cs">
+      <DependentUpon>Resources.hr.resx</DependentUpon>
+    </Compile>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Common\Localization\Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>
