@@ -5,6 +5,7 @@ using Cryptollet.Common.Database;
 using Cryptollet.Common.Dialog;
 using Cryptollet.Common.Models;
 using Cryptollet.Common.Navigation;
+using Cryptollet.Common.Settings;
 using Cryptollet.Modules.AddTransaction;
 using Cryptollet.Tests.Mocks;
 using FluentAssertions;
@@ -18,12 +19,14 @@ namespace Cryptollet.Tests.Modules.AddTransaction
         private Mock<IDialogMessage> _mockDialog;
         private Mock<INavigationService> _mockNavigationService;
         private Mock<IRepository<Transaction>> _mockRepository;
+        private Mock<IUserPreferences> _mockPreferences;
 
         public AddTransactionViewModelTests()
         {
             _mockDialog = new Mock<IDialogMessage>();
             _mockNavigationService = new Mock<INavigationService>();
             _mockRepository = new Mock<IRepository<Transaction>>();
+            _mockPreferences = new Mock<IUserPreferences>();
         }
 
         [Fact]
@@ -86,7 +89,9 @@ namespace Cryptollet.Tests.Modules.AddTransaction
         private AddTransactionViewModel CreateAddTransactionViewModel()
         {
             return new AddTransactionViewModel(_mockDialog.Object,
-                _mockNavigationService.Object, _mockRepository.Object);
+                                               _mockNavigationService.Object,
+                                               _mockRepository.Object,
+                                               _mockPreferences.Object);
         }
     }
 }
