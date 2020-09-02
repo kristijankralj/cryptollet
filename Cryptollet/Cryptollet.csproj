@@ -46,8 +46,30 @@
     <Folder Include="Common\Controls\" />
     <Folder Include="Common\Settings\" />
     <Folder Include="Common\Database\Migrations\" />
+    <Folder Include="Common\Localization\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Common\Navigation\RegisterView.xaml.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Common\Localization\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Common\Localization\Resources.hr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.hr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Resources.hr" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Common\Localization\Resources.hr.Designer.cs">
+      <DependentUpon>Resources.hr.resx</DependentUpon>
+    </Compile>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Common\Localization\Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>

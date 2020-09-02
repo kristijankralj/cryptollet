@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Cryptollet.Modules.Login.LoginView"
              xmlns:converters="clr-namespace:Cryptollet.Common.Converters"
+             xmlns:locale="clr-namespace:Cryptollet.Common.Localization"
              Shell.NavBarIsVisible="False"
              Shell.FlyoutBehavior="Disabled">
     <ContentPage.Resources>
@@ -14,14 +15,14 @@
         <StackLayout BackgroundColor="{StaticResource LightBlueBackground}"
                      Padding="0,70,0,0">
             <Label Style="{StaticResource TitleLabel}"
-                   Text="Welcome Back!"/>
+                   Text="{x:Static locale:Resources.Login_WelcomeBack}"/>
             <Image Source="login.png"
                    Margin="0,30,0,0"
                    HeightRequest="200"></Image>
             <StackLayout BackgroundColor="White"
                          VerticalOptions="FillAndExpand">
                 <Entry Style="{StaticResource Input}"
-                       Placeholder="Email address"
+                       Placeholder="{x:Static locale:Resources.Login_Email}"
                        Keyboard="Email"
                        Text="{Binding Email.Value, Mode=TwoWay}"
                        Margin="24,30,24,0" />
@@ -30,7 +31,7 @@
                        Margin="26,0,24,10"/>
 
                 <Entry Style="{StaticResource Input}"
-                       Placeholder="Password"
+                       Placeholder="{x:Static locale:Resources.Login_Password}"
                        Text="{Binding Password.Value, Mode=TwoWay}"
                        Margin="24,0,24,0"
                        IsPassword="True"/>

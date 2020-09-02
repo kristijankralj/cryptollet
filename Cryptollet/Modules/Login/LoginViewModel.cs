@@ -5,6 +5,7 @@ using System.Windows.Input;
 using Cryptollet.Common.Base;
 using Cryptollet.Common.Database;
 using Cryptollet.Common.Dialog;
+using Cryptollet.Common.Localization;
 using Cryptollet.Common.Models;
 using Cryptollet.Common.Navigation;
 using Cryptollet.Common.Security;
@@ -82,7 +83,7 @@ namespace Cryptollet.Modules.Login
 
         private async Task DisplayCredentialsError()
         {
-            await _dialogMessage.DisplayAlert("Error", "Credentials are wrong.", "Ok");
+            await _dialogMessage.DisplayAlert(Resources.Login_Error, Resources.Login_WrongCredentials, "Ok");
             Password.Value = "";
         }
 
