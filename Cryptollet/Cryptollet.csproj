@@ -60,6 +60,10 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.hr.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Condition=" '$(EnableDefaultEmbeddedResourceItems)' == 'true' " Update="Common\Localization\Resources.hr-HR.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.hr-HR.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Remove="Resources.hr" />
@@ -70,6 +74,9 @@
     </Compile>
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Common\Localization\Resources.Designer.cs">
       <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Common\Localization\Resources.hr-HR.Designer.cs">
+      <DependentUpon>Resources.hr-HR.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 </Project>

@@ -27,7 +27,7 @@ namespace Cryptollet.Common.Localization {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static System.Resources.ResourceManager ResourceManager {
+        public static System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.Equals(null, resourceMan)) {
                     System.Resources.ResourceManager temp = new System.Resources.ResourceManager("Cryptollet.Common.Localization.Resources", typeof(Resources).Assembly);
@@ -38,7 +38,7 @@ namespace Cryptollet.Common.Localization {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static System.Globalization.CultureInfo Culture {
+        public static System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -47,33 +47,39 @@ namespace Cryptollet.Common.Localization {
             }
         }
         
-        internal static string Login_WelcomeBack {
+        public static string Login_WelcomeBack {
             get {
                 return ResourceManager.GetString("Login_WelcomeBack", resourceCulture);
             }
         }
         
-        internal static string Login_Email {
+        public static string Login_Email {
             get {
                 return ResourceManager.GetString("Login_Email", resourceCulture);
             }
         }
         
-        internal static string Login_Password {
+        public static string Login_Password {
             get {
                 return ResourceManager.GetString("Login_Password", resourceCulture);
             }
         }
         
-        internal static string Login_Error {
+        public static string Login_Error {
             get {
                 return ResourceManager.GetString("Login_Error", resourceCulture);
             }
         }
         
-        internal static string Login_WrongCredentials {
+        public static string Login_WrongCredentials {
             get {
                 return ResourceManager.GetString("Login_WrongCredentials", resourceCulture);
+            }
+        }
+        
+        public static string Login_Login {
+            get {
+                return ResourceManager.GetString("Login_Login", resourceCulture);
             }
         }
     }

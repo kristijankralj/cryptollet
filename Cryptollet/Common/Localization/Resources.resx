@@ -28,4 +28,7 @@
     <data name="Login_WrongCredentials" xml:space="preserve">
         <value>Credentials are wrong.</value>
     </data>
+    <data name="Login_Login" xml:space="preserve">
+        <value>Login</value>
+    </data>
 </root>

@@ -28,4 +28,7 @@
     <data name="Login_WrongCredentials" xml:space="preserve">
         <value>Pogrešan email ili lozinka.</value>
     </data>
+    <data name="Login_Login" xml:space="preserve">
+        <value>Prijava</value>
+    </data>
 </root>
