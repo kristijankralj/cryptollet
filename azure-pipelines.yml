@@ -45,3 +45,12 @@ jobs:
       buildForSimulator: true
       runNugetRestore: false
 
+- job: RunTests
+  displayName: "Run unit tests"
+  steps:
+  - task: DotNetCoreCLI@2
+    inputs:
+      command: 'test'
+      projects: 'Cryptollet.Tests/Cryptollet.Tests.csproj'
+      configuration: '$(buildConfiguration)'
+
