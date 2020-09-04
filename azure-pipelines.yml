@@ -1,7 +1,3 @@
-# Xamarin.Android
-# Build a Xamarin.Android project.
-# Add steps that test, sign, and distribute an app, save build artifacts, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/xamarin
 
 trigger:
 - master
@@ -12,25 +8,40 @@ pool:
 variables:
   buildConfiguration: 'Release'
   outputDirectory: '$(build.binariesDirectory)/$(buildConfiguration)'
+  solutionName: 'Cryptollet.sln'
+  androidProject: 'Cryptollet.Android/Cryptollet.Android.csproj'
 
-steps:
-- task: NuGetToolInstaller@1
+jobs:
 
-- task: NuGetCommand@2
-  inputs:
-    restoreSolution: '**/*.sln'
+- job: BuildAndroid
+  displayName: "Build Android App"
 
-- task: XamarinAndroid@1
-  inputs:
-    projectFile: '**/*droid*.csproj'
-    outputDirectory: '$(outputDirectory)'
-    configuration: '$(buildConfiguration)'
+  steps:
+  - task: NuGetToolInstaller@1
 
-- task: XamariniOS@2
-  inputs:
-    solutionFile: '**/*.sln'
-    configuration: '$(buildConfiguration)'
-    packageApp: false
-    buildForSimulator: true
-    runNugetRestore: false
+  - task: NuGetCommand@2
+    inputs:
+      restoreSolution: '$(solutionName)'
+
+  - task: XamarinAndroid@1
+    inputs:
+      projectFile: '$(androidProject)'
+      outputDirectory: '$(outputDirectory)'
+      configuration: '$(buildConfiguration)'
+
+- job: BuildiOS
+  displayName: "Build iOS App"
+  steps:
+  - task: NuGetToolInstaller@1
+
+  - task: NuGetCommand@2
+    inputs:
+      restoreSolution: '$(solutionName)'
+  - task: XamariniOS@2
+    inputs:
+      solutionFile: '$(solutionName)'
+      configuration: '$(buildConfiguration)'
+      packageApp: false
+      buildForSimulator: true
+      runNugetRestore: false
 
