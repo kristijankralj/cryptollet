@@ -25,3 +25,12 @@ steps:
     projectFile: '**/*droid*.csproj'
     outputDirectory: '$(outputDirectory)'
     configuration: '$(buildConfiguration)'
+
+- task: XamariniOS@2
+  inputs:
+    solutionFile: '**/*.sln'
+    configuration: '$(buildConfiguration)'
+    packageApp: false
+    buildForSimulator: true
+    runNugetRestore: false
+
