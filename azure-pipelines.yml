@@ -54,3 +54,4 @@ jobs:
       projects: 'Cryptollet.Tests/Cryptollet.Tests.csproj'
       configuration: '$(buildConfiguration)'
 
+
