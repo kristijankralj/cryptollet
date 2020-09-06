@@ -19,23 +19,22 @@ namespace Cryptollet.Modules.Loading
             _userPreferences = userPreferences;
         }
 
-        public override Task InitializeAsync(object parameter)
+        public override async Task InitializeAsync(object parameter)
         {
+            await Task.Delay(500);
             if (!_userPreferences.ContainsKey(Constants.SHOWN_ONBOARDING))
             {
                 _userPreferences.Set(Constants.SHOWN_ONBOARDING, true);
                 _navigationService.GoToLoginFlow();
-                return Task.CompletedTask;
             }
 
             if (_userPreferences.ContainsKey(Constants.IS_USER_LOGGED_IN) && _userPreferences.Get(Constants.IS_USER_LOGGED_IN, false))
             {
                 _navigationService.GoToMainFlow();
-                return Task.CompletedTask;
             }
 
             _navigationService.GoToLoginFlow();
-            return _navigationService.InsertAsRoot<LoginViewModel>();
+            await _navigationService.InsertAsRoot<LoginViewModel>();
         }
     }
 }
