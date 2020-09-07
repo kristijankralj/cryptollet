@@ -46,7 +46,7 @@ jobs:
       runNugetRestore: false
 
 - job: RunTests
-  displayName: "Run Unit Tests"
+  displayName: "Run unit tests"
   steps:
   - task: DotNetCoreCLI@2
     inputs:
