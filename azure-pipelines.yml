@@ -54,4 +54,23 @@ jobs:
       projects: 'Cryptollet.Tests/Cryptollet.Tests.csproj'
       configuration: '$(buildConfiguration)'
 
+- job: AndroidBeta
+  displayName: "Release Android Beta"
+  dependsOn: [BuildAndroid, RunTests]
+  steps:
+  - task: DownloadPipelineArtifact@2
+    inputs:
+      artifact: AndroidApk
+  - task: AppCenterDistribute@3
+    inputs:
+      serverEndpoint: 'AppCenter'
+      appSlug: 'Cryptollet/Cryptollet-1'
+      appFile: 'AndroidApk/com.kristijankralj.cryptollet.apk'
+      buildVersion: '1'
+      symbolsOption: 'Android'
+      releaseNotesOption: 'input'
+      releaseNotesInput: 'Beta Version'
+      destinationType: 'groups'
+      distributionGroupId: '75347167-252e-4973-933e-9f5c7262df46'
+
 
