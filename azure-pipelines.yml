@@ -28,7 +28,13 @@ jobs:
       projectFile: '$(androidProject)'
       outputDirectory: '$(outputDirectory)'
       configuration: '$(buildConfiguration)'
-
+  - task: AndroidSigning@3
+    inputs:
+      apkFiles: '**/*.apk'
+      apksignerKeystoreFile: 'cryptollet.keystore'
+      apksignerKeystorePassword: '$(keystorePassword)'
+      apksignerKeystoreAlias: '$(keystoreName)'
+      apksignerKeyPassword: '$(keystorePassword)'
 - job: BuildiOS
   displayName: "Build iOS App"
   steps:
