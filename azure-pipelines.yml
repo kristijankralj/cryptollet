@@ -35,6 +35,11 @@ jobs:
       apksignerKeystorePassword: '$(keystorePassword)'
       apksignerKeystoreAlias: '$(keystoreName)'
       apksignerKeyPassword: '$(keystorePassword)'
+  - task: PublishPipelineArtifact@1
+    inputs:
+      targetPath: '$(outputDirectory)'
+      artifactName: AndroidApk
+
 - job: BuildiOS
   displayName: "Build iOS App"
   steps:
