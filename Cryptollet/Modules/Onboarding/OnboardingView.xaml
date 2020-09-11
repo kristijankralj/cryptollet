@@ -6,22 +6,20 @@
              Shell.FlyoutBehavior="Disabled">
     <ContentPage.Content>
         <StackLayout
-                     VerticalOptions="StartAndExpand"
-                     BackgroundColor="{StaticResource LightBlueBackground}">
+                     VerticalOptions="StartAndExpand">
             <Grid>
             <CarouselView ItemsSource="{Binding OnboardingSteps}"
                           HorizontalScrollBarVisibility="Never"
                   IndicatorView="indicatorView">
                 <CarouselView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout>
+                            <Grid>
                                     <Image Source="{Binding ImageUrl}" 
-                                           Aspect="AspectFit"
-                                           HeightRequest="270"
+                                           Aspect="Fill"
                                            Margin="0,80,0,0"
                                            HorizontalOptions="Center" />
-                            <StackLayout BackgroundColor="White"
-                                         VerticalOptions="FillAndExpand">
+                            <StackLayout
+                                         VerticalOptions="Center">
                                     <Label Text="{Binding Title}"
                                            FontSize="38"
                                            FontAttributes="Bold"
@@ -40,7 +38,7 @@
                                            Margin="20"
                                            LineBreakMode="TailTruncation" />
                                 </StackLayout>
-                        </StackLayout>
+                            </Grid>
                     </DataTemplate>
                 </CarouselView.ItemTemplate>
             </CarouselView>
@@ -54,7 +52,7 @@
                     Command="{Binding SkipCommand}"
                     />
             <IndicatorView x:Name="indicatorView"
-                IndicatorColor="{StaticResource CellBackground}"
+                IndicatorColor="Wheat"
                 IndicatorSize="10"
                 SelectedIndicatorColor="{StaticResource PrimaryBlue}"
                 HorizontalOptions="Center"
