@@ -77,6 +77,8 @@ jobs:
       serverEndpoint: 'App Center'
       appSlug: 'Cryptollet/Cryptollet-1'
       appFile: '$(Pipeline.Workspace)/com.kristijankralj.cryptollet.apk'
+      symbolsOption: Android
+      symbolsMappingTxtFile: '$(Pipeline.Workspace)/com.kristijankralj.cryptollet.apk.mSYM/manifest.xml'
       releaseNotesOption: 'file'
       releaseNotesFile: 'releasenotes.txt'
       destinationType: 'groups'
