@@ -18,6 +18,9 @@ jobs:
 
   steps:
   - task: NuGetToolInstaller@1
+    displayName: 'Install NuGet'
+    inputs:
+      versionSpec: 5.x
 
   - task: NuGetCommand@2
     inputs:
@@ -44,6 +47,9 @@ jobs:
   displayName: "Build iOS App"
   steps:
   - task: NuGetToolInstaller@1
+    displayName: 'Install NuGet'
+    inputs:
+      versionSpec: 5.x
 
   - task: NuGetCommand@2
     inputs:
