@@ -42,6 +42,7 @@
     <AndroidManagedSymbols>true</AndroidManagedSymbols>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
     <AndroidSupportedAbis>armeabi-v7a;arm64-v8a;x86;x86_64</AndroidSupportedAbis>
+<AndroidLinkTool>r8</AndroidLinkTool>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
