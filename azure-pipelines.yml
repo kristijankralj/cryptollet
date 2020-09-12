@@ -31,9 +31,9 @@ jobs:
   - task: AndroidSigning@3
     inputs:
       apkFiles: '**/*.apk'
-      apksignerKeystoreFile: 'sign.keystore'
+      apksignerKeystoreFile: 'cryptollet.keystore'
       apksignerKeystorePassword: '$(keystorePassword)'
-      apksignerKeystoreAlias: 'sign'
+      apksignerKeystoreAlias: '$(keystoreName)'
       apksignerKeyPassword: '$(keystorePassword)'
   - task: PublishPipelineArtifact@1
     inputs:
