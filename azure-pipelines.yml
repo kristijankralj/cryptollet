@@ -69,7 +69,10 @@ stages:
         runNugetRestore: false
         signingIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
         signingProvisioningProfileID: '$(APPLE_PROV_PROFILE_UUID)'
-
+    - task: PublishPipelineArtifact@1
+      inputs:
+        targetPath: 'Cryptollet.iOS/bin/iPhone/Release'
+        artifactName: iOSIpa
   - job: RunTests
     displayName: "Run Unit Tests"
     steps:
