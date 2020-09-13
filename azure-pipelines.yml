@@ -35,10 +35,6 @@ jobs:
       apksignerKeystorePassword: '$(keystorePassword)'
       apksignerKeystoreAlias: '$(keystoreName)'
       apksignerKeyPassword: '$(keystorePassword)'
-  - task: PublishPipelineArtifact@1
-    inputs:
-      targetPath: 'Cryptollet.Android/obj/Release/android/bin/com.kristijankralj.cryptollet.apk'
-      artifactName: AndroidApk
 
 - job: BuildiOS
   displayName: "Build iOS App"
@@ -64,22 +60,5 @@ jobs:
       command: 'test'
       projects: 'Cryptollet.Tests/Cryptollet.Tests.csproj'
       configuration: '$(buildConfiguration)'
-
-- job: AndroidBeta
-  displayName: "Release Android Beta"
-  dependsOn: [BuildAndroid, RunTests]
-  steps:
-  - task: DownloadPipelineArtifact@2
-    inputs:
-      artifact: AndroidApk
-  - task: AppCenterDistribute@3
-    inputs:
-      serverEndpoint: 'App Center'
-      appSlug: 'Cryptollet/Cryptollet-1'
-      appFile: '$(Pipeline.Workspace)/com.kristijankralj.cryptollet.apk'
-      releaseNotesOption: 'file'
-      releaseNotesFile: 'releasenotes.txt'
-      destinationType: 'groups'
-      distributionGroupId: '75347167-252e-4973-933e-9f5c7262df46'
 
 
