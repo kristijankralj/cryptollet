@@ -51,13 +51,24 @@ stages:
     - task: NuGetCommand@2
       inputs:
         restoreSolution: '$(solutionName)'
+    - task: InstallAppleCertificate@2
+      inputs:
+        certSecureFile: 'Certificates.p12'
+        certPwd: '$(keystorePassword)'
+        keychain: 'temp'
+    - task: InstallAppleProvisioningProfile@1
+      inputs:
+        provisioningProfileLocation: 'secureFiles'
+        provProfileSecureFile: 'Ad_Hoc_2020_09_13.mobileprovision'
     - task: XamariniOS@2
       inputs:
         solutionFile: '$(solutionName)'
         configuration: '$(buildConfiguration)'
-        packageApp: false
-        buildForSimulator: true
+        packageApp: true
+        buildForSimulator: false
         runNugetRestore: false
+        signingIdentity: 'Certificates.p12'
+        signingProvisioningProfileID: 'Ad_Hoc_2020_09_13.mobileprovision'
 
   - job: RunTests
     displayName: "Run Unit Tests"
