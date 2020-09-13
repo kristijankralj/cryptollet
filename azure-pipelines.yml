@@ -67,8 +67,8 @@ stages:
         packageApp: true
         buildForSimulator: false
         runNugetRestore: false
-        signingIdentity: 'Certificates.p12'
-        signingProvisioningProfileID: 'Ad_Hoc_2020_09_13.mobileprovision'
+        signingIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
+        signingProvisioningProfileID: '$(APPLE_PROV_PROFILE_UUID)'
 
   - job: RunTests
     displayName: "Run Unit Tests"
