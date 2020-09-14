@@ -25,7 +25,12 @@ stages:
     - task: NuGetCommand@2
       inputs:
         restoreSolution: '$(solutionName)'
-
+    - task: android-manifest-version@1
+      inputs:
+        sourcePath: 'Cryptollet.Android/Properties/AndroidManifest.xml'
+        versionCodeOption: 'buildid'
+        versionCode: '$(Build.BuildId)'
+        printFile: true
     - task: XamarinAndroid@1
       inputs:
         projectFile: '$(androidProject)'
@@ -51,6 +56,13 @@ stages:
     - task: NuGetCommand@2
       inputs:
         restoreSolution: '$(solutionName)'
+    - task: ios-bundle-version@1
+      inputs:
+        sourcePath: 'Cryptollet.iOS/Info.plist'
+        versionCodeOption: 'buildid'
+        versionCode: '$(Build.BuildId)'
+        printFile: true
+
     - task: InstallAppleCertificate@2
       inputs:
         certSecureFile: 'Certificates.p12'
