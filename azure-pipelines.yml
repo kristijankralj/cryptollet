@@ -25,7 +25,12 @@ stages:
     - task: NuGetCommand@2
       inputs:
         restoreSolution: '$(solutionName)'
-
+    - task: android-manifest-version@1
+      inputs:
+        sourcePath: 'Cryptollet.Android/Properties/AndroidManifest.xml'
+        versionCodeOption: 'buildid'
+        versionCode: '$(Build.BuildId)'
+        printFile: true
     - task: XamarinAndroid@1
       inputs:
         projectFile: '$(androidProject)'
@@ -61,6 +66,12 @@ stages:
       inputs:
         provisioningProfileLocation: 'secureFiles'
         provProfileSecureFile: 'Ad_Hoc_2020_09_13.mobileprovision'
+    - task: ios-bundle-version@1
+      inputs:
+        sourcePath: 'Cryptollet.iOS/Info.plist'
+        versionCodeOption: 'buildid'
+        versionCode: '$(Build.BuildId)'
+        printFile: true
     - task: XamariniOS@2
       inputs:
         solutionFile: '$(solutionName)'
