@@ -58,9 +58,9 @@ stages:
         restoreSolution: '$(solutionName)'
     - task: ios-bundle-version@1
       inputs:
-        sourcePath: 'Cryptollet.iOS/Info.plist'
+        sourcePath: 
         versionCodeOption: 'buildid'
-        versionCode: '$(Build.BuildId)'
+        versionCode: '1.0'
         printFile: true
 
     - task: InstallAppleCertificate@2
