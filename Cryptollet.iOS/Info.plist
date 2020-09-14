@@ -39,5 +39,7 @@
 		<string>en</string>
 		<string>hr-HR</string>
 	</array>
+	<key>CFBundleShortVersionString</key>
+	<string>1</string>
 </dict>
 </plist>
