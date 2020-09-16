@@ -36,7 +36,7 @@
         <Setter Property="FontSize" Value="12" />
     </Style>
 
-    <Style TargetType="RadioButton">
+  <Style TargetType="RadioButton">
     <Setter Property="VisualStateManager.VisualStateGroups">
         <VisualStateGroupList>
             <VisualStateGroup x:Name="CommonStates">
