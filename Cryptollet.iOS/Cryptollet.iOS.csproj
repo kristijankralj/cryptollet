@@ -134,6 +134,8 @@
     <ImageAsset Include="Assets.xcassets\XLM.png.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\XLM.png.imageset\XLM.pdf" />
     <ImageAsset Include="Assets.xcassets\BCH.png.imageset\BCH-1.pdf" />
+    <ImageAsset Include="Assets.xcassets\splash_icon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\splash_icon.imageset\cryptollet_icon.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -184,6 +186,7 @@
     <Folder Include="Assets.xcassets\deposited_tab.png.imageset\" />
     <Folder Include="Assets.xcassets\withdrawn_tab.png.imageset\" />
     <Folder Include="Assets.xcassets\XLM.png.imageset\" />
+    <Folder Include="Assets.xcassets\splash_icon.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\loading.gif" />
