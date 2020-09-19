@@ -89,6 +89,10 @@ stages:
       inputs:
         targetPath: 'Cryptollet.iOS/bin/iPhone/Release/Cryptollet.iOS.ipa'
         artifactName: iOSIpa
+    - task: PublishPipelineArtifact@1
+      inputs:
+        targetPath: 'Cryptollet.iOS/Entitlements.plist'
+        artifactName: Entitlements
 
   - job: RunTests
     displayName: "Run Unit Tests"
