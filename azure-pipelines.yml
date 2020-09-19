@@ -47,6 +47,10 @@ stages:
       inputs:
         targetPath: 'Cryptollet.Android/obj/Release/android/bin/com.kristijankralj.cryptollet.apk'
         artifactName: AndroidApk
+    - task: PublishPipelineArtifact@1
+      inputs:
+        targetPath: 'releasenotes.txt'
+        artifactName: ReleaseNotes
 
   - job: BuildiOS
     displayName: "Build iOS App"
@@ -85,6 +89,10 @@ stages:
       inputs:
         targetPath: 'Cryptollet.iOS/bin/iPhone/Release/Cryptollet.iOS.ipa'
         artifactName: iOSIpa
+    - task: PublishPipelineArtifact@1
+      inputs:
+        targetPath: 'Cryptollet.iOS/Entitlements.plist'
+        artifactName: Entitlements
 
   - job: RunTests
     displayName: "Run Unit Tests"
