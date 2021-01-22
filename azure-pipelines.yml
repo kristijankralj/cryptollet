@@ -1,4 +1,3 @@
-
 trigger:
 - master
 
@@ -8,134 +7,44 @@ pool:
 variables:
   buildConfiguration: 'Release'
   outputDirectory: '$(build.binariesDirectory)/$(buildConfiguration)'
-  solutionName: 'Cryptollet.sln'
-  androidProject: 'Cryptollet.Android/Cryptollet.Android.csproj'
 
-stages:
-- stage: BuildApps
-  displayName: "Build The Apps"
-  jobs:
+jobs:
 
-  - job: BuildAndroid
-    displayName: "Build Android App"
+- job: BuildAndroid
+  displayName: "Build Android"
 
-    steps:
-    - task: NuGetToolInstaller@1
+  steps:
+  #Install nuget
+  - task: NuGetToolInstaller@1
 
-    - task: NuGetCommand@2
-      inputs:
-        restoreSolution: '$(solutionName)'
-    - task: android-manifest-version@1
-      inputs:
-        sourcePath: 'Cryptollet.Android/Properties/AndroidManifest.xml'
-        versionCodeOption: 'buildid'
-        versionCode: '$(Build.BuildId)'
-        printFile: true
-    - task: XamarinAndroid@1
-      inputs:
-        projectFile: '$(androidProject)'
-        outputDirectory: '$(outputDirectory)'
-        configuration: '$(buildConfiguration)'
-    - task: AndroidSigning@3
-      inputs:
-        apkFiles: '**/*.apk'
-        apksignerKeystoreFile: 'cryptollet.keystore'
-        apksignerKeystorePassword: '$(keystorePassword)'
-        apksignerKeystoreAlias: '$(keystoreName)'
-        apksignerKeyPassword: '$(keystorePassword)'
-    - task: PublishPipelineArtifact@1
-      inputs:
-        targetPath: 'Cryptollet.Android/obj/Release/android/bin/com.kristijankralj.cryptollet.apk'
-        artifactName: AndroidApk
-    - task: PublishPipelineArtifact@1
-      inputs:
-        targetPath: 'releasenotes.txt'
-        artifactName: ReleaseNotes
+  #Restore nuget packages
+  - task: NuGetCommand@2
+    inputs:
+      restoreSolution: '**/*.sln'
 
-  - job: BuildiOS
-    displayName: "Build iOS App"
-    steps:
-    - task: NuGetToolInstaller@1
+  # Build a Xamarin.Android project.
+  - task: XamarinAndroid@1
+    inputs:
+      projectFile: 'Cryptollet.Android/Cryptollet.Android.csproj'
+      outputDirectory: '$(outputDirectory)'
+      configuration: '$(buildConfiguration)'
 
-    - task: NuGetCommand@2
-      inputs:
-        restoreSolution: '$(solutionName)'
+- job: BuildiOS
+  displayName: "Build iOS"
+  steps:
+  # Install NuGet
+  - task: NuGetToolInstaller@1
 
-    - task: InstallAppleCertificate@2
-      inputs:
-        certSecureFile: 'Certificates.p12'
-        certPwd: '$(keystorePassword)'
-        keychain: 'temp'
-    - task: InstallAppleProvisioningProfile@1
-      inputs:
-        provisioningProfileLocation: 'secureFiles'
-        provProfileSecureFile: 'Ad_Hoc_2020_09_13.mobileprovision'
-    - task: ios-bundle-version@1
-      inputs:
-        sourcePath: 'Cryptollet.iOS/Info.plist'
-        versionCodeOption: 'buildid'
-        versionCode: '$(Build.BuildId)'
-        printFile: true
-    - task: XamariniOS@2
-      inputs:
-        solutionFile: '$(solutionName)'
-        configuration: '$(buildConfiguration)'
-        packageApp: true
-        buildForSimulator: false
-        runNugetRestore: false
-        signingIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
-        signingProvisioningProfileID: '$(APPLE_PROV_PROFILE_UUID)'
-    - task: PublishPipelineArtifact@1
-      inputs:
-        targetPath: 'Cryptollet.iOS/bin/iPhone/Release/Cryptollet.iOS.ipa'
-        artifactName: iOSIpa
-    - task: PublishPipelineArtifact@1
-      inputs:
-        targetPath: 'Cryptollet.iOS/Entitlements.plist'
-        artifactName: Entitlements
-
-  - job: RunTests
-    displayName: "Run Unit Tests"
-    steps:
-    - task: DotNetCoreCLI@2
-      inputs:
-        command: 'test'
-        projects: 'Cryptollet.Tests/Cryptollet.Tests.csproj'
-        configuration: '$(buildConfiguration)'
-
-- stage: BetaVersions
-  dependsOn: BuildApps
-  displayName: "Beta Release"
-  jobs: 
-  - job: AndroidBeta
-    displayName: "Release Android Beta"
-    steps:
-    - task: DownloadPipelineArtifact@2
-      inputs:
-        artifact: AndroidApk
-    - task: AppCenterDistribute@3
-      inputs:
-        serverEndpoint: 'App Center'
-        appSlug: 'Cryptollet/Cryptollet-1'
-        appFile: '$(Pipeline.Workspace)/com.kristijankralj.cryptollet.apk'
-        releaseNotesOption: 'file'
-        releaseNotesFile: 'releasenotes.txt'
-        destinationType: 'groups'
-        distributionGroupId: '75347167-252e-4973-933e-9f5c7262df46'
-  - job: iOSBeta
-    displayName: "Release iOS Beta"
-    steps:
-    - task: DownloadPipelineArtifact@2
-      inputs:
-        artifact: iOSIpa
-    - task: AppCenterDistribute@3
-      inputs:
-        serverEndpoint: 'App Center'
-        appSlug: 'Cryptollet/Cryptollet'
-        appFile: '$(Pipeline.Workspace)/Cryptollet.iOS.ipa'
-        releaseNotesOption: 'file'
-        releaseNotesFile: 'releasenotes.txt'
-        destinationType: 'groups'
-        distributionGroupId: '0b822a6b-8ff9-46c8-91cb-459764b30d2b'
-
-
+  # Restore NuGet Packages
+  - task: NuGetCommand@2
+    inputs:
+      restoreSolution: 'Cryptollet.sln'
+  # Build the iOS project
+  - task: XamariniOS@2
+    displayName: "Build iOS project"
+    inputs:
+      solutionFile: 'Cryptollet.sln'
+      configuration: '$(buildConfiguration)'
+      packageApp: false
+      runNugetRestore: false
+      buildForSimulator: true
