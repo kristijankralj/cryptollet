@@ -44,7 +44,7 @@ jobs:
     displayName: "Build iOS project"
     inputs:
       solutionFile: 'Cryptollet.sln'
-      configuration: '$(buildConfiguration)'
+      configuration: Debug
       packageApp: false
       runNugetRestore: false
       buildForSimulator: true
