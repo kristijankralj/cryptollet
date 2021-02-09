@@ -16,10 +16,10 @@
         <StackLayout>
             <Label Text="Transaction Type"
                    Padding="10,16,10,0"/>
-            <RadioButton Text="Deposit"
+            <RadioButton Content="Deposit"
                          IsChecked="{Binding IsDeposit}"
                          Margin="16,0,0,0"/>
-            <RadioButton Text="Withdrawn"
+            <RadioButton Content="Withdrawn"
                          IsChecked="{Binding IsDeposit, Converter={StaticResource InverseBoolConverter}, Mode=OneWay}"
                          Margin="16,0,0,0"/>
             <Label Text="Select Asset"

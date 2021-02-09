@@ -61,6 +61,8 @@ namespace Cryptollet.Modules.Wallet
                     TextColor = whiteColor,
                     ValueLabel = item.Name,
                     Color = SKColor.Parse(colors.First(x => x.Symbol == item.Symbol).HexColor),
+                    //assign color to this property
+                    ValueLabelColor = SKColor.Parse(colors.First(x => x.Symbol == item.Symbol).HexColor)
                 });
             }
             var chart = new DonutChart { Entries = entries };
