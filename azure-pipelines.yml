@@ -63,8 +63,8 @@ stages:
 
     - task: InstallAppleCertificate@2
       inputs:
-        certSecureFile: 'Certificates.p12'
-        certPwd: '$(keystorePassword)'
+        certSecureFile: 'AzureDevOpsCertificate.p12'
+        certPwd: '$(p12Password)'
         keychain: 'temp'
     - task: InstallAppleProvisioningProfile@1
       inputs:
