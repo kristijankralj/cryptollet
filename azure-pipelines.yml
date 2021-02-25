@@ -69,7 +69,7 @@ stages:
     - task: InstallAppleProvisioningProfile@1
       inputs:
         provisioningProfileLocation: 'secureFiles'
-        provProfileSecureFile: 'Ad_Hoc_2020_09_13.mobileprovision'
+        provProfileSecureFile: 'Ad_Hoc_2021_02_25.mobileprovision'
     - task: ios-bundle-version@1
       inputs:
         sourcePath: 'Cryptollet.iOS/Info.plist'
