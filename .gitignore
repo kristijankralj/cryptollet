@@ -1,5 +1,6 @@
 # globs
 Makefile.in
+change 2
 *.userprefs
 *.usertasks
 config.make
